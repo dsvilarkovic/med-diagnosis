@@ -11,13 +11,15 @@ def lowerCaseAndUnderline(string_value):
 
 def main(DISEASE_TOKEN, isRequestEnabled = False):
 
+    #driver = webdriver.Firefox()
+    
     if(isRequestEnabled):
         result = requests.get("http://www.symcat.com/conditions/" + DISEASE_TOKEN)
 
         if(result.status_code == 200):
             content = result.content
-            file = open("response_text.txt", "w")
-            file.write(str(result.content, 'utf-8'))
+            file = open("response_text.txt", "w", encoding="utf-8")
+            file.write(str(content))
             file.close()
     else:
         file = open("response_text.txt", "r")
@@ -25,7 +27,7 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
         file.close()
 
     soup = BeautifulSoup(content, features = 'lxml')
-
+    print(soup)
 
     #taking symptoms
     final = soup.findAll("span", itemprop = "signOrSymptom")
@@ -55,7 +57,7 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
     disease_data += "\n\n"
     disease_data += symptom_percentages_block
     
-    text_file = open("symptoms_base.pl", "w")
+    text_file = open("symptoms_base.pl", "a")
     text_file.write(disease_data)
     text_file.close()
 
@@ -82,7 +84,7 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
 
         procedures_block += f"recommended_procedure({disease_name}, '{procedure}', {success_percentage}).\n"
 
-    text_file = open("procedures_base.pl", "w")
+    text_file = open("procedures_base.pl", "a")
     text_file.write(procedures_block)
     text_file.close()
 
@@ -105,7 +107,7 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
         
         medications_block += f"recommended_medication({disease_name}, '{medication}', {success_percentage}).\n"
 
-    text_file = open("medications_base.pl", "w")
+    text_file = open("medications_base.pl", "a")
     text_file.write(medications_block)
     text_file.close()
 
@@ -127,13 +129,13 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
 
 if(__name__ == "__main__"):
 
-    if(len(sys.argv) >= 2):
-        scrape = False if sys.argv[1] == "-s" else True
+    if(len(sys.argv) >= 3):
+        scrape = False if sys.argv[2] == "-s" else True
     else:
         scrape = True
 
-    if(len(sys.argv[0]) > 0):
-        disease_name = str(sys.argv[0])
+    if(len(sys.argv[1]) > 0):
+        disease_name = str(sys.argv[1])
     else:
         disease_name = "parkinson-disease"
 
