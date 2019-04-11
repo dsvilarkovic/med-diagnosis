@@ -7,6 +7,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.ugos.jiprolog.engine.JIPEngine;
+import com.ugos.jiprolog.engine.JIPTermParser;
+
+import utils.Singleton;
+
 public class PatientInformationPanel extends JPanel {
 
 	private JLabel nameLabel;
@@ -24,8 +29,7 @@ public class PatientInformationPanel extends JPanel {
 		JLabel lastNameTextLabel = new JLabel("Last name: ");
 		JLabel JMBGTextLabel = new JLabel("JMBG: ");
 		JLabel phoneNumberTextLabel = new JLabel("Phone number: ");
-		JLabel addressTextLabel = new JLabel("Address: ");
-		
+		JLabel addressTextLabel = new JLabel("Address: ");		
 
 		nameLabel = new JLabel("Vesna");
 		lastNameLabel = new JLabel("Milic");
