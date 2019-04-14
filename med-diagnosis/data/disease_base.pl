@@ -96,7 +96,7 @@ disease(Patient, alzheimer_disease):-
 	 symptom(Patient, restlessness),
 	 symptom(Patient, irregular_appearing_scalp),
 	 symptom(Patient, fears_and_phobias),
-	 symptom(Patient, muscle_cramps_contractures_or_spasms),
+	 symptom(Patient, muscle_cramps,contractures_or_spasms),
 	 symptom(Patient, eye_burns_or_stings).
 
 
@@ -139,26 +139,6 @@ disease(Patient, amyotrophic_lateral_sclerosis_als):-
 	 symptom(Patient, muscle_weakness),
 	 symptom(Patient, fatigue),
 	 symptom(Patient, leg_cramps_or_spasms).
-
-
-
-
-
-symptom('11', abnormal_involuntary_movements).
-symptom('11', problems_with_movement).
-symptom('11', disturbance_of_memory).
-symptom('11', dizziness).
-symptom('11', weakness).
-symptom('11', stiffness_all_over).
-symptom('11', leg_weakness).
-symptom('11', focal_weakness).
-symptom('11', muscle_stiffness_or_tightness).
-symptom('11', difficulty_speaking).
-symptom('11', leg_stiffness_or_tightness).
-symptom('11', fears_and_phobias).
-symptom('11', headache).
-symptom('11', fever).
-symptom('11', vomiting).
 
 
 
