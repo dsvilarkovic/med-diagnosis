@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="med-diagnosis/src"/>
+	<classpathentry kind="lib" path="med-diagnosis/Theme/jipconsole.jar"/>
+	<classpathentry kind="lib" path="med-diagnosis/Theme/synthetica.jar"/>
+	<classpathentry kind="lib" path="med-diagnosis/Theme/syntheticaAluOxide.jar"/>
+	<classpathentry kind="lib" path="med-diagnosis/Theme/syntheticaSimple2D.jar"/>
+	<classpathentry kind="output" path="med-diagnosis/bin"/>
+</classpath>

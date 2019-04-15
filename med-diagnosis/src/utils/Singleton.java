@@ -4,13 +4,14 @@ import com.ugos.jiprolog.engine.JIPEngine;
 import view.MainFrame;
 
 public class Singleton {
-	private static Singleton instance = null;
+	private static Singleton instance = new Singleton();
 	private MainFrame mainFrame;
 	private JIPEngine engine;
 	
 	private Singleton() {
-		mainFrame = new MainFrame();
+		System.out.println("NA koji fazon");
 		engine = new JIPEngine();
+		mainFrame = new MainFrame();
 	}
 	
 	public static Singleton getInstance() {

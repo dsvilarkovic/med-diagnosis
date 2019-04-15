@@ -252,6 +252,21 @@ public class AssertPatientData {
 		return proceduresList;	
 	}
 	
+	public static List<String> getAllSymptoms() {
+		List<String> symptomList = null;
+		try {
+			engine = Singleton.getInstance().getEngine();	
+			engine.consultFile("data/disease_list_base.pl");
+			symptomList = SymptomFileExtractor.extractFile(true);
+		} catch (JIPSyntaxErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return symptomList;
+	}
 	
 	//test main-om
 	public static void main(String[] args) {
@@ -261,7 +276,7 @@ public class AssertPatientData {
 			engine.consultFile("data/disease_list_base.pl");
 			
 			List<String> symptomList = SymptomFileExtractor.extractFile(true);	
-			
+			System.out.println(symptomList);
 			
 			//Symptom lista, uzet samo podskup od svih nadjenih simptoma
 			symptomList = symptomList.subList(0, 2);
