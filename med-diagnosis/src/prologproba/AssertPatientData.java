@@ -54,7 +54,11 @@ public class AssertPatientData {
 	}
 	
 	
-	
+	/**
+	 * Metoda koja od liste simptoma pravi oblik pogodan za upit na JIProlog
+	 * @param symptomList
+	 * @return
+	 */
 	private static String createSymptomString(List<String> symptomList) {
 		StringBuilder builder = new StringBuilder();
 		
@@ -121,10 +125,12 @@ public class AssertPatientData {
 	
 	/**
 	 * Metoda izbaci rezultat koju bolest moze imati pacijent
-	 * @param symptomString - lista simptoma u jednom string u obliku [sym1, sym2, sym3]
+	 * @param symptomList - lista simptoma 
 	 * @return ime bolesti koju je pacijent dobio
 	 */
-	public static List<String> getDiseaseList(String symptomString){
+	public static List<String> getDiseaseList(List<String> symptomList){
+		String symptomString = AssertPatientData.createSymptomString(symptomList);
+		
 		List<String> diseaseList = new ArrayList<String>();
 		
 		JIPTermParser termParser = engine.getTermParser();
@@ -137,7 +143,7 @@ public class AssertPatientData {
 		
 		JIPQuery query = engine.openSynchronousQuery(term);		
 		JIPTerm solution = null;
-		String st = "";
+		
 		while((solution = query.nextSolution()) != null) {
 			Pattern pattern = Pattern.compile("\\)\\),.*\\)");
 			Matcher matcher = pattern.matcher(solution.toString());
@@ -190,7 +196,6 @@ public class AssertPatientData {
 				
 				System.out.println("Medication: " + foundString);
 				if(medicationList.contains(foundString) == false) {
-					System.out.println("ee");
 					medicationList.add(foundString);
 				}
 			}
@@ -255,16 +260,15 @@ public class AssertPatientData {
 			engine = Singleton.getInstance().getEngine();	
 			engine.consultFile("data/disease_list_base.pl");
 			
-			List<String> list = SymptomFileExtractor.extractFile(true);
-			Integer patientId = 11;
-			
-			list = list.subList(0, 2);
+			List<String> symptomList = SymptomFileExtractor.extractFile(true);	
 			
 			
-			//AssertPatientData.assertAnamnesisFacts(patientId, list);			
+			//Symptom lista, uzet samo podskup od svih nadjenih simptoma
+			symptomList = symptomList.subList(0, 2);
 			
-			String symptomString = AssertPatientData.createSymptomString(list);
-			List<String> diseaseList = AssertPatientData.getDiseaseList(symptomString);
+			
+			
+			List<String> diseaseList = AssertPatientData.getDiseaseList(symptomList);
 			
 			engine.consultFile("data/medications_base.pl");
 			
