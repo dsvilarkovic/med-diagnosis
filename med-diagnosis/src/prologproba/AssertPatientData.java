@@ -13,8 +13,6 @@ import com.ugos.jiprolog.engine.JIPQuery;
 import com.ugos.jiprolog.engine.JIPSyntaxErrorException;
 import com.ugos.jiprolog.engine.JIPTerm;
 import com.ugos.jiprolog.engine.JIPTermParser;
-import com.ugos.jiprolog.engine.JIPVariable;
-import com.ugos.jiprolog.engine.JIPTermParser.TermEnumerator;
 
 import utils.Singleton;
 import utils.SymptomFileExtractor;
@@ -163,9 +161,9 @@ public class AssertPatientData {
 	}
 	
 	/**
-	 * 
-	 * @param args
-	 * @return 
+	 * Na osnovu bolesti vraca iz baze listu lekova koji se mogu dati korisniku
+	 * @param diseaseName - ime bolesti
+	 * @return {@code List<String> } koji ima listu stringova sa nazivima lekova
 	 */
 	public static List<String> getMedicationList(String diseaseName) {
 		List<String> medicationList = new ArrayList<String>();
@@ -207,9 +205,9 @@ public class AssertPatientData {
 	}
 	
 	/**
-	 * 
-	 * @param args
-	 * @return 
+	 * Na osnovu bolesti vraca iz baze listu procedura koje se mogu dati korisniku
+	 * @param diseaseName - ime bolesti
+	 * @return {@code List<String> } koji ima listu stringova sa nazivima procedura
 	 */
 	public static List<String> getProceduresList(String diseaseName) { 
 		List<String> proceduresList = new ArrayList<String>();
