@@ -13,6 +13,7 @@ import com.ugos.jiprolog.engine.JIPQuery;
 import com.ugos.jiprolog.engine.JIPSyntaxErrorException;
 import com.ugos.jiprolog.engine.JIPTerm;
 import com.ugos.jiprolog.engine.JIPTermParser;
+import com.ugos.jiprolog.engine.JIPVariable;
 import com.ugos.jiprolog.engine.JIPTermParser.TermEnumerator;
 
 import utils.Singleton;
@@ -138,8 +139,6 @@ public class AssertPatientData {
 		JIPTerm solution = null;
 		String st = "";
 		while((solution = query.nextSolution()) != null) {
-			System.out.println("solution: " + solution);	
-			
 			Pattern pattern = Pattern.compile("\\)\\),.*\\)");
 			Matcher matcher = pattern.matcher(solution.toString());
 			if(matcher.find()) {	
@@ -148,6 +147,7 @@ public class AssertPatientData {
 				foundString = foundString.replace(")", "")
 										 .replace(",", "");
 				
+				System.out.println(foundString);
 				if(diseaseList.contains(foundString) == false)
 					diseaseList.add(foundString);
 			}
@@ -169,7 +169,6 @@ public class AssertPatientData {
 		
 		
 		String queryString = String.format("recommended_medication(%s, X, Y).", diseaseName);
-		System.out.println(queryString);
 		term = termParser.parseTerm(queryString);
 		
 		JIPQuery query = engine.openSynchronousQuery(term);		
@@ -178,14 +177,26 @@ public class AssertPatientData {
 		while((solution = query.nextSolution()) != null) {
 			System.out.println("solution: " + solution);	
 			
-			String medication = (solution.getVariables()[0].getValue()).toString();
 			
-			System.out.println("Ejjj  " + medication);
-			if(medicationList.contains(medication) == false)
-				medicationList.add(medication);
+			
+			Pattern pattern = Pattern.compile("\\(.*\\)");
+			Matcher matcher = pattern.matcher(solution.toString());
+			if(matcher.find()) {	
+				String foundString = matcher.group(0);
+				
+				String[] tokens = foundString.split(",");
+				
+				foundString = tokens[1];
+				
+				System.out.println("Medication: " + foundString);
+				if(medicationList.contains(foundString) == false) {
+					System.out.println("ee");
+					medicationList.add(foundString);
+				}
+			}
+			
 		
 		}
-		System.out.println("Izaso?");
 		return medicationList;
 		
 	}
@@ -193,10 +204,47 @@ public class AssertPatientData {
 	/**
 	 * 
 	 * @param args
+	 * @return 
 	 */
-	public static void getProceduresList(String diseaseName) { 
+	public static List<String> getProceduresList(String diseaseName) { 
+		List<String> proceduresList = new ArrayList<String>();
 		
-	
+		JIPTermParser termParser = engine.getTermParser();
+		JIPTerm term = null; 
+		
+		
+		String queryString = String.format("recommended_procedure(%s, X, Y).", diseaseName);
+		term = termParser.parseTerm(queryString);
+		
+		JIPQuery query = engine.openSynchronousQuery(term);		
+		JIPTerm solution = null;
+
+		while((solution = query.nextSolution()) != null) {
+			System.out.println("solution: " + solution);	
+			
+			
+			
+			Pattern pattern = Pattern.compile("\\(.*\\)");
+			Matcher matcher = pattern.matcher(solution.toString());
+			if(matcher.find()) {	
+				String foundString = matcher.group(0);
+				
+				String[] tokens = foundString.split(",");
+				
+				foundString = tokens[1];
+				
+				System.out.println("Procedure: " + foundString);
+				if(proceduresList.contains(foundString) == false) {
+					System.out.println("ee");
+					proceduresList.add(foundString);
+				}
+			}
+			
+		
+		}
+		
+		
+		return proceduresList;	
 	}
 	
 	
@@ -218,8 +266,6 @@ public class AssertPatientData {
 			String symptomString = AssertPatientData.createSymptomString(list);
 			List<String> diseaseList = AssertPatientData.getDiseaseList(symptomString);
 			
-			System.out.println(diseaseList);
-			
 			engine.consultFile("data/medications_base.pl");
 			
 			Map<String, List<String>> medicationMap = new TreeMap<String, List<String>>();
@@ -230,6 +276,22 @@ public class AssertPatientData {
 				medicationMap.put(disease, medicationsList);
 			}
 			
+			System.out.println(medicationMap);
+			
+			
+			engine.consultFile("data/procedures_base.pl");
+			
+			Map<String, List<String>> proceduresMap = new TreeMap<String, List<String>>();
+			
+			for (String disease : diseaseList.subList(0, 1)) {
+				
+				List<String> proceduresList = getProceduresList(disease);
+				proceduresMap.put(disease, proceduresList);
+			}
+			
+			System.out.println(proceduresMap);
+			
+			
 		} catch (JIPSyntaxErrorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -237,9 +299,6 @@ public class AssertPatientData {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
+				
 	}
 }
