@@ -30,9 +30,9 @@ public class PatientInformationPanel extends JPanel {
 
 		nameLabel = new JLabel("Vesna");
 		lastNameLabel = new JLabel("Milic");
-		JMBGLabel = new JLabel("0901997835287");
-		phoneNumberLabel = new JLabel("+381638861772");
-		addressLabel = new JLabel("Backa 38");
+		JMBGLabel = new JLabel("123456789");
+		phoneNumberLabel = new JLabel("+12345678");
+		addressLabel = new JLabel("12345678");
 		
 		JPanel textLabelsPanel = new JPanel();
 		JPanel patientInfoLabelsPanel = new JPanel();
