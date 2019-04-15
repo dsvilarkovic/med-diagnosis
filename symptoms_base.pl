@@ -78,7 +78,6 @@ symptom_percentage(multiple_sclerosis, disturbance_of_memory, 13).
 symptom_percentage(multiple_sclerosis, abnormal_involuntary_movements, 12).
 symptom_percentage(multiple_sclerosis, leg_stiffness_or_tightness, 12).
 symptom_percentage(multiple_sclerosis, focal_weakness, 11).
-
 headache(migraine).
 nausea(migraine).
 vomiting(migraine).
@@ -101,7 +100,6 @@ symptom_percentage(migraine, spots_or_clouds_in_vision, 4).
 symptom_percentage(migraine, symptoms_of_the_face, 3).
 symptom_percentage(migraine, blindness, 2).
 symptom_percentage(migraine, long_menstrual_periods, 2).
-
 disturbance_of_memory(dementia).
 problems_with_movement(dementia).
 dizziness(dementia).
@@ -128,7 +126,6 @@ symptom_percentage(dementia, difficulty_speaking, 13).
 symptom_percentage(dementia, insomnia, 13).
 symptom_percentage(dementia, disturbance_of_smell_or_taste, 13).
 symptom_percentage(dementia, focal_weakness, 9).
-
 headache(meningitis).
 fever(meningitis).
 vomiting(meningitis).
@@ -155,7 +152,6 @@ symptom_percentage(meningitis, low_back_pain, 26).
 symptom_percentage(meningitis, cough, 26).
 symptom_percentage(meningitis, leg_pain, 26).
 symptom_percentage(meningitis, neck_stiffness_or_tightness, 21).
-
 dizziness(headache).
 fever(headache).
 nausea(headache).
@@ -182,7 +178,6 @@ symptom_percentage(headache, facial_pain, 10).
 symptom_percentage(headache, frontal_headache, 6).
 symptom_percentage(headache, sinus_congestion, 4).
 symptom_percentage(headache, neck_stiffness_or_tightness, 3).
-
 disturbance_of_memory(alzheimer_disease).
 depressive_or_psychotic_symptoms(alzheimer_disease).
 depression(alzheimer_disease).
@@ -209,7 +204,6 @@ symptom_percentage(alzheimer_disease, irregular_appearing_scalp, 4).
 symptom_percentage(alzheimer_disease, fears_and_phobias, 2).
 symptom_percentage(alzheimer_disease, muscle_cramps,_contractures,_or_spasms, 2).
 symptom_percentage(alzheimer_disease, eye_burns_or_stings, 2).
-
 seizures(epilepsy).
 headache(epilepsy).
 abnormal_involuntary_movements(epilepsy).
@@ -230,7 +224,6 @@ symptom_percentage(epilepsy, lack_of_growth, 2).
 symptom_percentage(epilepsy, stiffness_all_over, 2).
 symptom_percentage(epilepsy, eye_moves_abnormally, 2).
 symptom_percentage(epilepsy, muscle_weakness, 1).
-
 headache(tension_headache).
 neck_pain(tension_headache).
 nausea(tension_headache).

@@ -21,9 +21,11 @@ public class SymptomFileExtractor {
 	/**
 	 * Funkcija koja vadi sve simptome u jedinstvenu listu. <br>
 	 * Za combobox koristiti
+	 * @param useUnderscore - da li zeli da se kao razmak u simptomu koristi _ ili " " npr: <br/>
+	 * "leg_spasms" ili "leg spasms"
 	 * @return listu simptoma u obliku {@code String}
 	 */
-	public static List<String> extractFile() {
+	public static List<String> extractFile(Boolean useUnderscore) {
 		File file = new File("data/disease_base.pl"); 
 		
 		BufferedReader br = null;
@@ -45,8 +47,10 @@ public class SymptomFileExtractor {
 					String foundString = matcher.group(0);
 					foundString = foundString.replace(",", "")
 											 .replace(")", "")
-											 .replace(" ", "")
-											 .replace("_", " ");
+											 .replace(" ", "");
+											 
+					if(useUnderscore == false)
+						foundString = foundString.replace("_", " ");
 					
 					System.out.println(foundString);	
 					if(symptomList.contains(foundString) == false) {
@@ -68,6 +72,6 @@ public class SymptomFileExtractor {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SymptomFileExtractor.extractFile();
+		SymptomFileExtractor.extractFile(false);
 	}
 }
