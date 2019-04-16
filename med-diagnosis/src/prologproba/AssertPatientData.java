@@ -21,7 +21,7 @@ import utils.SymptomFileExtractor;
 
 public class AssertPatientData {
 	
-	private static JIPEngine engine = Singleton.getInstance().getEngine();
+	private static JIPEngine engine = new JIPEngine();
 	
 	//metoda ubaci cinjenice
 	/**
@@ -255,7 +255,6 @@ public class AssertPatientData {
 	public static List<String> getAllSymptoms() {
 		List<String> symptomList = null;
 		try {
-			engine = Singleton.getInstance().getEngine();	
 			engine.consultFile("data/disease_list_base.pl");
 			symptomList = SymptomFileExtractor.extractFile(true);
 		} catch (JIPSyntaxErrorException e) {
@@ -272,7 +271,6 @@ public class AssertPatientData {
 	public static void main(String[] args) {
 		
 		try {
-			engine = Singleton.getInstance().getEngine();	
 			engine.consultFile("data/disease_list_base.pl");
 			
 			List<String> symptomList = SymptomFileExtractor.extractFile(true);	
