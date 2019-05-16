@@ -14,7 +14,7 @@ public class PrologProba {
 	}
 	
 	public void prologTestFunction() {
-		JIPEngine engine = Singleton.getInstance().getEngine();
+		JIPEngine engine = new JIPEngine();
 		
 		try {
 			engine.consultFile("data/medications_base.pl");
