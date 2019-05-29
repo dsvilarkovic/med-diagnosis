@@ -1,5 +1,6 @@
 
-file = open("sulf.txt", "r")
+file = open("lista_penicillin.txt", "r")
+file2 = open("penicillin_list.txt", "w")
 content = file.read()
 
 antibiotics_list = content.split('\n')
@@ -12,10 +13,14 @@ all_med_list = ['riluzole', 'baclofen', 'tizanidine', 'glycopyrrolate', 'celecox
 
 print(antibiotics_list)
 
-for antibiotic in antibiotics_list:
+""" for antibiotic in antibiotics_list:
 
     if antibiotic in all_med_list:
-        print(antibiotic)
+        print(antibiotic) """
+
+for antibiotic in antibiotics_list:
+        file2.write(antibiotic + "\n")
 
 
+file2.close()
 file.close()

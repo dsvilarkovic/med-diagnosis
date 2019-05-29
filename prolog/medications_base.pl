@@ -59,6 +59,7 @@ recommended_medication_therapies(parkinson_disease, 'trihexyphenidyl_(artane)').
 recommended_medication_therapies(parkinson_disease, 'rivastigmine_(exelon)').
 
 recommended_medication_therapies(parkinson_disease, 'therapist').
+recommended_medication_therapies(parkinson_disease, 'physical_therapist').
 
 recommended_medication_therapies(dementia, 'donepezil_(aricept)').
 recommended_medication_therapies(dementia, 'memantine_(namenda)').
@@ -73,6 +74,9 @@ recommended_medication_therapies(dementia, 'modafinil_(provigil)').
 recommended_medication_therapies(dementia, 'raloxifene_(evista)').
 recommended_medication_therapies(dementia, 'deferasirox_(exjade)').
 
+recommended_medication_therapies(dementia, 'occupational_therapist').
+recommended_medication_therapies(dementia, 'physical_therapist').
+
 recommended_medication_therapies(multiple_sclerosis, 'interferon_beta_1a_(avonex)').
 recommended_medication_therapies(multiple_sclerosis, 'glatiramer_(copaxone)').
 recommended_medication_therapies(multiple_sclerosis, 'baclofen').
@@ -86,6 +90,9 @@ recommended_medication_therapies(multiple_sclerosis, 'solifenacin_(vesicare)').
 recommended_medication_therapies(multiple_sclerosis, 'azathioprine').
 recommended_medication_therapies(multiple_sclerosis, 'cyclophosphamide').
 recommended_medication_therapies(multiple_sclerosis, 'armodafinil_(nuvigil)').
+
+recommended_medication_therapies(multiple_sclerosis, 'therapist').
+recommended_medication_therapies(multiple_sclerosis, 'physical_therapist').
 
 recommended_medication_therapies(alzheimer_disease, 'donepezil_(aricept)').
 recommended_medication_therapies(alzheimer_disease, 'memantine_(namenda)').

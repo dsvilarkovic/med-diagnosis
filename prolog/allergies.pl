@@ -28,5 +28,5 @@ allergy(sulfonamides, 'celecoxib_(celebrex)').
 allergy(sulfonamides, 'sumatriptan_(imitrex)').
 
 
-suggested_treatment(Disease, Allergies, Medication) :- recommended_medication_therapies(Disease, Medication), allergies(Allergy_name, Medication), \+member(Allergy_name,Allergies).
-suggested_treatment(Disease, Allergies, Medication) :- recommended_medication_therapies(Disease, Medication), \+allergies(Allergy_name, Medication). 
+suggested_treatment(Disease, Allergies, Medication) :- recommended_medication_therapies(Disease, Medication), allergy(Allergy_name, Medication), \+member(Allergy_name,Allergies).
+suggested_treatment(Disease, Allergies, Medication) :- recommended_medication_therapies(Disease, Medication), \+allergy(Allergy_name, Medication). 
