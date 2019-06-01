@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+<class name="model.MedicalExamination" table="medical_examinations">
+
+	<id name="id" column="id">
+	  <generator class="native"/>
+	</id>
+	
+	<many-to-one name="medicalRecord" class="model.MedicalRecord" fetch="select">
+            <column name="medical_record" not-null="true" />
+    </many-to-one>
+	
+	  <set name = "anamnesisSymptoms" cascade="save-update" table="examination_symptom">
+         <key column = "examination"/>
+         <many-to-many column = "symptom" class="model.Symptom"/>
+      </set>
+      
+      <set name = "physicalExaminationSymptoms" cascade="save-update" table="examination_physical_examination">
+         <key column = "examination"/>
+         <many-to-many column = "symptom" class="model.Symptom"/>
+      </set>
+      
+     <many-to-one name="disease" class="model.Disease" fetch="select">
+            <column name="disease" not-null="false" />
+    </many-to-one>
+</class>
+
+<class name="model.MedicalRecord" table="medical_records">
+
+	<id name="id" column="id">
+	  <generator class="native"/>
+	</id>
+	<property name="medicalRecordNumber" column="medical_record_number"/>
+	<property name="firstName" column="first_name"/>
+	<property name="lastName" column="last_name"/>
+	<property name="jmbg" column="jmbg"/>
+	<property name="address" column="address"/>
+	<property name="phoneNumber" column="phone_number"/>
+	<property name="yearOfBirth" column="year_of_birth"/>
+	<property name="female" column="female"/>
+</class>
+
+<class name="model.Symptom" table="symptoms">
+	<id name="id" column="id">
+	  <generator class="native"/>
+	</id>
+	<property name="name" column="name"/>
+</class>
+
+<class name="model.Disease" table="diseases">
+	<id name="id" column="id">
+	  <generator class="native"/>
+	</id>
+	<property name="name" column="name"/>
+</class>  
+</hibernate-mapping>

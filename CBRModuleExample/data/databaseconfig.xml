@@ -1,0 +1,7 @@
+<DataBaseConfiguration>
+	<HibernateConfigFile>hibernate.cfg.xml</HibernateConfigFile>
+	<DescriptionMappingFile>MedicalExamination.hbm.xml</DescriptionMappingFile>
+	<DescriptionClassName>model.MedicalExamination</DescriptionClassName>
+	<SolutionMappingFile>MedicalExamination.hbm.xml</SolutionMappingFile>
+	<SolutionClassName>model.Disease</SolutionClassName>	
+</DataBaseConfiguration>
