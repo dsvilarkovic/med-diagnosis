@@ -8,36 +8,17 @@ import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 public class MedicalExamination implements CaseComponent {
 
 	private int id;
-	private MedicalRecord medicalRecord;
-	private Set<Symptom> anamnesisSymptoms;
-	private Set<Symptom> physicalExaminationSymptoms;
-	private Disease disease;
+	private MedicalRecord medicalRecord;		
+	private Set<Symptom> symptoms;
+	private Set<PhysicalExaminationResult> physicalExaminationResults;
+	private Set<AdditionalExaminationResult> additionalExaminationResults;	
+	private Disease disease;	
+	private Set<Therapy> therapies;
+	private Set<PreventiveExamination> preventiveExaminations;
 	
-	//dodatni pregledi + njihovi rezultati
-	//private Set<Therapy> therapies;
-
 	@Override
 	public Attribute getIdAttribute() {
 		return new Attribute("id",this.getClass());
-	}
-
-	@Override
-	public String toString() {
-		String retVal = medicalRecord.toString() + "\n";
-		if(disease != null) {
-			retVal += disease.toString() + "\n";
-		}
-		retVal += "CaseDescription [id=" + id + "]";
-		retVal += " symptoms:";
-		for(Symptom s : anamnesisSymptoms) {
-			retVal += " " + s.getName() + " |";
-		}
-		retVal += " phys. examination:";
-		for(Symptom s : physicalExaminationSymptoms) {
-			retVal += " " + s.getName() + " |";
-		}
-		
-		return retVal;
 	}
 
 	public int getId() {
@@ -56,12 +37,12 @@ public class MedicalExamination implements CaseComponent {
 		this.medicalRecord = medicalRecord;
 	}
 
-	public Set<Symptom> getAnamnesisSymptoms() {
-		return anamnesisSymptoms;
+	public Set<Symptom> getSymptoms() {
+		return symptoms;
 	}
 
-	public void setAnamnesisSymptoms(Set<Symptom> anamnesisSymptoms) {
-		this.anamnesisSymptoms = anamnesisSymptoms;
+	public void setSymptoms(Set<Symptom> symptoms) {
+		this.symptoms = symptoms;
 	}
 
 	public Disease getDisease() {
@@ -72,12 +53,59 @@ public class MedicalExamination implements CaseComponent {
 		this.disease = disease;
 	}
 
-	public Set<Symptom> getPhysicalExaminationSymptoms() {
-		return physicalExaminationSymptoms;
+	public Set<PhysicalExaminationResult> getPhysicalExaminationResults() {
+		return physicalExaminationResults;
 	}
 
-	public void setPhysicalExaminationSymptoms(Set<Symptom> physicalExaminationSymptoms) {
-		this.physicalExaminationSymptoms = physicalExaminationSymptoms;
+	public void setPhysicalExaminationResults(Set<PhysicalExaminationResult> physicalExaminationResults) {
+		this.physicalExaminationResults = physicalExaminationResults;
+	}
+
+	public Set<AdditionalExaminationResult> getAdditionalExaminationResults() {
+		return additionalExaminationResults;
+	}
+
+	public void setAdditionalExaminationResults(Set<AdditionalExaminationResult> additionalExaminationResults) {
+		this.additionalExaminationResults = additionalExaminationResults;
+	}
+
+	public Set<PreventiveExamination> getPreventiveExaminations() {
+		return preventiveExaminations;
+	}
+
+	public void setPreventiveExaminations(Set<PreventiveExamination> preventiveExaminations) {
+		this.preventiveExaminations = preventiveExaminations;
+	}
+
+	public Set<Therapy> getTherapies() {
+		return therapies;
+	}
+
+	public void setTherapies(Set<Therapy> therapies) {
+		this.therapies = therapies;
+	}
+	
+	@Override
+	public String toString() {
+		String retVal = medicalRecord.toString() + "\n";
+		if(disease != null) {
+			retVal += disease.toString() + "\n";
+		}
+		retVal += "CaseDescription [id=" + id + "]";
+		retVal += " symptoms:";
+		for(Symptom s : symptoms) {
+			retVal += " " + s.getName() + " |";
+		}
+		retVal += " phys. examination:";
+		for(PhysicalExaminationResult s : physicalExaminationResults) {
+			retVal += " " + s.getName() + " |";
+		}
+		retVal += " add. examination:";
+		for(AdditionalExaminationResult s : additionalExaminationResults) {
+			retVal += " " + s.getName() + " |";
+		}
+		
+		return retVal;
 	}
 	
 }

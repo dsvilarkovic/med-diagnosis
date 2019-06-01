@@ -1,11 +1,11 @@
 package model;
 
-public class Symptom {
+public class PhysicalExaminationResult {
 	
 	private int id;
 	private String name;
-	
-	public Symptom() {
+
+	public PhysicalExaminationResult() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,11 +26,6 @@ public class Symptom {
 	}
 
 	@Override
-	public String toString() {
-		return "Symptom [id=" + id + ", name=" + name + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -47,7 +42,7 @@ public class Symptom {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Symptom other = (Symptom) obj;
+		PhysicalExaminationResult other = (PhysicalExaminationResult) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {

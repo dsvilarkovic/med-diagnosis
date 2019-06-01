@@ -4,32 +4,47 @@
 <class name="model.MedicalExamination" table="medical_examinations">
 
 	<id name="id" column="id">
-	  <generator class="native"/>
+		<generator class="native"/>
 	</id>
 	
 	<many-to-one name="medicalRecord" class="model.MedicalRecord" fetch="select">
-            <column name="medical_record" not-null="true" />
+		<column name="medical_record" not-null="true" />
     </many-to-one>
 	
-	  <set name = "anamnesisSymptoms" cascade="save-update" table="examination_symptom">
-         <key column = "examination"/>
-         <many-to-many column = "symptom" class="model.Symptom"/>
-      </set>
+	<set name = "symptoms" cascade="save-update" table="examination_symptom">
+		<key column = "examination"/>
+		<many-to-many column = "symptom" class="model.Symptom"/>
+	</set>
       
-      <set name = "physicalExaminationSymptoms" cascade="save-update" table="examination_physical_examination">
-         <key column = "examination"/>
-         <many-to-many column = "symptom" class="model.Symptom"/>
-      </set>
+	<set name = "physicalExaminationResults" cascade="save-update" table="examination_physical_examination">
+		<key column = "examination"/>
+		<many-to-many column = "result" class="model.PhysicalExaminationResult"/>
+	</set>
       
-     <many-to-one name="disease" class="model.Disease" fetch="select">
-            <column name="disease" not-null="false" />
+	<set name = "additionalExaminationResults" cascade="save-update" table="examination_additional_examination">
+		<key column = "examination"/>
+		<many-to-many column = "result" class="model.AdditionalExaminationResult"/>
+	</set>
+      
+	<set name = "therapies" cascade="save-update" table="examination_therapy">
+		<key column = "examination"/>
+		<many-to-many column = "therapy" class="model.Therapy"/>
+	</set>
+      
+	<set name = "preventiveExaminations" cascade="save-update" table="examination_preventive_examination">
+		<key column = "examination"/>
+		<many-to-many column = "preventive_examination" class="model.PreventiveExamination"/>
+	</set>
+      
+	<many-to-one name="disease" class="model.Disease" fetch="select">
+		<column name="disease" not-null="false" />
     </many-to-one>
 </class>
 
 <class name="model.MedicalRecord" table="medical_records">
 
 	<id name="id" column="id">
-	  <generator class="native"/>
+		<generator class="native"/>
 	</id>
 	<property name="medicalRecordNumber" column="medical_record_number"/>
 	<property name="firstName" column="first_name"/>
@@ -43,14 +58,42 @@
 
 <class name="model.Symptom" table="symptoms">
 	<id name="id" column="id">
-	  <generator class="native"/>
+		<generator class="native"/>
+	</id>
+	<property name="name" column="name"/>
+</class>
+
+<class name="model.PhysicalExaminationResult" table="physical_examination_results">
+	<id name="id" column="id">
+		<generator class="native"/>
+	</id>
+	<property name="name" column="name"/>
+</class>
+
+<class name="model.PreventiveExamination" table="preventive_examinations">
+	<id name="id" column="id">
+		<generator class="native"/>
+	</id>
+	<property name="name" column="name"/>
+</class>
+
+<class name="model.Therapy" table="therapies">
+	<id name="id" column="id">
+		<generator class="native"/>
+	</id>
+	<property name="name" column="name"/>
+</class>
+
+<class name="model.AdditionalExaminationResult" table="additional_examination_results">
+	<id name="id" column="id">
+		<generator class="native"/>
 	</id>
 	<property name="name" column="name"/>
 </class>
 
 <class name="model.Disease" table="diseases">
 	<id name="id" column="id">
-	  <generator class="native"/>
+		<generator class="native"/>
 	</id>
 	<property name="name" column="name"/>
 </class>  

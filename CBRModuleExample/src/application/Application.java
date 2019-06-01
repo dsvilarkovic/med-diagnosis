@@ -13,9 +13,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import model.AdditionalExaminationResult;
+import model.Disease;
 import model.MedicalExamination;
 import model.MedicalRecord;
+import model.PhysicalExaminationResult;
 import model.Symptom;
+import model.Therapy;
 import similarity.ListSimilarity;
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
@@ -29,8 +33,8 @@ import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Interval;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Interval;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 import ucm.gaia.jcolibri.util.FileIO;
 
@@ -40,13 +44,12 @@ import ucm.gaia.jcolibri.util.FileIO;
  */
 public class Application implements StandardCBRApplication{
 	
-	public enum ModuleType {ADDITIONAL_EXAMINATIONS, DIAGNOSIS, THERAPIES, PREVENTIVE_EXAMINATION}
+	public enum ModuleType {ADDITIONAL_EXAMINATIONS, DIAGNOSIS, THERAPIES, PREVENTIVE_EXAMINATIONS}
 	
 	private Connector connector;  //connector object
 	private static CBRCaseBase caseBase;  //case base object
 	
-	private static SessionFactory factory; 
-	
+	private static SessionFactory factory; //potrebno za relacionu bazu	
 
 	NNConfig simConfig;  //k-NN configuration
 	
@@ -77,16 +80,39 @@ public class Application implements StandardCBRApplication{
 		
 		simConfig = new NNConfig();
 		simConfig.setDescriptionSimFunction(new Average()); // global similarity function = average
-
-		simConfig.addMapping(new Attribute("anamnesisSymptoms", MedicalExamination.class), new ListSimilarity());
-		simConfig.addMapping(new Attribute("physicalExaminationSymptoms", MedicalExamination.class), new ListSimilarity());
 		
+		//godina i pol se koriste u svakom modulu
 		Attribute medicalRecordAttribute = new Attribute("medicalRecord",   MedicalExamination.class);
 		simConfig.setWeight(medicalRecordAttribute, 0.2);
 		
 		simConfig.addMapping(medicalRecordAttribute, new Average());
 		simConfig.addMapping(new Attribute("yearOfBirth", MedicalRecord.class), new Interval(10));
 		simConfig.addMapping(new Attribute("female", MedicalRecord.class), new Equal());
+		
+		if(module == ModuleType.ADDITIONAL_EXAMINATIONS) {
+			simConfig.addMapping(new Attribute("symptoms", MedicalExamination.class), new ListSimilarity());
+			simConfig.addMapping(new Attribute("physicalExaminationResults", MedicalExamination.class), new ListSimilarity());
+			
+		}
+		else if(module == ModuleType.DIAGNOSIS) {
+			simConfig.addMapping(new Attribute("symptoms", MedicalExamination.class), new ListSimilarity());
+			simConfig.addMapping(new Attribute("physicalExaminationResults", MedicalExamination.class), new ListSimilarity());
+			simConfig.addMapping(new Attribute("additionalExaminationResults", MedicalExamination.class), new ListSimilarity());
+		
+		}
+		else if(module == ModuleType.THERAPIES) {						
+			simConfig.addMapping(new Attribute("disease", MedicalExamination.class), new Average());
+			simConfig.addMapping(new Attribute("name", Disease.class), new Equal());
+
+		}
+		else { //ModuleType.PREVENTIVE_EXAMINATIONS
+			simConfig.addMapping(new Attribute("symptoms", MedicalExamination.class), new ListSimilarity());
+			simConfig.addMapping(new Attribute("physicalExaminationResults", MedicalExamination.class), new ListSimilarity());
+			simConfig.addMapping(new Attribute("additionalExaminationResults", MedicalExamination.class), new ListSimilarity());
+			
+			simConfig.addMapping(new Attribute("disease", MedicalExamination.class), new Average());
+			simConfig.addMapping(new Attribute("name", Disease.class), new Equal());
+		}
 		
 	}
 	
@@ -97,8 +123,7 @@ public class Application implements StandardCBRApplication{
 		Collection<RetrievalResult> result = NNScoringMethod.evaluateSimilarity(caseBase.getCases(), query, simConfig);
 		
 		result = SelectCases.selectTopKRR(result, 3);
-		
-		
+			
 		System.out.println("Result:");
 		for(RetrievalResult res : result) {
 			System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
@@ -149,14 +174,20 @@ public class Application implements StandardCBRApplication{
 			MedicalExamination caseDescription = new MedicalExamination();
 			
 			Set<Symptom> simptomi= new HashSet<Symptom>();
-			Set<Symptom> fizikalniPregledi= new HashSet<Symptom>();
+			Set<PhysicalExaminationResult> fizikalniPregledi= new HashSet<PhysicalExaminationResult>();
+			Set<AdditionalExaminationResult> dodatniPregledi= new HashSet<AdditionalExaminationResult>();
+			Set<Therapy> terapije= new HashSet<Therapy>();
 			
-			simptomi.add(getAllSymptoms(14));
-			simptomi.add(getAllSymptoms(13));
+			simptomi.add(getSymptom(14));
+			simptomi.add(getSymptom(13));
 			
-			caseDescription.setAnamnesisSymptoms(simptomi);
-			caseDescription.setPhysicalExaminationSymptoms(fizikalniPregledi);
+			caseDescription.setSymptoms(simptomi);
+			caseDescription.setPhysicalExaminationResults(fizikalniPregledi);
+			caseDescription.setAdditionalExaminationResults(dodatniPregledi);
+			caseDescription.setTherapies(terapije);
+			
 			caseDescription.setMedicalRecord(new MedicalRecord("12312241", "NekoIme", "NekoPrezime", 1996, true));
+			caseDescription.setDisease(getDisease(4));
 			
 			query.setDescription(caseDescription);
 			
@@ -189,7 +220,7 @@ public class Application implements StandardCBRApplication{
 		
 	}
 	
-	public static Symptom getAllSymptoms(int num) {
+	public static Symptom getSymptom(int num) {
 		Session session = factory.openSession();
 		  
 		Transaction tx = null;
@@ -201,6 +232,29 @@ public class Application implements StandardCBRApplication{
 		    tx.commit();
 		      
 		    return symptom;
+		  
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+		     session.close(); 
+		}
+			   
+		return null;
+	}
+	
+	public static Disease getDisease(int num) {
+		Session session = factory.openSession();
+		  
+		Transaction tx = null;
+		  
+		try {
+			tx = session.beginTransaction();
+		    Disease disease = (Disease)session.get(Disease.class, num); 
+		      
+		    tx.commit();
+		      
+		    return disease;
 		  
 		} catch (HibernateException e) {
 			if (tx!=null) tx.rollback();

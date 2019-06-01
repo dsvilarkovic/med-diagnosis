@@ -3,7 +3,7 @@ package model;
 import ucm.gaia.jcolibri.cbrcore.Attribute;
 import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 
-public class MedicalRecord implements CaseComponent{
+public class MedicalRecord implements CaseComponent {
 	
 	private int id;
 	private String medicalRecordNumber;

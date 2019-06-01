@@ -2,7 +2,6 @@ package similarity;
 
 import java.util.Set;
 
-import model.Symptom;
 import ucm.gaia.jcolibri.exception.NoApplicableSimilarityFunctionException;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.LocalSimilarityFunction;
 
@@ -13,10 +12,9 @@ public class ListSimilarity implements LocalSimilarityFunction{
 	}
 	
 	@Override
-	public double compute(Object value1, Object value2) throws NoApplicableSimilarityFunctionException {
-		
-		int firstListSize = ((Set<Symptom>)value1).size();
-		int secondListSize = ((Set<Symptom>)value2).size();
+	public double compute(Object value1, Object value2) throws NoApplicableSimilarityFunctionException {	
+		int firstListSize = ((Set<?>)value1).size();
+		int secondListSize = ((Set<?>)value2).size();
 		
 		if(firstListSize == 0) {
 			return 1.0;
@@ -24,8 +22,8 @@ public class ListSimilarity implements LocalSimilarityFunction{
 		
 		double sameElementsNumber = 0.0;
 		
-		for(Symptom s : (Set<Symptom>)value1) {
-			if(((Set<Symptom>)value2).contains(s)) {
+		for(Object s : (Set<?>)value1) {
+			if(((Set<?>)value2).contains(s)) {
 				sameElementsNumber += 1;
 			}
 		}	
