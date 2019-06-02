@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import ucm.gaia.jcolibri.cbrcore.Attribute;
 import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 
@@ -15,7 +17,7 @@ public class MedicalRecord implements CaseComponent {
 	private int yearOfBirth;
 	private boolean female;
 	
-	//private Set<Allergy> allergies;
+	private Set<Allergy> allergies;
 	
 	@Override
 	public Attribute getIdAttribute() {
@@ -105,6 +107,14 @@ public class MedicalRecord implements CaseComponent {
 
 	public void setFemale(boolean female) {
 		this.female = female;
+	}
+
+	public Set<Allergy> getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(Set<Allergy> allergies) {
+		this.allergies = allergies;
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package example;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +16,7 @@ import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 
 public class WriteLocalExample {
-    static final String inputFileName  = "data/novi.ttl";
+    static final String inputFileName  = "data/rdf_database_diagnosis.ttl";
     static String resourceURI    = "http://www.github.com/dsvilarkovic/med_diag";
     static String rdfURI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
@@ -25,15 +27,16 @@ public class WriteLocalExample {
 		model.setNsPrefix("med_diag", resourceURI + "#");
 		model.setNsPrefix("rdf", rdfURI);
 
-//        
-//		try {
-//			InputStream is = new FileInputStream(inputFileName);
-//			RDFDataMgr.read(model, is, Lang.TURTLE);
-//			is.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		List<String> allergyList = new ArrayList<String>(Arrays.asList("nsaid", "antibiotic"));
 		List<String> symptomList = new ArrayList<String>(Arrays.asList("problems_with_movement", "abnormal_involuntary_movements", "disturbance_of_memory"));
@@ -154,6 +157,7 @@ public class WriteLocalExample {
 	    patientResource.addProperty(diagnosisProperty, "parkinsons_disease");
 	    patientResource.addProperty(therapiesProperty, therapyListResource);
 	    patientResource.addProperty(preventionTreatmentsProperty, preventionListResource);
+	    
 	    
 		try {
 			OutputStream os = new FileOutputStream("data/output.ttl");

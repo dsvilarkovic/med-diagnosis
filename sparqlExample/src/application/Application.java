@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-
+import connector.RdfConnector;
 import model.AdditionalExaminationResult;
 import model.Disease;
 import model.MedicalExamination;
@@ -19,6 +19,7 @@ import similarity.ListSimilarity;
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
 import ucm.gaia.jcolibri.cbrcore.Attribute;
+import ucm.gaia.jcolibri.cbrcore.CBRCase;
 import ucm.gaia.jcolibri.cbrcore.CBRCaseBase;
 import ucm.gaia.jcolibri.cbrcore.CBRQuery;
 import ucm.gaia.jcolibri.cbrcore.Connector;
@@ -66,9 +67,9 @@ public class Application implements StandardCBRApplication{
 	
 	public void configure() throws ExecutionException {
 		
-		connector = new DataBaseConnector();
+		connector = new RdfConnector();
 		
-		connector.initFromXMLfile(FileIO.findFile("data/databaseconfig.xml"));
+		//connector.initFromXMLfile(FileIO.findFile("data/databaseconfig.xml"));
 		
 		caseBase = new LinealCaseBase();
 		
@@ -137,14 +138,14 @@ public class Application implements StandardCBRApplication{
 	public CBRCaseBase preCycle() throws ExecutionException {
 		caseBase.init(connector);		
 		
-		/*
+		
 		java.util.Collection<CBRCase> cases = caseBase.getCases();
 		
 		System.out.println("CASE BASE:");
 		for(CBRCase cas : cases) {
 			System.out.println(cas.getDescription()+ "\n");
 		}
-		*/
+		
 		
 		return caseBase;
 	

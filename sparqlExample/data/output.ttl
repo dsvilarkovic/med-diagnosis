@@ -1,12 +1,10 @@
 @prefix :      <http://www.github.com/dsvilarkovic/med_diag> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://w3.org/2001/XMLSchema#> .
 @prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#> .
 
-med_diag:Allergies3  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antibiotic" , "nsaid" .
-
-med_diag:Sym3  a          med_diag:Symptom_list ;
-        med_diag:symptom  "disturbance_of_memory" , "abnormal_involuntary_movements" , "problems_with_movement" .
+med_diag:T3  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "tylenol" , "vicodine" .
 
 med_diag:Patient3  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -18,15 +16,103 @@ med_diag:Patient3  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym3 ;
         med_diag:therapies              med_diag:T3 .
 
-med_diag:T3  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+med_diag:Sym1  a          med_diag:Symptom_list ;
+        med_diag:symptom  "disturbance_of_memory" , "abnormal_involuntary_movements" , "problems_with_movement" .
+
+med_diag:MedicalRecord2
+        med_diag:address              "John Doe 2"^^xsd:string ;
+        med_diag:allergies            med_diag:Allergies1 ;
+        med_diag:firstName            "Bozo"^^xsd:string ;
+        med_diag:gender               "male"^^xsd:string ;
+        med_diag:id                   "2"^^xsd:integer ;
+        med_diag:jmbg                 "0202996888888"^^xsd:string ;
+        med_diag:lastName             "Devusic"^^xsd:string ;
+        med_diag:medicalRecordNumber  "39011318"^^xsd:integer ;
+        med_diag:phoneNumber          "666666"^^xsd:string ;
+        med_diag:yearOfBirth          "2017"^^xsd:integer .
+
+med_diag:Allergies3  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" , "nsaid" .
+
+med_diag:T2  a            med_diag:Therapies ;
         med_diag:therapy  "tylenol" , "vicodine" .
 
-med_diag:PhysT3  a                   med_diag:Physical_treatments ;
-        med_diag:physical_treatment  "focal_weakness" , "leg_weakness" .
+med_diag:Patient2  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr2 ;
+        med_diag:diagnosis              "parkinsons_disease" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord2 ;
+        med_diag:physical_treatments    med_diag:PhysT2 ;
+        med_diag:prevention_treatments  med_diag:PrevT2 ;
+        med_diag:symptoms               med_diag:Sym2 ;
+        med_diag:therapies              med_diag:T2 .
+
+med_diag:MedicalRecord1
+        med_diag:address              "John Doe 2"^^xsd:string ;
+        med_diag:allergies            med_diag:Allergies1 ;
+        med_diag:firstName            "Dusan"^^xsd:string ;
+        med_diag:gender               "male"^^xsd:string ;
+        med_diag:id                   "1"^^xsd:integer ;
+        med_diag:jmbg                 "1706996888888"^^xsd:string ;
+        med_diag:lastName             "Svilarkovic"^^xsd:string ;
+        med_diag:medicalRecordNumber  "39011318"^^xsd:integer ;
+        med_diag:phoneNumber          "666666"^^xsd:string ;
+        med_diag:yearOfBirth          "2017"^^xsd:integer .
+
+med_diag:PrevT3  med_diag:prevention_treatment
+                "Take a walk" .
+
+med_diag:Allergies2  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" , "nsaid" .
+
+med_diag:T1  a            med_diag:Therapies ;
+        med_diag:therapy  "tylenol" , "vicodine" .
+
+med_diag:Patient1  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr1 ;
+        med_diag:diagnosis              "parkinsons_disease" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
+        med_diag:physical_treatments    med_diag:PhysT1 ;
+        med_diag:prevention_treatments  med_diag:PrevT1 ;
+        med_diag:symptoms               med_diag:Sym1 ;
+        med_diag:therapies              med_diag:T1 .
+
+med_diag:PrevT2  a                     med_diag:Prevention_treatments ;
+        med_diag:prevention_treatment  "Take a walk" .
+
+med_diag:Allergies1  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" , "nsaid" .
 
 med_diag:Apr3  a  med_diag:Additional_procedures_results ;
         med_diag:additional_procedures_result
                 "focal_weakness" , "leg_weakness" .
+
+med_diag:PhysT3  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "focal_weakness" , "leg_weakness" .
+
+med_diag:PrevT1  a                     med_diag:Prevention_treatments ;
+        med_diag:prevention_treatment  "Take a walk" .
+
+med_diag:Apr2  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "ct_scan_good" .
+
+med_diag:PhysT2  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "focal_weakness" , "leg_weakness" .
+
+med_diag:Sym3  a          med_diag:Symptom_list ;
+        med_diag:symptom  "disturbance_of_memory" , "abnormal_involuntary_movements" , "problems_with_movement" .
+
+med_diag:Apr1  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "ct_scan_good" .
+
+med_diag:PhysT1  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "focal_weakness" , "leg_weakness" .
+
+med_diag:Sym2  a          med_diag:Symptom_list ;
+        med_diag:symptom  "disturbance_of_memory" , "abnormal_involuntary_movements" , "problems_with_movement" .
 
 med_diag:MedicalRecord3
         med_diag:address              "Vuka mandusica 33" ;
@@ -39,6 +125,3 @@ med_diag:MedicalRecord3
         med_diag:medicalRecordNumber  "39131901" ;
         med_diag:phoneNumber          "3913-0931" ;
         med_diag:yearOfBirth          "2001" .
-
-med_diag:PrevT3  med_diag:prevention_treatment
-                "Take a walk" .

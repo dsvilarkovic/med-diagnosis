@@ -25,6 +25,12 @@ public class AdditionalExaminationResult {
 		this.name = name;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "AdditionalExaminationResult [id=" + id + ", name=" + name + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
