@@ -1,0 +1,21 @@
+@base <http://www.ftn.uns.ac.rs/iz> .
+@prefix iz: <http://www.ftn.uns.ac.rs/iz#> .
+@prefix xsd: <http://w3.org/2001/XMLSchema#> .
+
+<#InzenjeringZnanja>
+	a iz:Predmet ;
+	iz:profesor iz:StevanGostojic ;
+	iz:asistent iz:MarkoMarkovic ;
+	iz:naziv "Inženjering znanja"^^xsd:string ;
+	iz:semestar "8"^^xsd:int ;
+	iz:espb "4"^^xsd:int .
+
+<#StevanGostojic>
+	a iz:Osoba ;
+	iz:ime "Stevan"^^xsd:string ;
+	iz:prezime "Gostojić"^^xsd:string .
+
+<#MarkoMarkovic>
+	a iz:Osoba ;
+	iz:ime "Marko"^^xsd:string ;
+	iz:prezime "Marković"^^xsd:string .

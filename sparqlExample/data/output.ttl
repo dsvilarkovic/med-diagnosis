@@ -1,0 +1,44 @@
+@prefix :      <http://www.github.com/dsvilarkovic/med_diag> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#> .
+
+med_diag:Allergies3  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" , "nsaid" .
+
+med_diag:Sym3  a          med_diag:Symptom_list ;
+        med_diag:symptom  "disturbance_of_memory" , "abnormal_involuntary_movements" , "problems_with_movement" .
+
+med_diag:Patient3  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr3 ;
+        med_diag:diagnosis              "parkinsons_disease" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord3 ;
+        med_diag:physical_treatments    med_diag:PhysT3 ;
+        med_diag:prevention_treatments  med_diag:PrevT3 ;
+        med_diag:symptoms               med_diag:Sym3 ;
+        med_diag:therapies              med_diag:T3 .
+
+med_diag:T3  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "tylenol" , "vicodine" .
+
+med_diag:PhysT3  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "focal_weakness" , "leg_weakness" .
+
+med_diag:Apr3  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "focal_weakness" , "leg_weakness" .
+
+med_diag:MedicalRecord3
+        med_diag:address              "Vuka mandusica 33" ;
+        med_diag:allergies            med_diag:Allergies3 ;
+        med_diag:firstName            "Slll" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "3" ;
+        med_diag:jmbg                 "0101200193919" ;
+        med_diag:lastName             "DIADOIic" ;
+        med_diag:medicalRecordNumber  "39131901" ;
+        med_diag:phoneNumber          "3913-0931" ;
+        med_diag:yearOfBirth          "2001" .
+
+med_diag:PrevT3  med_diag:prevention_treatment
+                "Take a walk" .
