@@ -130,7 +130,7 @@ public class RdfConnector implements Connector{
 		String patient = "Patient" + i;
 		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
 				"prefix : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"select ?patientId ?medicalRecordNumber ?firstName ?lastName ?jmbg ?address ?phoneNumber ?yearOfBirth\r\n" + 
+				"select ?patientId ?medicalRecordNumber ?firstName ?gender ?lastName ?jmbg ?address ?phoneNumber ?yearOfBirth\r\n" + 
 				"WHERE\r\n" + 
 				"{\r\n" + 
 				"  :%s a med_diag:Patient;\r\n" + 
@@ -171,6 +171,10 @@ public class RdfConnector implements Connector{
 			medicalRecord.setPhoneNumber(literal.getString());
 			literal = solution.getLiteral("yearOfBirth");
 			medicalRecord.setYearOfBirth(Integer.parseInt(literal.getString()));
+			
+			literal = solution.getLiteral("gender");
+			Boolean isFemale = literal.getString().equals("female") ? true: false;
+			medicalRecord.setFemale(isFemale);
 
 			
 		}	
@@ -466,15 +470,19 @@ public class RdfConnector implements Connector{
 		Property phoneNumber = model.createProperty(resourceURI + "#phoneNumber");
 		Property allergies = model.createProperty(resourceURI + "#allergies");
 		
-//		medicalRecordResource.addProperty(medicalRecordIdProperty, medicalExamination.getMedicalRecord().getId());
-//		medicalRecordResource.addProperty(yearOfBirth, medicalExamination.getMedicalRecord().getYearOfBirth());
-		medicalRecordResource.addProperty(gender, "female");
-		medicalRecordResource.addProperty(medicalRecordNumber, "39131901");
-		medicalRecordResource.addProperty(firstName, "Slll");
-		medicalRecordResource.addProperty(lastName, "DIADOIic");
-		medicalRecordResource.addProperty(jmbg, "0101200193919");
-		medicalRecordResource.addProperty(address, "Vuka mandusica 33");
-		medicalRecordResource.addProperty(phoneNumber, "3913-0931");
+		
+		
+		MedicalRecord medicalRecord = new MedicalRecord();
+		
+		medicalRecordResource.addProperty(medicalRecordIdProperty, Integer.toString(medicalExamination.getMedicalRecord().getId()));
+		medicalRecordResource.addProperty(yearOfBirth, Integer.toString(medicalExamination.getMedicalRecord().getYearOfBirth()));
+		medicalRecordResource.addProperty(gender, medicalRecord.isFemale() ? "female" : "male");
+		medicalRecordResource.addProperty(medicalRecordNumber, medicalRecord.getMedicalRecordNumber());
+		medicalRecordResource.addProperty(firstName, medicalRecord.getFirstName());
+		medicalRecordResource.addProperty(lastName, medicalRecord.getLastName());
+		medicalRecordResource.addProperty(jmbg, medicalRecord.getJmbg());
+		medicalRecordResource.addProperty(address, medicalRecord.getAddress());
+		medicalRecordResource.addProperty(phoneNumber, medicalRecord.getPhoneNumber());
 		medicalRecordResource.addProperty(allergies, allergyResource);
 		
 		//Napravi resurs simptomi
@@ -545,13 +553,13 @@ public class RdfConnector implements Connector{
 	    patientResource.addProperty(symptomsProperty, symptomListResource);
 	    patientResource.addProperty(physicalTreatmentsProperty, physicalTreatmentListResource);
 	    patientResource.addProperty(aprProperty, aprListResource);
-	    patientResource.addProperty(diagnosisProperty, "parkinsons_disease");
+	    patientResource.addProperty(diagnosisProperty, medicalExamination.getDisease().getName());
 	    patientResource.addProperty(therapiesProperty, therapyListResource);
 	    patientResource.addProperty(preventionTreatmentsProperty, preventionListResource);
 	    
 	    
 		try {
-			OutputStream os = new FileOutputStream("data/output.ttl");
+			OutputStream os = new FileOutputStream(inputFileName);
 			RDFDataMgr.write(os, model, Lang.TTL);
 			os.close();
 		} catch (Exception e) {
