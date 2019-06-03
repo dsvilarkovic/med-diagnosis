@@ -33,6 +33,8 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	private PhysicalExaminationPanel phisicalExaminationPanel;
 	
+	private TherapyPanel therapyPanel;
+	
 	@SuppressWarnings("rawtypes")
 	public MedicalExaminationPanel() {
 		patientInformationPanel = new PatientInformationPanel();
@@ -40,6 +42,8 @@ public class MedicalExaminationPanel extends JPanel {
 		phisicalExaminationPanel = new PhysicalExaminationPanel();
 		additionalCheckupsPanel = new AdditionalCheckupsPanel();
 		diagnosisPanel = new DiagnosisPanel();
+		therapyPanel = new TherapyPanel();
+		
 		init();
 
 	}
@@ -48,7 +52,7 @@ public class MedicalExaminationPanel extends JPanel {
 	private void init() {
 		JPanel contentPanel = new JPanel();
 		JLabel medicalExaminationLabel = new JLabel("Medical examination information");
-		JPanel therapyPanel = createTherapyPanel();
+		
 		JPanel preventiveChecksPanel = createPreventiveChecksPanel();
 
 		medicalExaminationLabel.setFont(new java.awt.Font("Times New Roman", 0, 24));
@@ -90,23 +94,6 @@ public class MedicalExaminationPanel extends JPanel {
 		return resultPanel;
 	}
 	
-	// TODO 1: Zavrsiti panel za terapije
-	// Maja Kolosnjaji
-	private JPanel createTherapyPanel() {
-		JPanel resultPanel = new JPanel();
-		JPanel therapyPanel = new JPanel();
-		JLabel therapyLabel = new JLabel("Therapy");
-		
-	
-		
-		resultPanel.setLayout(new BorderLayout(15,15));
-		resultPanel.add(therapyLabel,BorderLayout.NORTH);
-		resultPanel.add(therapyPanel, BorderLayout.CENTER);
-		
-		return resultPanel;
-	}
-
-	
 	public List<String> getSymptomsList() {
 		return anamnesisPanel.getChosenSympList();
 	}
@@ -125,6 +112,10 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	public void generateAdditionalCheckups(Map<String,String> suggestedAdditionalCheckupsMap ) {
 		additionalCheckupsPanel.generateSuggestedAdditionalCheckups(suggestedAdditionalCheckupsMap);
+	}
+	
+	public void generateTherapies(List<String> suggestedTherapies) {
+		therapyPanel.generateSuggestedTherapies(suggestedTherapies);
 	}
 
 }

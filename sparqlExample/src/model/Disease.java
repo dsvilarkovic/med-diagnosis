@@ -12,6 +12,10 @@ public class Disease implements CaseComponent{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Disease(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public Attribute getIdAttribute() {
 		return new Attribute("id",this.getClass());

@@ -97,6 +97,9 @@ preventive_examinations(meningitis, [], 'hearing_test').
 preventive_examinations(meningitis, [], 'examination_for_low_blood_preasure').
 preventive_examinations(meningitis, [], 'examination_for_low_breathing_problems').
 
+
+
+
 contains([],[]).
 contains([H|T],S) :- member(H,S), !.
 contains([H|T],S) :- contains(T,S).

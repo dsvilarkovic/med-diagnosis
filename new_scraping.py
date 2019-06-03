@@ -9,7 +9,7 @@ def lowerCaseAndUnderline(string_value):
 
 
 
-def main(DISEASE_TOKEN, isRequestEnabled = False):
+def main(lista, DISEASE_TOKEN, isRequestEnabled = False):
 
     #driver = webdriver.Firefox()
     
@@ -27,39 +27,39 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
         file.close()
 
     soup = BeautifulSoup(content, features = 'lxml')
-    print(soup)
+    #print(soup)
 
     #taking symptoms
     final = soup.findAll("span", itemprop = "signOrSymptom")
 
 
-    disease_data = ""
-    #symptom_names_block = ""
-    #symptom_percentages_block = ""
-    disease_name = lowerCaseAndUnderline(DISEASE_TOKEN)
-    disease_data += f'disease(Patient, {disease_name}):-\n'
-    symptom_percentages_block = ""
-    for item in final:
+    # disease_data = ""
+    # #symptom_names_block = ""
+    # #symptom_percentages_block = ""
+    # disease_name = lowerCaseAndUnderline(DISEASE_TOKEN)
+    # disease_data += f'disease(Patient, {disease_name}):-\n'
+    # symptom_percentages_block = ""
+    # for item in final:
 
-        #gets name of the symptom e.g. Dizziness
-        symptom_name = item.find("span", itemprop = "name").text
-        print(symptom_name)
-        symptom_name = lowerCaseAndUnderline(symptom_name)
-        print(symptom_name)
-        #gets change percentage of the symptom e.g. 20%
-        symptom_percentage = item.find("span", "pct-box").text
-        print(symptom_percentage + "%")
+    #     #gets name of the symptom e.g. Dizziness
+    #     symptom_name = item.find("span", itemprop = "name").text
+    #     print(symptom_name)
+    #     symptom_name = lowerCaseAndUnderline(symptom_name)
+    #     print(symptom_name)
+    #     #gets change percentage of the symptom e.g. 20%
+    #     symptom_percentage = item.find("span", "pct-box").text
+    #     print(symptom_percentage + "%")
 
         
-        symptom_percentages_block +=  f"\t symptom_percentage(Patient, {symptom_name})," + "\n" 
+    #     symptom_percentages_block +=  f"\t symptom_percentage(Patient, {symptom_name})," + "\n" 
 
 
-    disease_data += symptom_percentages_block
-    disease_data += "\n\n"
+    # disease_data += symptom_percentages_block
+    # disease_data += "\n\n"
 
-    text_file = open("disease_base.pl", "a")
-    text_file.write(disease_data)
-    text_file.close()
+    # text_file = open("disease_base.pl", "a")
+    # text_file.write(disease_data)
+    # text_file.close()
 
 ##############################################################################
 
@@ -92,26 +92,33 @@ def main(DISEASE_TOKEN, isRequestEnabled = False):
 
 
     # #now recommended medications
-    # medics = soup.find("div", id = "med_chart_div")
-    # table_rows = medics.findAll("tr")
+    medics = soup.find("div", id = "med_chart_div")
+    table_rows = medics.findAll("tr")
 
-    # medications_block = ""
+    medications_block = ""
 
-    # for tr in table_rows:
-    #     medication = tr.find("td", "chart-label").find("a").text
-    #     print(medication)
-    #     medication = lowerCaseAndUnderline(medication)
+    #lista = []
 
-    #     success_percentage = tr.find("div", "bar-fill")["style"]
-    #     success_percentage = success_percentage.split(":")[1]
-    #     success_percentage = float(success_percentage[:-2])
-    #     print(success_percentage)
+    for tr in table_rows:
+        medication = tr.find("td", "chart-label").find("a").text
+        #print(medication)
+        medication = lowerCaseAndUnderline(medication)
+
+        success_percentage = tr.find("div", "bar-fill")["style"]
+        success_percentage = success_percentage.split(":")[1]
+        success_percentage = float(success_percentage[:-2])
+        #print(success_percentage)
         
-    #     medications_block += f"recommended_medication({disease_name}, '{medication}', {success_percentage}).\n"
+        medications_block += f"recommended_medication({disease_name}, '{medication}').\n"
+    
+        lista.append(medication)
 
-    # text_file = open("medications_base.pl", "a")
-    # text_file.write(medications_block)
-    # text_file.close()
+    #print("LISTA")
+    #print(lista)
+
+    text_file = open("medications_base.pl", "a")
+    text_file.write(medications_block+"\n")
+    text_file.close()
 
     #######################################################################################
 
@@ -143,5 +150,13 @@ if(__name__ == "__main__"):
     else:
         disease_name = "parkinson-disease"
 
+    diseases_list = ['amyotrophic-lateral-sclerosis-als', 'tension-headache', 'migraine', 'parkinson-disease', 'dementia', 'multiple-sclerosis', 'alzheimer-disease', 'epilepsy', 'meningitis']
 
-    main(disease_name, scrape)
+    lista = []
+
+    for ds in diseases_list:
+        disease_name = ds
+        main(lista, disease_name, scrape)
+        
+
+    print(lista)
