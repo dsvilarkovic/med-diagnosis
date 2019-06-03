@@ -1,10 +1,9 @@
 package utils;
-import com.ugos.jiprolog.engine.JIPEngine;
-
 import view.MainFrame;
 
 public class Singleton {
 	private static Singleton instance = new Singleton();
+	private Regime regime;
 	private MainFrame mainFrame;
 	
 	private Singleton() {
@@ -26,5 +25,15 @@ public class Singleton {
 	public void setMainFrame(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
+
+	public Regime getRegime() {
+		return regime;
+	}
+
+	public void setRegime(Regime regime) {
+		this.regime = regime;
+	}
+	
+
 	
 }
