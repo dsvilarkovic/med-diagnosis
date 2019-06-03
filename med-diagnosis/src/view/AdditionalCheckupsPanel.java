@@ -27,8 +27,8 @@ public class AdditionalCheckupsPanel extends JPanel {
 	private JComboBox<String> symptomsValue;
 	
 	public AdditionalCheckupsPanel() {
-		this.suggestedAdditionalCheckups = new TableHandler(300, 300);
-		this.chosenAdditionalCheckups = new TableHandler(300, 300);
+		this.suggestedAdditionalCheckups = new TableHandler(600, 300);
+		this.chosenAdditionalCheckups = new TableHandler(600, 300);
 		String[] symptoms = {"normal", "not normal"};
 		this.symptomsValue = new JComboBox<>(symptoms);
 		initGUI();
@@ -63,8 +63,13 @@ public class AdditionalCheckupsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				Object object = suggestedAdditionalCheckups.getTableModel().getValueAt(modelRow, 0);
+				Vector<Object> v = suggestedAdditionalCheckups.getTableModel().getRow(modelRow);
+				v.set(2, "remove");
+				v.insertElementAt("normal", 2);
+				
+				
 				((DefaultTableModel) table.getModel()).removeRow(modelRow);
+				chosenAdditionalCheckups.insertRow(v);
 			}
 		};
 
@@ -73,21 +78,25 @@ public class AdditionalCheckupsPanel extends JPanel {
 	
 	private void initChosenAdditionalCheckupsTable() {
 		this.chosenAdditionalCheckups.addColumn("Symptom");
+		this.chosenAdditionalCheckups.addColumn("Urgency");
 		this.chosenAdditionalCheckups.addColumn("Result");
 		this.chosenAdditionalCheckups.addColumn("Remove");
-		TableColumn tableCol = this.chosenAdditionalCheckups.getTableView().getColumnModel().getColumn(1);
+		TableColumn tableCol = this.chosenAdditionalCheckups.getTableView().getColumnModel().getColumn(2);
 		tableCol.setCellEditor(new DefaultCellEditor(symptomsValue));
 		// akcija na klik za brisanje brise iz tabele i dodaje u listu ponudjenih
 		Action delete = new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				Object object = chosenAdditionalCheckups.getTableModel().getValueAt(modelRow, 0);
+				Vector<Object> v = chosenAdditionalCheckups.getTableModel().getRow(modelRow);
+				v.remove(2);
+				v.set(2, "choose");
 				((DefaultTableModel) table.getModel()).removeRow(modelRow);
+				suggestedAdditionalCheckups.insertRow(v);
 			}
 		};
 
-		ButtonColumn buttonColumn = new ButtonColumn(chosenAdditionalCheckups.getTableView(), delete, 2);
+		ButtonColumn buttonColumn = new ButtonColumn(chosenAdditionalCheckups.getTableView(), delete, 3);
 
 		
 	}
@@ -95,10 +104,12 @@ public class AdditionalCheckupsPanel extends JPanel {
 	public void generateSuggestedAdditionalCheckups(Map<String, String> suggestedAdditionalCheckupsMap) {
 		System.out.println(suggestedAdditionalCheckupsMap);
 		suggestedAdditionalCheckups.clearTable();
+		chosenAdditionalCheckups.clearTable();
 		for (Map.Entry<String, String> entry : suggestedAdditionalCheckupsMap.entrySet()) {
-			Vector v = new Vector();
+			Vector<Object> v = new Vector<Object>();
 			v.add(entry.getKey());
 			v.add(entry.getValue());
+			v.add("choose");
 			suggestedAdditionalCheckups.insertRow(v);
 		}
 	}
