@@ -65,7 +65,7 @@ public class PhysicalExaminationPanel extends JPanel {
 	private void initGUI() {
 		JLabel physicalExaminationLabel = new JLabel("Physical examination");
 		physicalExaminationLabel.setFont(new Font(physicalExaminationLabel.getFont().getFontName(), Font.BOLD,16));
-		physicalExamPanel.setLayout(new GridLayout(19,0,10,2));
+		physicalExamPanel.setLayout(new GridLayout(19,0,10,8));
 		loadPhysicalExaminations();
 		this.setLayout(new BorderLayout(5, 5));
 		this.add(physicalExaminationLabel, BorderLayout.NORTH);

@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import prologproba.PrologProba;
 import utils.Regime;
 import utils.Singleton;
@@ -17,7 +17,7 @@ public class Application {
 		// TODO Auto-generated method stub
 		
 		try {
-			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel());
+			UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());
 			SwingUtilities.updateComponentTreeUI(new JFrame());
 			UIManager.put("Synthetica.tabbedPane.keepOpacity", true);
 		} catch (Exception e) {

@@ -3,7 +3,7 @@ Test MMSE;mmse_normal,mmse_cognitive_deficit,mmse_mild_damage,mmse_moderate_dama
 Cranial Nerves		
 Sense of smell;disturbance_of_smell				
 Visual fields and acuity;diminished_vision				
-Ocular and extraocular movements,pupillary response;pupillary_abnormalities				
+Pupillary response;pupillary_abnormalities				
 Facial sensation;disturbance_of_facial_sensation				
 Facial muscles;disturbance_of_motor_facial_functions				
 Hearing;hearing_problems				

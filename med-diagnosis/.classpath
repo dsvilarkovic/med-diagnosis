@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="Theme/syntheticaAluOxide.jar"/>
 	<classpathentry kind="lib" path="Theme/jipconsole.jar"/>
 	<classpathentry kind="lib" path="lib/jFuzzyLogic.jar"/>
+	<classpathentry kind="lib" path="Theme/syntheticaPlain.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

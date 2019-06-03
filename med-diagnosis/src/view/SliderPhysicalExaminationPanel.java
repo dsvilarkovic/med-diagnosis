@@ -27,9 +27,15 @@ public class SliderPhysicalExaminationPanel extends SinglePhysicalExaminationPan
 			physicalExaminationSlider.setPaintLabels(true);
 			physicalExaminationSlider.setToolTipText("0-normal 10-severe damage");
 			this.setLayout(new BorderLayout(2,2));
-			this.setMaximumSize(new Dimension(600, 50));
-			this.setPreferredSize(new Dimension(600, 50));
-			this.add(physicalExaminationLabel,BorderLayout.LINE_START);
+			this.setMaximumSize(new Dimension(550, 50));
+			this.setPreferredSize(new Dimension(550, 50));
+			
+			JPanel kakoGodHoces = new JPanel();	
+			kakoGodHoces.setLayout(new BorderLayout());
+			kakoGodHoces.add(physicalExaminationLabel,BorderLayout.NORTH);
+			kakoGodHoces.add(Box.createVerticalStrut(5),BorderLayout.CENTER);
+			
+			this.add(kakoGodHoces,BorderLayout.LINE_START);
 			this.add(physicalExaminationSlider,BorderLayout.LINE_END);
 		}
 		
