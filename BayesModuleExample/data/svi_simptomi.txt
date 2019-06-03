@@ -25,7 +25,6 @@ neck stiffness or tightness
 fatigue
 loss of sensation
 paresthesia
-diminished vision
 spots or clouds in vision
 symptoms of the face
 blindness
@@ -52,3 +51,34 @@ back cramps or spasms
 difficulty in swallowing
 hand or finger weakness
 leg cramps or spasms
+disturbance_of_smell
+diminished_vision
+pupillary_abnormalities
+disturbance_of_facial_sensation
+disturbance_of_motor_facial_functions
+hearing_problems
+disturbance_of_taste
+problems_with_head_side_to_side_movement
+tongue_movement_problems
+spasticity
+upper_extremity_weakness
+lower_extremity_weakness
+disturbance_of_upper_extremity_sensation
+disturbance_of_lower_extremity_sensation
+balance_problems
+brisk_reflexes
+decreased_reflexes
+problems_with_movement
+dysmetria
+difficulty_in_swallowing
+magnetic_resonance_imaging
+ct_scan
+hematologic_tests
+emng
+eeg
+lumbar_puncture_fluid_analysis
+psychologic_analysis
+mmse_severe_damage
+mmse_moderate_damage
+mmse_mild_damage
+mmse_cognitive_deficit
