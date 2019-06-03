@@ -1,8 +1,14 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.AbstractAction;
+
+import utils.Singleton;
+import view.MedicalExaminationPanel;
 
 public class GenerateDiagnosisAction extends AbstractAction {
 
@@ -12,8 +18,24 @@ public class GenerateDiagnosisAction extends AbstractAction {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+		MedicalExaminationPanel medicalExaminationPanel  = (MedicalExaminationPanel) Singleton.getInstance().getMainFrame().getCentralPanel();
+		
+		List<String> symptomsList = medicalExaminationPanel.getSymptomsList();
+		List<String> physicalExaminationsSymptomsList = medicalExaminationPanel.getPhysicalExaminationSymptomsList();
+ 		//TODO: dodati rezultate dodatnih pregleda
+		
+		//TODO: dodati vadjenje godina iz kartona pacijenta
+		Integer age = 10;
+		
+		//TODO: dodati vadjenje pola iz kartona pacijenta
+ 		String gender = "female";
+ 		
+		List<String> variablesList = new ArrayList<String>();
+		
+		variablesList.addAll(symptomsList);
+		variablesList.addAll(physicalExaminationsSymptomsList);
+		
+		Map<String, Float> map =  Singleton.getInstance().getBayesNetModule().getDiseaseListPercentage(variablesList, age, gender);
 	}
 
 }
