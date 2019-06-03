@@ -25,5 +25,16 @@
 	<classpathentry kind="lib" path="lib/unbbayes-4.22.18.jar"/>
 	<classpathentry kind="lib" path="lib/jpf-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.9.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.9.8.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.9.8.jar"/>
+	<classpathentry kind="lib" path="lib/jcl-over-slf4j-1.7.26.jar"/>
+	<classpathentry kind="lib" path="lib/jena-base-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jsonld-java-0.12.3.jar"/>
+	<classpathentry kind="lib" path="lib/libthrift-0.12.0.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.26.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.26.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
