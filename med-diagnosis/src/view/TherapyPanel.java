@@ -92,8 +92,7 @@ public class TherapyPanel extends JPanel {
 				int modelRow = Integer.valueOf(e.getActionCommand());
 				
 				Vector<Object> v = chosenTherapies.getTableModel().getRow(modelRow);
-				v.remove(2);
-				v.set(2, "Choose");
+				v.set(1, "Choose");
 				
 				((DefaultTableModel) table.getModel()).removeRow(modelRow);
 				suggestedTherapies.insertRow(v);
