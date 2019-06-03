@@ -106,6 +106,10 @@ public class MedicalExaminationPanel extends JPanel {
 		return phisicalExaminationPanel.getSymptomsList();
 	}
 	
+	public List<String> getAdditionalCheckupsList() {
+		return additionalCheckupsPanel.getAdditionalCheckupsList();
+	}
+	
 	public  Map<String, Integer> getPhysicalExaminationSymptomsMap() {
 		return phisicalExaminationPanel.getSymptomsMap();
 	}
@@ -116,6 +120,9 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	public void generateTherapies(List<String> suggestedTherapies) {
 		therapyPanel.generateSuggestedTherapies(suggestedTherapies);
+
+	public void generateDiagnosis(Map<String,Float> diagnosis) {
+		diagnosisPanel.generateDiagnosis(diagnosis);
 	}
 
 }

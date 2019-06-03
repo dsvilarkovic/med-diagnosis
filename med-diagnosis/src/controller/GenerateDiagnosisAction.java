@@ -23,7 +23,7 @@ public class GenerateDiagnosisAction extends AbstractAction {
 		List<String> symptomsList = medicalExaminationPanel.getSymptomsList();
 		List<String> physicalExaminationsSymptomsList = medicalExaminationPanel.getPhysicalExaminationSymptomsList();
  		//TODO: dodati rezultate dodatnih pregleda
-		
+		List<String> additionalCheckupsList = medicalExaminationPanel.getAdditionalCheckupsList();
 		//TODO: dodati vadjenje godina iz kartona pacijenta
 		Integer age = 10;
 		
@@ -34,8 +34,10 @@ public class GenerateDiagnosisAction extends AbstractAction {
 		
 		variablesList.addAll(symptomsList);
 		variablesList.addAll(physicalExaminationsSymptomsList);
+		variablesList.addAll(additionalCheckupsList);
 		
 		Map<String, Float> map =  Singleton.getInstance().getBayesNetModule().getDiseaseListPercentage(variablesList, age, gender);
+		medicalExaminationPanel.generateDiagnosis(map);
 	}
 
 }
