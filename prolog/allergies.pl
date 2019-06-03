@@ -18,11 +18,19 @@ allergy(antibiotic, 'cefotaxime').
 allergy(antibiotic, 'ceftriaxone').
 allergy(antibiotic, 'vancomycin').
 
+allergy(antiepileptic_drug, 'levetiracetam_(keppra)').
+allergy(antiepileptic_drug, 'phenytoin_(dilantin)').
+allergy(antiepileptic_drug, 'lamotrigine_(lamictal)').
+allergy(antiepileptic_drug, 'divalproex_sodium_(depakote)').
 allergy(antiepileptic_drug, 'carbamazepine').
-allergy(antiepileptic_drug, 'ethosuximide').
+allergy(antiepileptic_drug, 'topiramate_(topamax)').
+allergy(antiepileptic_drug, 'oxcarbazepine_(trileptal)').
 allergy(antiepileptic_drug, 'phenobarbital').
-allergy(antiepileptic_drug, 'valproic_acid').
 allergy(antiepileptic_drug, 'zonisamide').
+allergy(antiepileptic_drug, 'valproic_acid').
+allergy(antiepileptic_drug, 'fosphenytoin').
+allergy(antiepileptic_drug, 'ethosuximide').
+allergy(antiepileptic_drug, 'lacosamide_(vimpat)').
 
 allergy(sulfonamides, 'celecoxib_(celebrex)').
 allergy(sulfonamides, 'sumatriptan_(imitrex)').

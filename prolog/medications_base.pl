@@ -12,12 +12,12 @@ recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'creatine').
 recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'dantrolene').
 recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'coal_tar_topical').
 
-recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'physical_therapist').
-recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'speech_and_language_therapist').
-recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'occupational_therapist').
+recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'physical_therapy').
+recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'speech_and_language_therapy').
+recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'occupational_therapy').
 recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'dietitian').
-recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'respiratory_therapist').
-recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'therapist').
+recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'respiratory_therapy').
+recommended_medication_therapies(amyotrophic_lateral_sclerosis_als, 'therapy').
 
 
 recommended_medication_therapies(tension_headache, 'topiramate_(topamax)').
@@ -32,6 +32,7 @@ recommended_medication_therapies(tension_headache, 'monobenzone_topical').
 recommended_medication_therapies(tension_headache, 'cognitive_behavioral_therapy').
 recommended_medication_therapies(tension_headache, 'relaxation_techniques').
 recommended_medication_therapies(tension_headache, 'biofeedback_training').
+recommended_medication_therapies(tension_headache, 'therapy').
 
 
 recommended_medication_therapies(migraine, 'sumatriptan_(imitrex)').
@@ -46,6 +47,12 @@ recommended_medication_therapies(migraine, 'zolmitriptan_(zomig)').
 recommended_medication_therapies(migraine, 'nortriptyline').
 recommended_medication_therapies(migraine, 'butorphanol_(stadol)').
 
+recommended_medication_therapies(migraine, 'cognitive_behavioral_therapy').
+recommended_medication_therapies(migraine, 'relaxation_techniques').
+recommended_medication_therapies(migraine, 'biofeedback_training').
+recommended_medication_therapies(migraine, 'therapy').
+
+
 recommended_medication_therapies(parkinson_disease, 'ropinirole').
 recommended_medication_therapies(parkinson_disease, 'pramipexole_(mirapex)').
 recommended_medication_therapies(parkinson_disease, 'amantadine').
@@ -58,8 +65,8 @@ recommended_medication_therapies(parkinson_disease, 'selegiline').
 recommended_medication_therapies(parkinson_disease, 'trihexyphenidyl_(artane)').
 recommended_medication_therapies(parkinson_disease, 'rivastigmine_(exelon)').
 
-recommended_medication_therapies(parkinson_disease, 'therapist').
-recommended_medication_therapies(parkinson_disease, 'physical_therapist').
+recommended_medication_therapies(parkinson_disease, 'therapy').
+recommended_medication_therapies(parkinson_disease, 'physical_therapy').
 
 recommended_medication_therapies(dementia, 'donepezil_(aricept)').
 recommended_medication_therapies(dementia, 'memantine_(namenda)').
