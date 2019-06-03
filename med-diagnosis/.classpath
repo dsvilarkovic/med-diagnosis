@@ -23,5 +23,7 @@
 	<classpathentry kind="lib" path="lib/jena-tdb2-3.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-api-2.11.1.jar"/>
 	<classpathentry kind="lib" path="lib/unbbayes-4.22.18.jar"/>
+	<classpathentry kind="lib" path="lib/jpf-1.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

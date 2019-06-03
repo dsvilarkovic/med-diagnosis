@@ -1,0 +1,112 @@
+@base <http://www.github.com/dsvilarkovic/med_diag>.
+@prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>.
+@prefix xsd: <http://w3.org/2001/XMLSchema#> .
+
+<#Patient1>
+    a med_diag:Patient;
+    med_diag:medicalRecord med_diag:MedicalRecord1;
+    med_diag:symptoms med_diag:Sym1; 
+    med_diag:physical_treatments med_diag:PhysT1;
+    med_diag:additional_procedures_results med_diag:Apr1;
+    med_diag:diagnosis "parkinsons_disease";
+    med_diag:therapies med_diag:T1;
+    med_diag:prevention_treatments med_diag:PrevT1.
+
+
+
+<#MedicalRecord1>
+    med_diag:id "1"^^xsd:integer;    
+    med_diag:yearOfBirth "2017"^^xsd:integer;
+    med_diag:gender "male"^^xsd:string;
+    med_diag:medicalRecordNumber "39011318"^^xsd:integer;
+    med_diag:firstName "Dusan"^^xsd:string;
+    med_diag:lastName "Svilarkovic"^^xsd:string;
+    med_diag:jmbg "1706996888888"^^xsd:string;
+    med_diag:address "John Doe 2"^^xsd:string;
+    med_diag:phoneNumber "666666"^^xsd:string;
+    med_diag:allergies med_diag:Allergies1.
+
+
+<#Allergies1>
+     a med_diag:Allergy_list;
+     med_diag:allergy "nsaid";
+     med_diag:allergy "antibiotic".
+
+<#Sym1>
+    a med_diag:Symptom_list;
+    med_diag:symptom "problems_with_movement";
+    med_diag:symptom "abnormal_involuntary_movements";
+    med_diag:symptom "disturbance_of_memory".
+
+<#PhysT1>
+    a med_diag:Physical_treatments;
+    med_diag:physical_treatment "leg_weakness";
+    med_diag:physical_treatment "focal_weakness".
+
+<#Apr1>
+    a med_diag:Additional_procedures_results;
+    med_diag:additional_procedures_result "ct_scan_good".
+
+<#T1>
+    a med_diag:Therapies;
+    med_diag:therapy "vicodine";
+    med_diag:therapy "tylenol".
+
+<#PrevT1>
+    a med_diag:Prevention_treatments;
+    med_diag:prevention_treatment "Take a walk".
+
+
+
+<#Patient2>
+    a med_diag:Patient;
+    med_diag:medicalRecord med_diag:MedicalRecord2;
+    med_diag:symptoms med_diag:Sym2;
+    med_diag:physical_treatments med_diag:PhysT2;
+    med_diag:additional_procedures_results med_diag:Apr2;
+    med_diag:diagnosis "parkinsons_disease";
+    med_diag:therapies med_diag:T2;
+    med_diag:prevention_treatments med_diag:PrevT2.
+
+
+
+<#MedicalRecord2>
+    med_diag:id "2"^^xsd:integer;
+    med_diag:yearOfBirth "2017"^^xsd:integer;
+    med_diag:gender "male"^^xsd:string;
+    med_diag:medicalRecordNumber "39011318"^^xsd:integer;
+    med_diag:firstName "Bozo"^^xsd:string;
+    med_diag:lastName "Devusic"^^xsd:string;
+    med_diag:jmbg "0202996888888"^^xsd:string;
+    med_diag:address "John Doe 2"^^xsd:string;
+    med_diag:phoneNumber "666666"^^xsd:string;
+    med_diag:allergies med_diag:Allergies1.
+
+<#Allergies2>
+     a med_diag:Allergy_list;
+     med_diag:allergy "nsaid";
+     med_diag:allergy "antibiotic".
+
+<#Sym2>
+    a med_diag:Symptom_list;
+    med_diag:symptom "problems_with_movement";
+    med_diag:symptom "abnormal_involuntary_movements";
+    med_diag:symptom "disturbance_of_memory".
+
+<#PhysT2>
+    a med_diag:Physical_treatments;
+    med_diag:physical_treatment "leg_weakness";
+    med_diag:physical_treatment "focal_weakness".
+
+<#Apr2>
+    a med_diag:Additional_procedures_results;
+    med_diag:additional_procedures_result "ct_scan_good".
+
+<#T2>
+    a med_diag:Therapies;
+    med_diag:therapy "vicodine";
+    med_diag:therapy "tylenol".
+
+<#PrevT2>
+    a med_diag:Prevention_treatments;
+    med_diag:prevention_treatment "Take a walk".
