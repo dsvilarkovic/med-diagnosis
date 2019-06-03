@@ -119,12 +119,20 @@ public class MedicalExaminationPanel extends JPanel {
 		return phisicalExaminationPanel.getSymptomsList();
 	}
 	
+	public List<String> getAdditionalCheckupsList() {
+		return additionalCheckupsPanel.getAdditionalCheckupsList();
+	}
+	
 	public  Map<String, Integer> getPhysicalExaminationSymptomsMap() {
 		return phisicalExaminationPanel.getSymptomsMap();
 	}
 	
 	public void generateAdditionalCheckups(Map<String,String> suggestedAdditionalCheckupsMap ) {
 		additionalCheckupsPanel.generateSuggestedAdditionalCheckups(suggestedAdditionalCheckupsMap);
+	}
+	
+	public void generateDiagnosis(Map<String,Float> diagnosis) {
+		diagnosisPanel.generateDiagnosis(diagnosis);
 	}
 
 }
