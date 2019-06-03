@@ -8,5 +8,22 @@
 	<classpathentry kind="lib" path="Theme/jipconsole.jar"/>
 	<classpathentry kind="lib" path="lib/jFuzzyLogic.jar"/>
 	<classpathentry kind="lib" path="Theme/syntheticaPlain.jar"/>
+	<classpathentry kind="lib" path="lib/jCOLIBRI-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-arq-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-cmds-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-core-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-dboe-base-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-dboe-index-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-dboe-trans-data-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-dboe-transaction-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-iri-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-rdfconnection-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-shaded-guava-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-tdb-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena-tdb2-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.11.1.jar"/>
+	<classpathentry kind="lib" path="lib/unbbayes-4.22.18.jar"/>
+	<classpathentry kind="lib" path="lib/jpf-1.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

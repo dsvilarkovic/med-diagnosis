@@ -55,7 +55,7 @@ public class MedicalExaminationPanel extends JPanel {
 		
 		JPanel preventiveChecksPanel = createPreventiveChecksPanel();
 
-		medicalExaminationLabel.setFont(new java.awt.Font("Times New Roman", 0, 24));
+		medicalExaminationLabel.setFont(new java.awt.Font(medicalExaminationLabel.getFont().getFontName(), 0, 24));
 
 		this.setLayout(new BorderLayout());
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));

@@ -25,7 +25,7 @@ public class DiagnosisPanel extends JPanel  {
 	private JTextField diagnosisTextField;
 
 	public DiagnosisPanel() {
-		this.diagnosisTableHandler = new TableHandler(400, 300);
+		this.diagnosisTableHandler = new TableHandler(600, 300);
 		this.diagnosisTextField = new JTextField();
 		initGUI();
 	}
@@ -33,16 +33,15 @@ public class DiagnosisPanel extends JPanel  {
 	private void initGUI() {
 		JPanel diagnosisResultTextPanel = new JPanel();
 		JPanel diagnosisTextPanel = new JPanel();
-		JPanel emptyPanel = new JPanel();
 		JLabel diagnosisLabel = new JLabel("Diagnosis");
 		JButton getDiagnosisButton = new JButton(new GenerateDiagnosisAction());
 		JLabel diagnosisSelected = new JLabel("Diagnosis is: ");
+		
+		
 		diagnosisLabel.setFont(new Font(diagnosisLabel.getFont().getFontName(), Font.BOLD,16));
 		diagnosisTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		diagnosisTextPanel.add(diagnosisLabel);
 		diagnosisTextPanel.add(getDiagnosisButton);
-		emptyPanel.setLayout(new BorderLayout());
-		emptyPanel.add(new JPanel(), BorderLayout.CENTER);
 
 		diagnosisTextField.setPreferredSize(new Dimension(200, 30));
 		diagnosisTextField.setMaximumSize(new Dimension(200, 30));
@@ -52,7 +51,6 @@ public class DiagnosisPanel extends JPanel  {
 		initDiagnTable();
 		this.setLayout(new BorderLayout(5, 5));
 		this.add(diagnosisTextPanel, BorderLayout.NORTH);
-		this.add(emptyPanel, BorderLayout.WEST);
 		this.add(diagnosisResultTextPanel, BorderLayout.SOUTH);
 		this.add(new JScrollPane(this.diagnosisTableHandler.getTableView()), BorderLayout.CENTER);
 	}
@@ -71,6 +69,5 @@ public class DiagnosisPanel extends JPanel  {
 		};
 
 		ButtonColumn buttonColumn = new ButtonColumn(diagnosisTableHandler.getTableView(), choose, 1);
-		buttonColumn.setMnemonic(KeyEvent.VK_C);
 	}
 }

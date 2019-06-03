@@ -1,0 +1,84 @@
+abnormal involuntary movements
+problems with movement
+disturbance of memory
+dizziness
+weakness
+stiffness all over
+leg weakness
+focal weakness
+muscle stiffness or tightness
+difficulty speaking
+leg stiffness or tightness
+fears and phobias
+headache
+fever
+vomiting
+neck pain
+ache all over
+back pain
+seizures
+nausea
+low back pain
+cough
+leg pain
+neck stiffness or tightness
+fatigue
+loss of sensation
+paresthesia
+spots or clouds in vision
+symptoms of the face
+blindness
+long menstrual periods
+depressive or psychotic symptoms
+hostile behavior
+delusions or hallucinations
+insomnia
+disturbance of smell or taste
+depression
+restlessness
+irregular appearing scalp
+muscle cramps contractures or spasms
+eye burns or stings
+lack of growth
+eye moves abnormally
+muscle weakness
+anxiety and nervousness
+chills
+painful menstruation
+painful sinuses
+bleeding from ear
+back cramps or spasms
+difficulty in swallowing
+hand or finger weakness
+leg cramps or spasms
+disturbance_of_smell
+diminished_vision
+pupillary_abnormalities
+disturbance_of_facial_sensation
+disturbance_of_motor_facial_functions
+hearing_problems
+disturbance_of_taste
+problems_with_head_side_to_side_movement
+tongue_movement_problems
+spasticity
+upper_extremity_weakness
+lower_extremity_weakness
+disturbance_of_upper_extremity_sensation
+disturbance_of_lower_extremity_sensation
+balance_problems
+brisk_reflexes
+decreased_reflexes
+problems_with_movement
+dysmetria
+difficulty_in_swallowing
+magnetic_resonance_imaging
+ct_scan
+hematologic_tests
+emng
+eeg
+lumbar_puncture_fluid_analysis
+psychologic_analysis
+mmse_severe_damage
+mmse_moderate_damage
+mmse_mild_damage
+mmse_cognitive_deficit
