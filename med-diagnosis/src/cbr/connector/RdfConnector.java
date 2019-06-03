@@ -46,6 +46,53 @@ public class RdfConnector implements Connector{
     static String resourceURI    = "http://www.github.com/dsvilarkovic/med_diag";
     static String rdfURI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
+    
+    public MedicalRecord getMedicalRecordById(Integer medicalRecordId) {
+    	MedicalRecord foundMedicalRecord = null;
+		Model model = ModelFactory.createDefaultModel();
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int n = getPatientCount(model);
+		for (int i = 1; i <= n; i++) {
+			MedicalExamination caseDescription = new MedicalExamination();
+			
+			MedicalRecord medicalRecord = getMedicalRecord(model, i);
+			Set<Allergy> allergies = getAllergies(model, i);
+			medicalRecord.setAllergies(allergies);
+			
+			Set<Symptom> simptomi= getSymptoms(model, i);
+			Set<PhysicalExaminationResult> fizikalniPregledi= getPhysicalTreatments(model, i);
+			Set<AdditionalExaminationResult> dodatniPregledi= getAdditionalProceduresResult(model, i);
+			Set<Therapy> terapije= getTherapies(model, i);
+			Set<PreventiveExamination> preventivniPregledi = getPreventionTreatments(model, i);
+			Disease disease = getDiagnosis(model, i);
+			
+			caseDescription.setSymptoms(simptomi);
+			caseDescription.setPhysicalExaminationResults(fizikalniPregledi);
+			caseDescription.setAdditionalExaminationResults(dodatniPregledi);
+			caseDescription.setTherapies(terapije);
+			caseDescription.setPreventiveExaminations(preventivniPregledi);
+			
+			//dodati alergije, dijagnozu i sliku
+			caseDescription.setMedicalRecord(medicalRecord);
+			caseDescription.setDisease(disease);
+			
+	
+			if(medicalRecord.getId() == medicalRecordId) {
+				foundMedicalRecord = medicalRecord;
+			}
+		
+		}
+		
+		return foundMedicalRecord;
+    }
     /**
      * Vraca listu svih medicinskih kartona/pacijenata koji postoje u bazi
      * @return
