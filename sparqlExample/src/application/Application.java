@@ -50,7 +50,7 @@ public class Application implements StandardCBRApplication{
 	
 	private static Application instance = null;
 	
-	private ModuleType module = ModuleType.DIAGNOSIS;
+	private ModuleType module = ModuleType.ADDITIONAL_EXAMINATIONS;
 	
 	public static Application getInstance() {
 		
@@ -169,9 +169,9 @@ public class Application implements StandardCBRApplication{
 			Set<PhysicalExaminationResult> fizikalniPregledi= new HashSet<PhysicalExaminationResult>();
 			Set<AdditionalExaminationResult> dodatniPregledi= new HashSet<AdditionalExaminationResult>();
 			Set<Therapy> terapije= new HashSet<Therapy>();
-//			
-//			simptomi.add(getSymptom(14));
-//			simptomi.add(getSymptom(13));
+			
+			simptomi.add(new Symptom("vomiting"));
+			simptomi.add(new Symptom("fever"));
 			
 			caseDescription.setSymptoms(simptomi);
 			caseDescription.setPhysicalExaminationResults(fizikalniPregledi);
@@ -179,7 +179,7 @@ public class Application implements StandardCBRApplication{
 			caseDescription.setTherapies(terapije);
 			
 			caseDescription.setMedicalRecord(new MedicalRecord("12312241", "NekoIme", "NekoPrezime", 1996, true));
-//			caseDescription.setDisease(getDisease(4));
+			caseDescription.setDisease(new Disease());
 			
 			query.setDescription(caseDescription);
 			

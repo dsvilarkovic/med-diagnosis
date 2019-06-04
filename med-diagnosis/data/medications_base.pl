@@ -1,123 +1,142 @@
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'riluzole', 99.99999999999999).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'baclofen', 90.53951362554245).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'tizanidine', 61.836465779883966).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'glycopyrrolate', 54.55336537007741).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'celecoxib_(celebrex)', 54.55336537007741).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'vitamin_e_(vita_e)', 45.19416581583175).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'quinine', 32.081504274595304).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'ubiquinone_(q10)', 32.081504274595304).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'fibrin_sealant_topical', 9.999999999999964).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'beta_carotene', 9.999999999999964).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'creatine', 9.999999999999964).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'dantrolene', 9.999999999999964).
-recommended_medication(amyotrophic_lateral_sclerosis_als, 'coal_tar_topical', 9.999999999999964).
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'riluzole').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'baclofen').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'tizanidine').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'glycopyrrolate').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'celecoxib_celebrex').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'vitamin_e_vita_e').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'quinine').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'ubiquinone_q10').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'fibrin_sealant_topical').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'beta_carotene').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'creatine').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'dantrolene').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'coal_tar_topical').
 
-recommended_medication(parkinson_disease, 'ropinirole', 57.83793974414989).
-recommended_medication(parkinson_disease, 'pramipexole_(mirapex)', 57.511472743173464).
-recommended_medication(parkinson_disease, 'amantadine', 40.73368296632693).
-recommended_medication(parkinson_disease, 'donepezil_(aricept)', 38.321639296966794).
-recommended_medication(parkinson_disease, 'rasagiline_(azilect)', 31.258191177951854).
-recommended_medication(parkinson_disease, 'carbidopa', 29.61775444421262).
-recommended_medication(parkinson_disease, 'entacapone_(comtan)', 26.972656937138705).
-recommended_medication(parkinson_disease, 'memantine_(namenda)', 23.031884657992975).
-recommended_medication(parkinson_disease, 'selegiline', 15.917191582180546).
-recommended_medication(parkinson_disease, 'trihexyphenidyl_(artane)', 13.106402531460315).
-recommended_medication(parkinson_disease, 'rivastigmine_(exelon)', 9.999999999999986).
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'physical_therapy').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'speech_and_language_therapy').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'occupational_therapy').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'dietitian').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'respiratory_therapy').
+recommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'therapy').
 
-recommended_medication(multiple_sclerosis, 'interferon_beta_1a_(avonex)', 100.0).
-recommended_medication(multiple_sclerosis, 'glatiramer_(copaxone)', 98.7559581847243).
-recommended_medication(multiple_sclerosis, 'baclofen', 95.03176419040506).
-recommended_medication(multiple_sclerosis, 'modafinil_(provigil)', 77.81915446149291).
-recommended_medication(multiple_sclerosis, 'oxybutynin', 68.25198163727734).
-recommended_medication(multiple_sclerosis, 'tizanidine', 66.9957317579606).
-recommended_medication(multiple_sclerosis, 'natalizumab_(tysabri)', 63.54969773204397).
-recommended_medication(multiple_sclerosis, 'tolterodine_(detrol)', 53.73660802228066).
-recommended_medication(multiple_sclerosis, 'amantadine', 51.45375634763253).
-recommended_medication(multiple_sclerosis, 'solifenacin_(vesicare)', 30.22274895244399).
-recommended_medication(multiple_sclerosis, 'azathioprine', 27.277730797041542).
-recommended_medication(multiple_sclerosis, 'cyclophosphamide', 20.09420760772842).
-recommended_medication(multiple_sclerosis, 'armodafinil_(nuvigil)', 9.999999999999986).
 
-recommended_medication(migraine, 'sumatriptan_(imitrex)', 100.0).
-recommended_medication(migraine, 'topiramate_(topamax)', 95.06977983621692).
-recommended_medication(migraine, 'prochlorperazine_(compro)', 75.88059855871592).
-recommended_medication(migraine, 'rizatriptan_(maxalt)', 59.4447253109637).
-recommended_medication(migraine, 'nalbuphine_(nubain)', 51.93069448228849).
-recommended_medication(migraine, 'propranolol', 43.84596932682412).
-recommended_medication(migraine, 'eletriptan_(relpax)', 41.648283488640914).
-recommended_medication(migraine, 'midrin', 34.26246346134878).
-recommended_medication(migraine, 'zolmitriptan_(zomig)', 29.008122106613634).
-recommended_medication(migraine, 'nortriptyline', 27.977478605268512).
-recommended_medication(migraine, 'butorphanol_(stadol)', 9.999999999999986).
+recommended_medication_therapies('tension_headache', 'topiramate_topamax').
+recommended_medication_therapies('tension_headache', 'midrin').
+recommended_medication_therapies('tension_headache', 'rizatriptan_maxalt').
+recommended_medication_therapies('tension_headache', 'eletriptan_relpax').
+recommended_medication_therapies('tension_headache', 'butorphanol_stadol').
+recommended_medication_therapies('tension_headache', 'diclofenac_topical_product').
+recommended_medication_therapies('tension_headache', 'piroxicam').
+recommended_medication_therapies('tension_headache', 'monobenzone_topical').
 
-recommended_medication(dementia, 'donepezil_(aricept)', 100.0).
-recommended_medication(dementia, 'memantine_(namenda)', 92.06028529239359).
-recommended_medication(dementia, 'rivastigmine_(exelon)', 56.87550065045419).
-recommended_medication(dementia, 'galantamine', 47.421853231210406).
-recommended_medication(dementia, 'mirtazapine', 47.421853231210406).
-recommended_medication(dementia, 'thiamine', 32.82169111018693).
-recommended_medication(dementia, 'pramipexole_(mirapex)', 23.734280069876746).
-recommended_medication(dementia, 'felodipine', 23.734280069876746).
-recommended_medication(dementia, 'bisacodyl_(the_magic_bullet)', 23.734280069876746).
-recommended_medication(dementia, 'modafinil_(provigil)', 17.72380429300815).
-recommended_medication(dementia, 'raloxifene_(evista)', 17.72380429300815).
-recommended_medication(dementia, 'deferasirox_(exjade)', 10.000000000000009).
+recommended_medication_therapies('tension_headache', 'cognitive_behavioral_therapy').
+recommended_medication_therapies('tension_headache', 'relaxation_techniques').
+recommended_medication_therapies('tension_headache', 'biofeedback_training').
+recommended_medication_therapies('tension_headache', 'therapy').
 
-recommended_medication(meningitis, 'ceftriaxone', 100.0).
-recommended_medication(meningitis, 'vancomycin', 78.31068939563183).
-recommended_medication(meningitis, 'ampicillin', 65.2618350959473).
-recommended_medication(meningitis, 'prochlorperazine_(compro)', 54.93009791119516).
-recommended_medication(meningitis, 'midazolam_(versed)', 54.93009791119516).
-recommended_medication(meningitis, 'cefotaxime', 44.633383256839906).
-recommended_medication(meningitis, 'acyclovir', 44.633383256839906).
-recommended_medication(meningitis, 'phenobarbital', 37.35804631097746).
-recommended_medication(meningitis, 'gentamicin_ophthalmic', 37.35804631097746).
-recommended_medication(meningitis, 'cefuroxime', 27.16497045907178).
-recommended_medication(meningitis, 'micafungin', 10.000000000000009).
-recommended_medication(meningitis, 'amphotericin_b', 10.000000000000009).
-recommended_medication(meningitis, 'tapentadol_(nucynta)', 10.000000000000009).
 
-recommended_medication(headache, 'prochlorperazine_(compro)', 100.0).
-recommended_medication(headache, 'sumatriptan_(imitrex)', 86.45718506849096).
-recommended_medication(headache, 'nalbuphine_(nubain)', 63.249064588821646).
-recommended_medication(headache, 'midrin', 62.36553534756697).
-recommended_medication(headache, 'rizatriptan_(maxalt)', 59.529944346976535).
-recommended_medication(headache, 'eletriptan_(relpax)', 46.75959335671982).
-recommended_medication(headache, 'zolmitriptan_(zomig)', 39.01618231874573).
-recommended_medication(headache, 'frovatriptan_(frova)', 20.051589337021536).
-recommended_medication(headache, 'almotriptan_(axert)', 10.000000000000009).
+recommended_medication_therapies('migraine', 'sumatriptan_imitrex').
+recommended_medication_therapies('migraine', 'topiramate_topamax').
+recommended_medication_therapies('migraine', 'rizatriptan_maxalt').
+recommended_medication_therapies('migraine', 'nalbuphine_nubain').
+recommended_medication_therapies('migraine', 'propranolol').
+recommended_medication_therapies('migraine', 'eletriptan_relpax').
+recommended_medication_therapies('migraine', 'midrin').
+recommended_medication_therapies('migraine', 'zolmitriptan_zomig').
+recommended_medication_therapies('migraine', 'nortriptyline').
+recommended_medication_therapies('migraine', 'butorphanol_stadol').
+recommended_medication_therapies('migraine', 'prochlorperazine_compro').
 
-recommended_medication(alzheimer_disease, 'donepezil_(aricept)', 100.0).
-recommended_medication(alzheimer_disease, 'memantine_(namenda)', 96.79277477584093).
-recommended_medication(alzheimer_disease, 'rivastigmine_(exelon)', 75.7734480464653).
-recommended_medication(alzheimer_disease, 'galantamine', 61.333234993805206).
-recommended_medication(alzheimer_disease, 'dapiprazole_ophthalmic', 28.886831569993234).
-recommended_medication(alzheimer_disease, 'alendronate_cholecalciferol', 21.849965537718774).
-recommended_medication(alzheimer_disease, 'bromocriptine', 21.849965537718774).
-recommended_medication(alzheimer_disease, 'fluvastatin_(lescol)', 21.849965537718774).
-recommended_medication(alzheimer_disease, 'citric_acid', 10.000000000000009).
-recommended_medication(alzheimer_disease, 'astemizole', 10.000000000000009).
-recommended_medication(alzheimer_disease, 'hypromellose_(genteal)', 10.000000000000009).
+recommended_medication_therapies('migraine', 'cognitive_behavioral_therapy').
+recommended_medication_therapies('migraine', 'relaxation_techniques').
+recommended_medication_therapies('migraine', 'biofeedback_training').
+recommended_medication_therapies('migraine', 'therapy').
 
-recommended_medication(epilepsy, 'levetiracetam_(keppra)', 100.0).
-recommended_medication(epilepsy, 'phenytoin_(dilantin)', 96.00064654975418).
-recommended_medication(epilepsy, 'lamotrigine_(lamictal)', 86.64090457081545).
-recommended_medication(epilepsy, 'divalproex_sodium_(depakote)', 85.70690870469625).
-recommended_medication(epilepsy, 'carbamazepine', 84.82889024448617).
-recommended_medication(epilepsy, 'topiramate_(topamax)', 77.72566640615489).
-recommended_medication(epilepsy, 'oxcarbazepine_(trileptal)', 73.3245416510006).
-recommended_medication(epilepsy, 'phenobarbital', 63.16922996761484).
-recommended_medication(epilepsy, 'zonisamide', 54.856889330547276).
-recommended_medication(epilepsy, 'valproic_acid', 32.67068038952996).
-recommended_medication(epilepsy, 'fosphenytoin', 32.04964315194678).
-recommended_medication(epilepsy, 'ethosuximide', 12.6999942188599).
-recommended_medication(epilepsy, 'lacosamide_(vimpat)', 10.000000000000009).
 
-recommended_medication(tension_headache, 'topiramate_(topamax)', 90.80166591588161).
-recommended_medication(tension_headache, 'midrin', 86.36141500104226).
-recommended_medication(tension_headache, 'rizatriptan_(maxalt)', 57.97704956138716).
-recommended_medication(tension_headache, 'eletriptan_(relpax)', 39.21334260964164).
-recommended_medication(tension_headache, 'butorphanol_(stadol)', 39.21334260964164).
-recommended_medication(tension_headache, 'diclofenac_topical_product', 28.329019448440462).
-recommended_medication(tension_headache, 'piroxicam', 28.329019448440462).
-recommended_medication(tension_headache, 'monobenzone_topical', 9.999999999999986).
+recommended_medication_therapies('parkinson_disease', 'ropinirole').
+recommended_medication_therapies('parkinson_disease', 'pramipexole_mirapex').
+recommended_medication_therapies('parkinson_disease', 'amantadine').
+recommended_medication_therapies('parkinson_disease', 'donepezil_aricept').
+recommended_medication_therapies('parkinson_disease', 'rasagiline_azilect').
+recommended_medication_therapies('parkinson_disease', 'carbidopa').
+recommended_medication_therapies('parkinson_disease', 'entacapone_comtan').
+recommended_medication_therapies('parkinson_disease', 'memantine_namenda').
+recommended_medication_therapies('parkinson_disease', 'selegiline').
+recommended_medication_therapies('parkinson_disease', 'trihexyphenidyl_artane').
+recommended_medication_therapies('parkinson_disease', 'rivastigmine_exelon').
+
+recommended_medication_therapies('parkinson_disease', 'therapy').
+recommended_medication_therapies('parkinson_disease', 'physical_therapy').
+
+recommended_medication_therapies('dementia', 'donepezil_aricept').
+recommended_medication_therapies('dementia', 'memantine_namenda').
+recommended_medication_therapies('dementia', 'rivastigmine_exelon').
+recommended_medication_therapies('dementia', 'galantamine').
+recommended_medication_therapies('dementia', 'mirtazapine').
+recommended_medication_therapies('dementia', 'thiamine').
+recommended_medication_therapies('dementia', 'pramipexole_mirapex').
+recommended_medication_therapies('dementia', 'felodipine').
+recommended_medication_therapies('dementia', 'bisacodyl_the_magic_bullet)').
+recommended_medication_therapies('dementia', 'modafinil_provigil').
+recommended_medication_therapies('dementia', 'raloxifene_evista').
+recommended_medication_therapies('dementia', 'deferasirox_exjade').
+
+recommended_medication_therapies('dementia', 'occupational_therapy').
+recommended_medication_therapies('dementia', 'physical_therapy').
+
+recommended_medication_therapies('multiple_sclerosis', 'interferon_beta_1a_avonex').
+recommended_medication_therapies('multiple_sclerosis', 'glatiramer_copaxone').
+recommended_medication_therapies('multiple_sclerosis', 'baclofen').
+recommended_medication_therapies('multiple_sclerosis', 'modafinil_provigil').
+recommended_medication_therapies('multiple_sclerosis', 'oxybutynin').
+recommended_medication_therapies('multiple_sclerosis', 'tizanidine').
+recommended_medication_therapies('multiple_sclerosis', 'natalizumab_tysabri').
+recommended_medication_therapies('multiple_sclerosis', 'tolterodine_detrol').
+recommended_medication_therapies('multiple_sclerosis', 'amantadine').
+recommended_medication_therapies('multiple_sclerosis', 'solifenacin_vesicare').
+recommended_medication_therapies('multiple_sclerosis', 'azathioprine').
+recommended_medication_therapies('multiple_sclerosis', 'cyclophosphamide').
+recommended_medication_therapies('multiple_sclerosis', 'armodafinil_nuvigil').
+
+recommended_medication_therapies('multiple_sclerosis', 'therapist').
+recommended_medication_therapies('multiple_sclerosis', 'physical_therapist').
+
+recommended_medication_therapies('alzheimer_disease', 'donepezil_aricept').
+recommended_medication_therapies('alzheimer_disease', 'memantine_namenda').
+recommended_medication_therapies('alzheimer_disease', 'rivastigmine_exelon').
+recommended_medication_therapies('alzheimer_disease', 'galantamine').
+recommended_medication_therapies('alzheimer_disease', 'dapiprazole_ophthalmic').
+recommended_medication_therapies('alzheimer_disease', 'alendronate_cholecalciferol').
+recommended_medication_therapies('alzheimer_disease', 'bromocriptine').
+recommended_medication_therapies('alzheimer_disease', 'fluvastatin_lescol').
+recommended_medication_therapies('alzheimer_disease', 'citric_acid').
+recommended_medication_therapies('alzheimer_disease', 'astemizole').
+recommended_medication_therapies('alzheimer_disease', 'hypromellose_genteal').
+
+recommended_medication_therapies('epilepsy', 'levetiracetam_keppra').
+recommended_medication_therapies('epilepsy', 'phenytoin_dilantin').
+recommended_medication_therapies('epilepsy', 'lamotrigine_lamictal').
+recommended_medication_therapies('epilepsy', 'divalproex_sodium_depakote').
+recommended_medication_therapies('epilepsy', 'carbamazepine').
+recommended_medication_therapies('epilepsy', 'topiramate_topamax').
+recommended_medication_therapies('epilepsy', 'oxcarbazepine_trileptal').
+recommended_medication_therapies('epilepsy', 'phenobarbital').
+recommended_medication_therapies('epilepsy', 'zonisamide').
+recommended_medication_therapies('epilepsy', 'valproic_acid').
+recommended_medication_therapies('epilepsy', 'fosphenytoin').
+recommended_medication_therapies('epilepsy', 'ethosuximide').
+recommended_medication_therapies('epilepsy', 'lacosamide_vimpat').
+
+recommended_medication_therapies('meningitis', 'ceftriaxone').
+recommended_medication_therapies('meningitis', 'vancomycin').
+recommended_medication_therapies('meningitis', 'ampicillin').
+recommended_medication_therapies('meningitis', 'prochlorperazine_compro').
+recommended_medication_therapies('meningitis', 'midazolam_versed').
+recommended_medication_therapies('meningitis', 'cefotaxime').
+recommended_medication_therapies('meningitis', 'acyclovir').
+recommended_medication_therapies('meningitis', 'phenobarbital').
+recommended_medication_therapies('meningitis', 'gentamicin_ophthalmic').
+recommended_medication_therapies('meningitis', 'cefuroxime').
+recommended_medication_therapies('meningitis', 'micafungin').
+recommended_medication_therapies('meningitis', 'amphotericin_b').
+recommended_medication_therapies('meningitis', 'tapentadol_nucynta').

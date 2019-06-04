@@ -32,6 +32,10 @@ public class MedicalExaminationPanel extends JPanel {
 	private PhysicalExaminationPanel phisicalExaminationPanel;
 	
 	private MedicalExamination medicalExamination;
+
+	private TherapyPanel therapyPanel;
+	
+	private PreventiveExaminationPanel preventiveExaminationPanel;
 	
 	@SuppressWarnings("rawtypes")
 	public MedicalExaminationPanel(MedicalRecord medicalRecord) {
@@ -42,6 +46,9 @@ public class MedicalExaminationPanel extends JPanel {
 		phisicalExaminationPanel = new PhysicalExaminationPanel();
 		additionalCheckupsPanel = new AdditionalCheckupsPanel();
 		diagnosisPanel = new DiagnosisPanel();
+		therapyPanel = new TherapyPanel();
+		preventiveExaminationPanel = new PreventiveExaminationPanel();
+		
 		init();
 
 	}
@@ -50,9 +57,7 @@ public class MedicalExaminationPanel extends JPanel {
 	private void init() {
 		JPanel contentPanel = new JPanel();
 		JLabel medicalExaminationLabel = new JLabel("Medical examination information");
-		JPanel therapyPanel = createTherapyPanel();
-		JPanel preventiveChecksPanel = createPreventiveChecksPanel();
-
+		
 		medicalExaminationLabel.setFont(new java.awt.Font(medicalExaminationLabel.getFont().getFontName(), 0, 24));
 
 		this.setLayout(new BorderLayout());
@@ -70,7 +75,7 @@ public class MedicalExaminationPanel extends JPanel {
 		contentPanel.add(new JSeparator());
 		contentPanel.add(therapyPanel);
 		contentPanel.add(new JSeparator());
-		contentPanel.add(preventiveChecksPanel);
+		contentPanel.add(preventiveExaminationPanel);
 		contentPanel.add(new JSeparator());
 		
 		JPanel margin = new JPanel();
@@ -84,36 +89,7 @@ public class MedicalExaminationPanel extends JPanel {
 		this.add(splitPane, BorderLayout.CENTER);
 
 	}
-	
-	// TODO 2: Zavrsiti panel za preventivne preglede
-	private JPanel createPreventiveChecksPanel() {
-		JPanel resultPanel = new JPanel();
-		JPanel preventiveChecksPanel = new JPanel();
-		JLabel preventiveChecksLabel = new JLabel("Preventive checks");
-		
-		
-		resultPanel.setLayout(new BorderLayout(15,15));
-		resultPanel.add(preventiveChecksLabel,BorderLayout.NORTH);
-		resultPanel.add(preventiveChecksPanel, BorderLayout.CENTER);
-		
-		return resultPanel;
-	}
-	
-	// TODO 1: Zavrsiti panel za terapije
-	// Maja Kolosnjaji
-	private JPanel createTherapyPanel() {
-		JPanel resultPanel = new JPanel();
-		JPanel therapyPanel = new JPanel();
-		JLabel therapyLabel = new JLabel("Therapy");
-		
-		resultPanel.setLayout(new BorderLayout(15,15));
-		resultPanel.add(therapyLabel,BorderLayout.NORTH);
-		resultPanel.add(therapyPanel, BorderLayout.CENTER);
-		
-		return resultPanel;
-	}
 
-	
 	public List<String> getSymptomsList() {
 		return anamnesisPanel.getChosenSympList();
 	}
@@ -138,6 +114,10 @@ public class MedicalExaminationPanel extends JPanel {
 		additionalCheckupsPanel.generateSuggestedAdditionalCheckups(suggestedAdditionalCheckupsMap);
 	}
 	
+	public void generateTherapies(List<String> suggestedTherapies) {
+		therapyPanel.generateSuggestedTherapies(suggestedTherapies);
+	}
+
 	public void generateDiagnosis(Map<String,Float> diagnosis) {
 		diagnosisPanel.generateDiagnosis(diagnosis);
 	}
@@ -172,4 +152,11 @@ public class MedicalExaminationPanel extends JPanel {
 		return this.medicalExamination;
 	}
 
+	public void generatePreventiveExaminations(List<String> suggestedExaminations) {
+		preventiveExaminationPanel.generateSuggestedPreventiveExaminations(suggestedExaminations);
+	}
+	
+	public String getDiagnosis() {
+		return diagnosisPanel.getDiagnose();
+	}
 }
