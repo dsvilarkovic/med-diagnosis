@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
 import utils.Singleton;
 import view.MedicalExaminationPanel;
@@ -19,10 +20,22 @@ public class GeneratePreventiveExaminationAction extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {		
 		MedicalExaminationPanel medicalExaminationPanel = (MedicalExaminationPanel)Singleton.getInstance().getMainFrame().getCentralPanel();
 		
+		List<String> therapiesList = medicalExaminationPanel.getChosenTherapies();
+		String diagnosis = medicalExaminationPanel.getDiagnosis();
 		
-		List<String> suggestedExaminations = Singleton.getInstance().getPrologModule().getPreventiveExaminations();
+		if(diagnosis != null && !diagnosis.isEmpty()) {
+			List<String> suggestedExaminations = Singleton.getInstance().getPrologModule().getPreventiveExaminations(diagnosis,therapiesList);
 
-		medicalExaminationPanel.generatePreventiveExaminations(suggestedExaminations);
+			medicalExaminationPanel.generatePreventiveExaminations(suggestedExaminations);
+		}
+		else {
+			JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
+				    "You must choose a diagnosis first.",
+				    "Warning",
+				    JOptionPane.WARNING_MESSAGE);
+		}
+		
+
 		
 		
 

@@ -130,4 +130,8 @@ public class MedicalExaminationPanel extends JPanel {
 	public String getDiagnosis() {
 		return diagnosisPanel.getDiagnose();
 	}
+	
+	public List<String> getChosenTherapies(){
+		return therapyPanel.getChosenTherapies();
+	}
 }
