@@ -20,13 +20,14 @@ public class PrologModule {
 		engine = new JIPEngine();
 	}
 	
-	public List<String> getTherapies() {
+	public List<String> getTherapies(String diagnosis) {
 		List<String> therapiesList = new ArrayList<String>();
 		try {
 			engine.consultFile("data/medications_base.pl");
 			engine.consultFile("data/allergies.pl");
 						
-			JIPTerm term = engine.getTermParser().parseTerm("suggested_treatment('migraine', [], Medication).");
+			JIPTerm term = engine.getTermParser().parseTerm("suggested_treatment('" + diagnosis + "', [], Medication).");
+			System.out.println("suggested_treatment('" + diagnosis + "', [], Medication).");
 			
 			JIPQuery query = engine.openSynchronousQuery(term);
 			

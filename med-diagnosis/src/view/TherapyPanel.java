@@ -114,4 +114,9 @@ public class TherapyPanel extends JPanel {
 			suggestedTherapies.insertRow(v);
 		}
 	}
+	
+	/*public List<String> getChosenTherapies() {
+		
+		return 
+	}*/
 }

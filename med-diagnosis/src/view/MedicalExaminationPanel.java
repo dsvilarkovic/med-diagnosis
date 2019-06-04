@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +29,7 @@ public class MedicalExaminationPanel extends JPanel {
 	private TherapyPanel therapyPanel;
 	
 	private PreventiveExaminationPanel preventiveExaminationPanel;
-	private MedicalRecord medicalRecord
+	private MedicalRecord medicalRecord;
 	
 	@SuppressWarnings("rawtypes")
 	public MedicalExaminationPanel(MedicalRecord medicalRecord) {
@@ -126,5 +125,9 @@ public class MedicalExaminationPanel extends JPanel {
 
 	public void generatePreventiveExaminations(List<String> suggestedExaminations) {
 		preventiveExaminationPanel.generateSuggestedPreventiveExaminations(suggestedExaminations);
+	}
+	
+	public String getDiagnosis() {
+		return diagnosisPanel.getDiagnose();
 	}
 }
