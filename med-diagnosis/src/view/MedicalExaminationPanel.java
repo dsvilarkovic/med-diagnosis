@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +13,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 
+import model.Disease;
+import model.MedicalExamination;
 import model.MedicalRecord;
+import model.PhysicalExaminationResult;
+import model.Symptom;
 
 public class MedicalExaminationPanel extends JPanel {
 
@@ -27,11 +31,12 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	private PhysicalExaminationPanel phisicalExaminationPanel;
 	
-	private MedicalRecord medicalRecord;
+	private MedicalExamination medicalExamination;
 	
 	@SuppressWarnings("rawtypes")
 	public MedicalExaminationPanel(MedicalRecord medicalRecord) {
-		this.medicalRecord = medicalRecord;
+		this.medicalExamination = new MedicalExamination();
+		this.medicalExamination.setMedicalRecord(medicalRecord); 
 		patientInformationPanel = new PatientInformationPanel(medicalRecord);
 		anamnesisPanel = new AnamnesisPanel();
 		phisicalExaminationPanel = new PhysicalExaminationPanel();
@@ -138,11 +143,33 @@ public class MedicalExaminationPanel extends JPanel {
 	}
 	
 	public int getAge() {
-		return medicalRecord.getAge();
+		return medicalExamination.getMedicalRecord().getAge();
 	}
 	
 	public boolean getGender() {
-		return medicalRecord.isFemale();
+		return medicalExamination.getMedicalRecord().isFemale();
+	}
+	
+	public MedicalExamination getMedicalExaminationInformation() {
+		List<String> symptomsList = anamnesisPanel.getChosenSympList();
+		for(String symptom : symptomsList) {
+			Symptom s = new Symptom(symptom);
+			this.medicalExamination.getSymptoms().add(s);
+		}
+		
+		List<String> physicalExaminationList = phisicalExaminationPanel.getSymptomsList();
+		for(String symptom : physicalExaminationList) {
+			PhysicalExaminationResult s = new PhysicalExaminationResult(symptom);
+			this.medicalExamination.getPhysicalExaminationResults().add(s);
+		}
+		this.medicalExamination.setDisease(new Disease(diagnosisPanel.getDiagnose()));
+		
+		//TODO: kada se ubace terapije
+		
+		//TODO: kada se ubace preventivni pregledi
+		
+		
+		return this.medicalExamination;
 	}
 
 }
