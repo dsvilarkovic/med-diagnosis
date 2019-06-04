@@ -1,5 +1,5 @@
 Mental Status					
-Test MMSE;mmse_normal,mmse_cognitive_deficit,mmse_mild_damage,mmse_moderate_damage, mmse_severe_damage			
+Test MMSE;mmse_normal,mmse_cognitive_deficit,mmse_mild_damage,mmse_moderate_damage,mmse_severe_damage			
 Cranial Nerves		
 Sense of smell;disturbance_of_smell				
 Visual fields and acuity;diminished_vision				
