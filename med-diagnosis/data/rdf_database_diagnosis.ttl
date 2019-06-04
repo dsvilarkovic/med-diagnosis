@@ -16,9 +16,9 @@
 
 <#MedicalRecord1>
     med_diag:id "1"^^xsd:integer;    
-    med_diag:yearOfBirth "2017"^^xsd:integer;
+    med_diag:yearOfBirth "1992"^^xsd:integer;
     med_diag:gender "male"^^xsd:string;
-    med_diag:medicalRecordNumber "39011318"^^xsd:integer;
+    med_diag:medicalRecordNumber "39011418"^^xsd:integer;
     med_diag:firstName "Dusan"^^xsd:string;
     med_diag:lastName "Svilarkovic"^^xsd:string;
     med_diag:jmbg "1706996888888"^^xsd:string;
@@ -72,7 +72,7 @@
 
 <#MedicalRecord2>
     med_diag:id "2"^^xsd:integer;
-    med_diag:yearOfBirth "2017"^^xsd:integer;
+    med_diag:yearOfBirth "1971"^^xsd:integer;
     med_diag:gender "male"^^xsd:string;
     med_diag:medicalRecordNumber "39011318"^^xsd:integer;
     med_diag:firstName "Bozo"^^xsd:string;

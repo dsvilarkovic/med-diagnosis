@@ -51,6 +51,7 @@ public class PhysicalExaminationPanel extends JPanel {
 						physicalExamPanel.add(Box.createHorizontalStrut(5));
 					}
 					JLabel label = new JLabel(detail);
+					label.setFont(new Font(label.getFont().getFontName(), Font.PLAIN,18));
 					physicalExamPanel.add(label);
 					i++;
 					physicalExamPanel.add(Box.createHorizontalStrut(5));
@@ -64,7 +65,7 @@ public class PhysicalExaminationPanel extends JPanel {
 
 	private void initGUI() {
 		JLabel physicalExaminationLabel = new JLabel("Physical examination");
-		physicalExaminationLabel.setFont(new Font(physicalExaminationLabel.getFont().getFontName(), Font.BOLD,16));
+		physicalExaminationLabel.setFont(new Font(physicalExaminationLabel.getFont().getFontName(), Font.BOLD,18));
 		physicalExamPanel.setLayout(new GridLayout(19,0,10,8));
 		loadPhysicalExaminations();
 		this.setLayout(new BorderLayout(5, 5));

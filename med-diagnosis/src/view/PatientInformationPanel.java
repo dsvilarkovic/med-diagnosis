@@ -1,12 +1,13 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import model.MedicalRecord;
 
 public class PatientInformationPanel extends JPanel {
 
@@ -17,6 +18,20 @@ public class PatientInformationPanel extends JPanel {
 	private JLabel addressLabel;
 
 	public PatientInformationPanel() {
+		nameLabel = new JLabel("Vesna");
+		lastNameLabel = new JLabel("Milic");
+		JMBGLabel = new JLabel("123456789");
+		phoneNumberLabel = new JLabel("+12345678");
+		addressLabel = new JLabel("12345678");
+		init();
+	}
+	
+	public PatientInformationPanel(MedicalRecord medicalRecord) {
+		nameLabel = new JLabel(medicalRecord.getFirstName());
+		lastNameLabel = new JLabel(medicalRecord.getLastName());
+		JMBGLabel = new JLabel(medicalRecord.getJmbg());
+		phoneNumberLabel = new JLabel(medicalRecord.getPhoneNumber());
+		addressLabel = new JLabel(medicalRecord.getAddress());
 		init();
 	}
 
@@ -26,13 +41,6 @@ public class PatientInformationPanel extends JPanel {
 		JLabel JMBGTextLabel = new JLabel("JMBG: ");
 		JLabel phoneNumberTextLabel = new JLabel("Phone number: ");
 		JLabel addressTextLabel = new JLabel("Address: ");
-		
-
-		nameLabel = new JLabel("Vesna");
-		lastNameLabel = new JLabel("Milic");
-		JMBGLabel = new JLabel("123456789");
-		phoneNumberLabel = new JLabel("+12345678");
-		addressLabel = new JLabel("12345678");
 		
 		JPanel textLabelsPanel = new JPanel();
 		JPanel patientInfoLabelsPanel = new JPanel();

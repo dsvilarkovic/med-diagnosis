@@ -40,7 +40,7 @@ public class DiagnosisPanel extends JPanel {
 		JButton getDiagnosisButton = new JButton(new GenerateDiagnosisAction());
 		JLabel diagnosisSelected = new JLabel("Diagnosis is: ");
 
-		diagnosisLabel.setFont(new Font(diagnosisLabel.getFont().getFontName(), Font.BOLD, 16));
+		diagnosisLabel.setFont(new Font(diagnosisLabel.getFont().getFontName(), Font.BOLD, 18));
 		diagnosisTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		diagnosisTextPanel.add(diagnosisLabel);
 		diagnosisTextPanel.add(getDiagnosisButton);

@@ -1,25 +1,19 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+
+import model.MedicalRecord;
 
 public class MedicalExaminationPanel extends JPanel {
 
@@ -33,9 +27,12 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	private PhysicalExaminationPanel phisicalExaminationPanel;
 	
+	private MedicalRecord medicalRecord;
+	
 	@SuppressWarnings("rawtypes")
-	public MedicalExaminationPanel() {
-		patientInformationPanel = new PatientInformationPanel();
+	public MedicalExaminationPanel(MedicalRecord medicalRecord) {
+		this.medicalRecord = medicalRecord;
+		patientInformationPanel = new PatientInformationPanel(medicalRecord);
 		anamnesisPanel = new AnamnesisPanel();
 		phisicalExaminationPanel = new PhysicalExaminationPanel();
 		additionalCheckupsPanel = new AdditionalCheckupsPanel();
@@ -70,8 +67,15 @@ public class MedicalExaminationPanel extends JPanel {
 		contentPanel.add(new JSeparator());
 		contentPanel.add(preventiveChecksPanel);
 		contentPanel.add(new JSeparator());
+		
+		JPanel margin = new JPanel();
+		margin.setLayout(new BorderLayout(5,5));
+		margin.add(Box.createHorizontalStrut(10), BorderLayout.WEST);
+		margin.add(contentPanel,BorderLayout.CENTER);
+		margin.add(Box.createHorizontalStrut(10), BorderLayout.EAST);
+		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientInformationPanel,
-				new JScrollPane(contentPanel));
+				new JScrollPane(margin));
 		this.add(splitPane, BorderLayout.CENTER);
 
 	}
@@ -96,8 +100,6 @@ public class MedicalExaminationPanel extends JPanel {
 		JPanel resultPanel = new JPanel();
 		JPanel therapyPanel = new JPanel();
 		JLabel therapyLabel = new JLabel("Therapy");
-		
-	
 		
 		resultPanel.setLayout(new BorderLayout(15,15));
 		resultPanel.add(therapyLabel,BorderLayout.NORTH);
@@ -133,6 +135,14 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	public void generateDiagnosis(Map<String,Float> diagnosis) {
 		diagnosisPanel.generateDiagnosis(diagnosis);
+	}
+	
+	public int getAge() {
+		return Calendar.getInstance().get(Calendar.YEAR) - medicalRecord.getYearOfBirth();
+	}
+	
+	public boolean getGender() {
+		return medicalRecord.isFemale();
 	}
 
 }

@@ -1,56 +1,92 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
+
+import cbr.connector.RdfConnector;
+import model.MedicalExamination;
+import model.MedicalRecord;
+import utils.Singleton;
 
 public class PatientRecordPanel extends JPanel {
 
-	PatientInformationPanel patientInformationPanel;
-	private JPanel patientHistoryPanel;
+	private PatientInformationPanel patientInformationPanel;
 	private JLabel patientRecordNumberLabel;
-	private JTable jTable1;
+	private TableHandler historyTableHandler;
+	private MedicalRecord medicalRecord;
 
-	PatientRecordPanel() {
+	PatientRecordPanel(MedicalRecord medicalRecord) {
+		this.medicalRecord = medicalRecord;
+		patientRecordNumberLabel = new JLabel(this.medicalRecord.getMedicalRecordNumber());
+		patientInformationPanel = new PatientInformationPanel(medicalRecord);
+		historyTableHandler = new TableHandler(300, 300);
+		RdfConnector rdf = new RdfConnector();
 		initComponents();
+		setExaminations(rdf.getAllMedicalExaminationsByMedicalRecordId(this.medicalRecord.getId()));
 	}
-
-	private void initComponents() {
-		patientRecordNumberLabel = new JLabel();
-		patientHistoryPanel = new JPanel();
-		patientInformationPanel = new PatientInformationPanel();
-		jTable1 = new JTable();
-		JLabel jLabel8 = new JLabel("Patient record number: ");
-		JLabel jLabel9 = new JLabel("Patient history: ");
-		JButton addNewAppointmentButton = new JButton("Add new appointment");
-		jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 24)); 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); 
-		jTable1.setModel(
-				new javax.swing.table.DefaultTableModel(
-						new Object[][] { { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null } },
-						new String[] { "Date", "Doctor", "Status", "Edit" }));
-
-		
-
 	
-		patientHistoryPanel.setLayout(new BoxLayout(patientHistoryPanel, BoxLayout.Y_AXIS));
-		patientHistoryPanel.add(jLabel8);
-		patientHistoryPanel.add(Box.createVerticalStrut(30));
-		patientHistoryPanel.add(jLabel9);
-		patientHistoryPanel.add(Box.createVerticalStrut(20));
-		patientHistoryPanel.add(addNewAppointmentButton);
+	private void initComponents() {
+		JPanel patientHistoryPanel = new JPanel();
+		JPanel contentPanel = new JPanel();
+		JPanel textPanel = new JPanel();
+		JLabel recordTextLabel = new JLabel("Patient record number: ");
+		JLabel historyLabel = new JLabel("Patient history: ");
+		JButton addNewAppointmentButton = new JButton("Add new appointment");
+		addNewAppointmentButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Singleton.getInstance().getMainFrame().setCentralPanel(new MedicalExaminationPanel(medicalRecord));
+				
+			}
+		});
+		recordTextLabel.setFont(new java.awt.Font(recordTextLabel.getFont().getFontName(), 0, 24)); 
+        historyLabel.setFont(new java.awt.Font(historyLabel.getFont().getFontName(), 0, 18)); 
+        
+        textPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        textPanel.add(recordTextLabel);
+        textPanel.add(patientRecordNumberLabel);
+		patientHistoryPanel.setLayout(new BorderLayout(5,5));
+		patientHistoryPanel.add(historyLabel, BorderLayout.NORTH);
+		initTable();
+		patientHistoryPanel.add(new JScrollPane(historyTableHandler.getTableView()));
+		patientHistoryPanel.add(addNewAppointmentButton, BorderLayout.SOUTH);
+		contentPanel.setLayout(new BorderLayout());
+		contentPanel.add(textPanel, BorderLayout.NORTH);
+		contentPanel.add(patientHistoryPanel, BorderLayout.CENTER);
+		JPanel margin = new JPanel();
+		margin.setLayout(new BorderLayout(5,5));
+		margin.add(Box.createHorizontalStrut(10), BorderLayout.WEST);
+		margin.add(contentPanel,BorderLayout.CENTER);
+		margin.add(Box.createHorizontalStrut(10), BorderLayout.EAST);
+		
 		this.setLayout(new BorderLayout());
-		this.add(patientInformationPanel,BorderLayout.LINE_START);
-		this.add(patientHistoryPanel, BorderLayout.CENTER);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientInformationPanel,
+				new JScrollPane(margin));
+		this.add(splitPane);
 
+	}
+	private void setExaminations(List<MedicalExamination> medicalExaminations) {
+		for(MedicalExamination medicalExamination : medicalExaminations) {
+			Vector<Object> vector = new Vector<Object>();
+			vector.add(medicalExamination.getId());
+			historyTableHandler.insertRow(vector);
+		}
+	}
+	
+	private void initTable() {
+		historyTableHandler.addColumn("Id");
 	}
 	
 }
