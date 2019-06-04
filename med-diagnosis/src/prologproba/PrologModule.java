@@ -57,12 +57,30 @@ public class PrologModule {
 		return therapiesList;
 	}
 
-	public List<String> getPreventiveExaminations() {
+	public List<String> getPreventiveExaminations(String diagnosis, List<String> therapies) {
+		
+		String stringTherapiesList = "[";
+		if(therapies.size() != 0) {
+			for(int i = 0; i < therapies.size()-1; i++) {
+				stringTherapiesList += "'";
+				stringTherapiesList += therapies.get(i);
+				stringTherapiesList +=  "', ";
+			}
+			stringTherapiesList += "'" + therapies.get(therapies.size()-1)+ "'";
+		}
+		
+		stringTherapiesList += "]";
+		
+		System.out.println(stringTherapiesList);
+		
 		List<String> therapiesList = new ArrayList<String>();
 		try {
 			engine.consultFile("data/preventive_checkups.pl");
-						
-			JIPTerm term = engine.getTermParser().parseTerm("preventive_examinations('dementia', [], Result).");
+			
+			//TODO popraviti preventive_examination
+			JIPTerm term = engine.getTermParser().parseTerm("preventive_examinations('"+ diagnosis +"', [], Result).");
+			
+			System.out.println("preventive_examinations('"+ diagnosis +"'," + stringTherapiesList +", Result).");
 			
 			JIPQuery query = engine.openSynchronousQuery(term);
 			
@@ -70,8 +88,7 @@ public class PrologModule {
 			
 			while(query.hasMoreChoicePoints()) {
 				 solution = query.nextSolution();
-				 
-				 
+				 				 
 				 JIPVariable[] vars = solution.getVariables();
 
 				 for (JIPVariable var : vars) {
