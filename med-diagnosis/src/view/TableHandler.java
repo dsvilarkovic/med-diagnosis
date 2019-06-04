@@ -8,7 +8,8 @@ import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 import model.TableModel;
 
@@ -27,6 +28,9 @@ public class TableHandler {
 		this.tableView = new JTable(tableModel);
 		this.tableView.setFillsViewportHeight(true);
 		this.tableView.setPreferredScrollableViewportSize(new Dimension(width, height));
+		// za filter
+		this.tableView.setAutoCreateRowSorter(true);
+
 	}
 
 	public TableModel getTableModel() {
@@ -93,6 +97,35 @@ public class TableHandler {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public void addSearchFilter(Map<String, String> searchParameters) {
+
+		RowFilter<TableModel, Integer> filter = new RowFilter<TableModel, Integer>() {
+
+			@Override
+			public boolean include(RowFilter.Entry<? extends TableModel, ? extends Integer> entry) {
+				
+				int rowIndex = entry.getIdentifier();
+				return compareValuesSearch(searchParameters, rowIndex);
+
+			}
+
+		};
+
+		((TableRowSorter) tableView.getRowSorter()).setRowFilter(filter);
+	}
+	
+	public boolean compareValuesSearch(Map<String,String> searchParameters, int rowIndex) {
+		for (Map.Entry<String, String> entry : searchParameters.entrySet()) {
+			int columnIndex = tableModel.findColumn(entry.getKey());
+			String value = (String)tableModel.getValueAt(rowIndex, columnIndex);
+			if(value.contains(entry.getValue())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void addColumn(String name) {
 		this.tableModel.addColumn(name);
 	}

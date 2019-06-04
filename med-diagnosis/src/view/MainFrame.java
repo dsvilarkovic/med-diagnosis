@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 
 public class MainFrame extends JFrame {
@@ -26,7 +25,7 @@ public class MainFrame extends JFrame {
 		this.setLayout(new BorderLayout(10,10));
 		
 		this.leftPanel = new JPanel();
-		this.centralPanel = new MedicalExaminationPanel();
+		this.centralPanel = new SearchRecordPanel();
 		this.add(this.leftPanel,BorderLayout.WEST);
 		this.add(this.centralPanel, BorderLayout.CENTER);
 	}
@@ -44,6 +43,10 @@ public class MainFrame extends JFrame {
 	}
 
 	public void setCentralPanel(JPanel centralPanel) {
+		this.remove(this.centralPanel);
 		this.centralPanel = centralPanel;
+		this.add(this.centralPanel, BorderLayout.CENTER);
+		this.validate();
+		this.repaint();
 	}
 }

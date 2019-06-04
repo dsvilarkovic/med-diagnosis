@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.swing.AbstractAction;
 
+import model.MedicalRecord;
+import utils.Regime;
 import utils.Singleton;
 import view.MedicalExaminationPanel;
 
@@ -25,10 +27,10 @@ public class GenerateDiagnosisAction extends AbstractAction {
  		//TODO: dodati rezultate dodatnih pregleda
 		List<String> additionalCheckupsList = medicalExaminationPanel.getAdditionalCheckupsList();
 		//TODO: dodati vadjenje godina iz kartona pacijenta
-		Integer age = 10;
-		
+		Integer age = medicalExaminationPanel.getAge();
+		System.out.println("AGE" + age);
 		//TODO: dodati vadjenje pola iz kartona pacijenta
- 		String gender = "female";
+ 		String gender = (medicalExaminationPanel.getGender())? "female" : "male";
  		
 		List<String> variablesList = new ArrayList<String>();
 		
@@ -36,8 +38,16 @@ public class GenerateDiagnosisAction extends AbstractAction {
 		variablesList.addAll(physicalExaminationsSymptomsList);
 		variablesList.addAll(additionalCheckupsList);
 		
-		Map<String, Float> map =  Singleton.getInstance().getBayesNetModule().getDiseaseListPercentage(variablesList, age, gender);
+		Map<String, Float> map = null;
+		
+		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
+			map =  Singleton.getInstance().getBayesNetModule().getDiseaseListPercentage(variablesList, age, gender);
+			
+		}else {
+			//TODO: dodati poziv funkcije za case-based
+		}
+	
 		medicalExaminationPanel.generateDiagnosis(map);
 	}
-
+	
 }

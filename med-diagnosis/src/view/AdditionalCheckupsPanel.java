@@ -46,7 +46,7 @@ public class AdditionalCheckupsPanel extends JPanel {
 		initChosenAdditionalCheckupsTable();
 		additionalPanel.add(new JScrollPane(suggestedAdditionalCheckups.getTableView()));
 		additionalPanel.add(new JScrollPane(chosenAdditionalCheckups.getTableView()));
-		additionalCheckupsLabel.setFont(new Font(additionalCheckupsLabel.getFont().getFontName(), Font.BOLD,16));
+		additionalCheckupsLabel.setFont(new Font(additionalCheckupsLabel.getFont().getFontName(), Font.BOLD,18));
 		titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		titlePanel.add(additionalCheckupsLabel);
 		titlePanel.add(generateAdditionalCheckupsButton);
@@ -97,7 +97,7 @@ public class AdditionalCheckupsPanel extends JPanel {
 				suggestedAdditionalCheckups.insertRow(v);
 			}
 		};
-
+		
 		ButtonColumn buttonColumn = new ButtonColumn(chosenAdditionalCheckups.getTableView(), delete, 3);
 
 		

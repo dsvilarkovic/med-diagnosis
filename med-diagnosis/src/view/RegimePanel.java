@@ -23,7 +23,7 @@ public class RegimePanel extends JPanel {
 		caseBasedButton = new JRadioButton("Case-based");
 
 		ButtonGroup group = new ButtonGroup();
-		caseBasedButton.setSelected(true);
+		ruleBasedButton.setSelected(true);
 		group.add(ruleBasedButton);
 		group.add(caseBasedButton);
 		this.add(chooseRegime);

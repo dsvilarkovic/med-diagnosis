@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Set;
 
 import ucm.gaia.jcolibri.cbrcore.Attribute;
@@ -115,6 +116,10 @@ public class MedicalRecord implements CaseComponent {
 
 	public void setAllergies(Set<Allergy> allergies) {
 		this.allergies = allergies;
+	}
+	
+	public Integer getAge() {
+		return Calendar.getInstance().get(Calendar.YEAR) - yearOfBirth;
 	}
 
 	@Override

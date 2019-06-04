@@ -56,7 +56,7 @@ public class AnamnesisPanel extends JPanel {
 					symptomsVector.remove(symptomsComboBox.getSelectedItem());
 					Vector<Object> vector = new Vector<Object>();
 					vector.add(symptomsComboBox.getSelectedItem());
-					vector.add("1");
+					vector.add(1);
 					vector.add("Remove");
 					chosenSympTableHandler.insertRow(vector);
 				}
@@ -87,7 +87,7 @@ public class AnamnesisPanel extends JPanel {
 		text.addKeyListener(new SystemComboListener(symptomsComboBox, symptomsVector));
 
 		symptomsComboBox.setBounds(144, 56, 165, 24);
-		anamesisLabel.setFont(new Font(anamesisLabel.getFont().getFontName(), Font.BOLD,16));
+		anamesisLabel.setFont(new Font(anamesisLabel.getFont().getFontName(), Font.BOLD,18));
 		this.setLayout(new BorderLayout(15, 15));
 		this.add(anamesisLabel, BorderLayout.NORTH);
 		this.add(new JScrollPane(this.chosenSympTableHandler.getTableView()), BorderLayout.CENTER);
@@ -136,7 +136,7 @@ public class AnamnesisPanel extends JPanel {
 	 * 
 	 * @return listu naziva odabranih simptoma
 	 * @see List
-	 */
+	 */ 
 	public List<String> getChosenSympList() {
 		return chosenSympTableHandler.getContentList();
 	}
