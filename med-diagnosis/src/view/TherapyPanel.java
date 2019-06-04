@@ -40,7 +40,8 @@ public class TherapyPanel extends JPanel {
 		JPanel therapyTextPanel = new JPanel();
 
 		JLabel therapyLabel = new JLabel("Therapy");
-		therapyLabel.setFont(new Font(therapyLabel.getFont().getFontName(), Font.BOLD,16));
+		
+		therapyLabel.setFont(new Font(therapyLabel.getFont().getFontName(), Font.BOLD,18));
 		
 		JButton getTherapyButton = new JButton(new GenerateTherapyAction());
 				
