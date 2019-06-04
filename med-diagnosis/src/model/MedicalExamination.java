@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import ucm.gaia.jcolibri.cbrcore.Attribute;
@@ -15,6 +16,15 @@ public class MedicalExamination implements CaseComponent {
 	private Disease disease;	
 	private Set<Therapy> therapies;
 	private Set<PreventiveExamination> preventiveExaminations;
+	
+	public MedicalExamination() {
+		symptoms = new HashSet<>();
+		physicalExaminationResults =  new HashSet<>();
+		additionalExaminationResults =  new HashSet<>();
+		disease = new Disease("");
+		therapies = new HashSet<>();
+		preventiveExaminations = new HashSet<>();
+	}
 	
 	@Override
 	public Attribute getIdAttribute() {

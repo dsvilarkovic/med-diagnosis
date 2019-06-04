@@ -8,6 +8,11 @@ public class PhysicalExaminationResult {
 	public PhysicalExaminationResult() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public PhysicalExaminationResult(String name) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+	}
 
 	public int getId() {
 		return id;

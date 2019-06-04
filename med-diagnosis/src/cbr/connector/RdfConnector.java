@@ -73,7 +73,7 @@ public class RdfConnector implements Connector{
 			Set<Therapy> terapije= getTherapies(model, i);
 			Set<PreventiveExamination> preventivniPregledi = getPreventionTreatments(model, i);
 			Disease disease = getDiagnosis(model, i);
-			
+		
 			caseDescription.setSymptoms(simptomi);
 			caseDescription.setPhysicalExaminationResults(fizikalniPregledi);
 			caseDescription.setAdditionalExaminationResults(dodatniPregledi);

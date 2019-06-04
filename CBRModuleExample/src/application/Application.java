@@ -121,7 +121,7 @@ public class Application implements StandardCBRApplication{
 	 */
 	public void cycle(CBRQuery query) throws ExecutionException {
 		Collection<RetrievalResult> result = NNScoringMethod.evaluateSimilarity(caseBase.getCases(), query, simConfig);
-		
+		// bbroj rezultata
 		result = SelectCases.selectTopKRR(result, 3);
 			
 		System.out.println("Result:");

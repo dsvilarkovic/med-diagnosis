@@ -41,7 +41,7 @@ public class PreventiveExaminationPanel extends JPanel{
 		JPanel preventiveTextPanel = new JPanel();
 		
 		JLabel preventiveLabel = new JLabel("Preventive examinations");
-		preventiveLabel.setFont(new Font(preventiveLabel.getFont().getFontName(), Font.BOLD,16));
+		preventiveLabel.setFont(new Font(preventiveLabel.getFont().getFontName(), Font.BOLD,18));
 		
 		JButton getPreventiveExaminationsButton = new JButton(new GeneratePreventiveExaminationAction());
 				

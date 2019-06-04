@@ -64,7 +64,7 @@
     med_diag:symptoms med_diag:Sym2;
     med_diag:physical_treatments med_diag:PhysT2;
     med_diag:additional_procedures_results med_diag:Apr2;
-    med_diag:diagnosis "parkinsons_disease";
+    med_diag:diagnosis "dementia";
     med_diag:therapies med_diag:T2;
     med_diag:prevention_treatments med_diag:PrevT2.
 
@@ -100,7 +100,7 @@
 
 <#Apr2>
     a med_diag:Additional_procedures_results;
-    med_diag:additional_procedures_result "ct_scan_good".
+    med_diag:additional_procedures_result "eeg_good".
 
 <#T2>
     a med_diag:Therapies;

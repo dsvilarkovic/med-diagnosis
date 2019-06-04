@@ -2,12 +2,18 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.AbstractAction;
 
-import model.MedicalRecord;
+import cbr.CbrReasoning;
+import cbr.CbrReasoning.ModuleType;
+import model.AdditionalExaminationResult;
+import model.MedicalExamination;
+import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import utils.Regime;
 import utils.Singleton;
 import view.MedicalExaminationPanel;
@@ -42,12 +48,25 @@ public class GenerateDiagnosisAction extends AbstractAction {
 		
 		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
 			map =  Singleton.getInstance().getBayesNetModule().getDiseaseListPercentage(variablesList, age, gender);
-			
 		}else {
-			//TODO: dodati poziv funkcije za case-based
+			//TODO: dodati poziv funkcije kada se doda case-based
+			MedicalExamination medicalExamination = medicalExaminationPanel.getMedicalExaminationInformation();
+			CbrReasoning cbr = new CbrReasoning();
+			cbr.setModule(ModuleType.DIAGNOSIS);
+			Collection<RetrievalResult> result = cbr.get(medicalExamination);
+			map = new HashMap<>();
+			for (RetrievalResult res : result) {
+				MedicalExamination resultRecord = (MedicalExamination) res.get_case().getDescription();
+				double eval = res.getEval();
+				if(!map.containsKey(resultRecord.getDisease().getName()))
+					map.put(resultRecord.getDisease().getName(), (float)eval);
+				
+				System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
+			}
 		}
-	
 		medicalExaminationPanel.generateDiagnosis(map);
+	
+		
 	}
 	
 }
