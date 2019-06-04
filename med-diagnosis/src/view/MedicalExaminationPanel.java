@@ -35,6 +35,8 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	private TherapyPanel therapyPanel;
 	
+	private PreventiveExaminationPanel preventiveExaminationPanel;
+	
 	@SuppressWarnings("rawtypes")
 	public MedicalExaminationPanel() {
 		patientInformationPanel = new PatientInformationPanel();
@@ -43,6 +45,7 @@ public class MedicalExaminationPanel extends JPanel {
 		additionalCheckupsPanel = new AdditionalCheckupsPanel();
 		diagnosisPanel = new DiagnosisPanel();
 		therapyPanel = new TherapyPanel();
+		preventiveExaminationPanel = new PreventiveExaminationPanel();
 		
 		init();
 
@@ -53,8 +56,6 @@ public class MedicalExaminationPanel extends JPanel {
 		JPanel contentPanel = new JPanel();
 		JLabel medicalExaminationLabel = new JLabel("Medical examination information");
 		
-		JPanel preventiveChecksPanel = createPreventiveChecksPanel();
-
 		medicalExaminationLabel.setFont(new java.awt.Font(medicalExaminationLabel.getFont().getFontName(), 0, 24));
 
 		this.setLayout(new BorderLayout());
@@ -72,26 +73,12 @@ public class MedicalExaminationPanel extends JPanel {
 		contentPanel.add(new JSeparator());
 		contentPanel.add(therapyPanel);
 		contentPanel.add(new JSeparator());
-		contentPanel.add(preventiveChecksPanel);
+		contentPanel.add(preventiveExaminationPanel);
 		contentPanel.add(new JSeparator());
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientInformationPanel,
 				new JScrollPane(contentPanel));
 		this.add(splitPane, BorderLayout.CENTER);
 
-	}
-	
-	// TODO 2: Zavrsiti panel za preventivne preglede
-	private JPanel createPreventiveChecksPanel() {
-		JPanel resultPanel = new JPanel();
-		JPanel preventiveChecksPanel = new JPanel();
-		JLabel preventiveChecksLabel = new JLabel("Preventive checks");
-		
-		
-		resultPanel.setLayout(new BorderLayout(15,15));
-		resultPanel.add(preventiveChecksLabel,BorderLayout.NORTH);
-		resultPanel.add(preventiveChecksPanel, BorderLayout.CENTER);
-		
-		return resultPanel;
 	}
 	
 	public List<String> getSymptomsList() {
@@ -120,9 +107,13 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	public void generateTherapies(List<String> suggestedTherapies) {
 		therapyPanel.generateSuggestedTherapies(suggestedTherapies);
+	}
 
 	public void generateDiagnosis(Map<String,Float> diagnosis) {
 		diagnosisPanel.generateDiagnosis(diagnosis);
 	}
 
+	public void generatePreventiveExaminations(List<String> suggestedExaminations) {
+		preventiveExaminationPanel.generateSuggestedPreventiveExaminations(suggestedExaminations);
+	}
 }

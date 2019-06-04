@@ -9,10 +9,10 @@ import javax.swing.AbstractAction;
 import utils.Singleton;
 import view.MedicalExaminationPanel;
 
-public class GenerateTherapyAction extends AbstractAction {
+public class GeneratePreventiveExaminationAction extends AbstractAction {
 
-	public GenerateTherapyAction() {
-		putValue(NAME, "Generate therapies");
+	public GeneratePreventiveExaminationAction() {
+		putValue(NAME, "Generate preventive examinations");
 	}
 	
 	@Override
@@ -20,9 +20,11 @@ public class GenerateTherapyAction extends AbstractAction {
 		MedicalExaminationPanel medicalExaminationPanel = (MedicalExaminationPanel)Singleton.getInstance().getMainFrame().getCentralPanel();
 		
 		
-		List<String> suggestedTherapiesList = Singleton.getInstance().getPrologModule().getTherapies();
+		List<String> suggestedExaminations = Singleton.getInstance().getPrologModule().getPreventiveExaminations();
+
+		medicalExaminationPanel.generatePreventiveExaminations(suggestedExaminations);
 		
-		medicalExaminationPanel.generateTherapies(suggestedTherapiesList);
+		
 
 	}
 

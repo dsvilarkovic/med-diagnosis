@@ -8,10 +8,11 @@ preventive_examinations(amyotrophic_lateral_sclerosis_als, [riluzole], 'examinat
 preventive_examinations(amyotrophic_lateral_sclerosis_als, [], 'tracheostomy').
 
 %some are eventually diagnosed with a form of dementia called frontotemporal dementia
-preventive_examinations(amyotrophic_lateral_sclerosis_als, [], 'examination_for_frontotemporal_dementia') .
+preventive_examinations(amyotrophic_lateral_sclerosis_als, [], 'examination_for_frontotemporal_dementia').
 
 %People with ALS are at higher risk of getting food, liquids or saliva into the lungs, which can cause pneumonia. 
 preventive_examinations(amyotrophic_lateral_sclerosis_als, [], 'examination_for_pneumonia').
+
 
 %TENSION HEADACHE
 

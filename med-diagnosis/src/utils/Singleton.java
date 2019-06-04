@@ -1,5 +1,6 @@
 package utils;
 import bayesian_network.module.BayesNetModule;
+import prologproba.PrologModule;
 import view.MainFrame;
 
 public class Singleton {
@@ -7,11 +8,14 @@ public class Singleton {
 	private Regime regime;
 	private MainFrame mainFrame;
 	private BayesNetModule bayesNetModule;
+	private PrologModule prologModule;
 
 	private Singleton() {
 		mainFrame = new MainFrame();
 		bayesNetModule = new BayesNetModule();
 		bayesNetModule.initBayes("");
+		
+		prologModule = new PrologModule();
 	}
 	
 	
@@ -46,6 +50,16 @@ public class Singleton {
 
 	public void setBayesNetModule(BayesNetModule bayesNetModule) {
 		this.bayesNetModule = bayesNetModule;
+	}
+
+
+	public PrologModule getPrologModule() {
+		return prologModule;
+	}
+
+
+	public void setPrologModule(PrologModule prologModule) {
+		this.prologModule = prologModule;
 	}
 	
 

@@ -5,7 +5,6 @@
 	<classpathentry kind="lib" path="Theme/synthetica.jar"/>
 	<classpathentry kind="lib" path="Theme/syntheticaSimple2D.jar"/>
 	<classpathentry kind="lib" path="Theme/syntheticaAluOxide.jar"/>
-	<classpathentry kind="lib" path="Theme/jipconsole.jar"/>
 	<classpathentry kind="lib" path="lib/jFuzzyLogic.jar"/>
 	<classpathentry kind="lib" path="Theme/syntheticaPlain.jar"/>
 	<classpathentry kind="lib" path="lib/jCOLIBRI-3.0.jar"/>
@@ -25,5 +24,7 @@
 	<classpathentry kind="lib" path="lib/unbbayes-4.22.18.jar"/>
 	<classpathentry kind="lib" path="lib/jpf-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/jena-base-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/jipconsole.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
