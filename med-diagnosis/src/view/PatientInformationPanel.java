@@ -16,10 +16,14 @@ public class PatientInformationPanel extends JPanel {
 	private JLabel JMBGLabel;
 	private JLabel phoneNumberLabel;
 	private JLabel addressLabel;
+	private JLabel ageLabel;
+	private JLabel genderLabel;
 
 	public PatientInformationPanel() {
 		nameLabel = new JLabel("Vesna");
 		lastNameLabel = new JLabel("Milic");
+		ageLabel = new JLabel("22");
+		genderLabel = new JLabel("female");
 		JMBGLabel = new JLabel("123456789");
 		phoneNumberLabel = new JLabel("+12345678");
 		addressLabel = new JLabel("12345678");
@@ -29,6 +33,8 @@ public class PatientInformationPanel extends JPanel {
 	public PatientInformationPanel(MedicalRecord medicalRecord) {
 		nameLabel = new JLabel(medicalRecord.getFirstName());
 		lastNameLabel = new JLabel(medicalRecord.getLastName());
+		ageLabel = new JLabel(medicalRecord.getAge().toString());
+		genderLabel = new JLabel((medicalRecord.isFemale())? "female" : "male");
 		JMBGLabel = new JLabel(medicalRecord.getJmbg());
 		phoneNumberLabel = new JLabel(medicalRecord.getPhoneNumber());
 		addressLabel = new JLabel(medicalRecord.getAddress());
@@ -38,6 +44,8 @@ public class PatientInformationPanel extends JPanel {
 	private void init() {
 		JLabel nameTextLabel = new JLabel("Name: ");
 		JLabel lastNameTextLabel = new JLabel("Last name: ");
+		JLabel ageTextLabel = new JLabel("Age: ");
+		JLabel genderLabelText = new JLabel("Gender: ");
 		JLabel JMBGTextLabel = new JLabel("JMBG: ");
 		JLabel phoneNumberTextLabel = new JLabel("Phone number: ");
 		JLabel addressTextLabel = new JLabel("Address: ");
@@ -56,6 +64,10 @@ public class PatientInformationPanel extends JPanel {
 		textLabelsPanel.add(Box.createVerticalStrut(15));
 		textLabelsPanel.add(lastNameTextLabel);
 		textLabelsPanel.add(Box.createVerticalStrut(15));
+		textLabelsPanel.add(ageTextLabel);
+		textLabelsPanel.add(Box.createVerticalStrut(15));
+		textLabelsPanel.add(genderLabelText);
+		textLabelsPanel.add(Box.createVerticalStrut(15));
 		textLabelsPanel.add(JMBGTextLabel);
 		textLabelsPanel.add(Box.createVerticalStrut(15));
 		textLabelsPanel.add(phoneNumberTextLabel);
@@ -66,6 +78,10 @@ public class PatientInformationPanel extends JPanel {
 		patientInfoLabelsPanel.add(nameLabel);
 		patientInfoLabelsPanel.add(Box.createVerticalStrut(15));
 		patientInfoLabelsPanel.add(lastNameLabel);
+		patientInfoLabelsPanel.add(Box.createVerticalStrut(15));
+		patientInfoLabelsPanel.add(ageLabel);
+		patientInfoLabelsPanel.add(Box.createVerticalStrut(15));
+		patientInfoLabelsPanel.add(genderLabel);
 		patientInfoLabelsPanel.add(Box.createVerticalStrut(15));
 		patientInfoLabelsPanel.add(JMBGLabel);
 		patientInfoLabelsPanel.add(Box.createVerticalStrut(15));

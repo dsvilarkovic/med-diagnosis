@@ -35,7 +35,7 @@ public class PatientRecordPanel extends JPanel {
 		initComponents();
 		setExaminations(rdf.getAllMedicalExaminationsByMedicalRecordId(this.medicalRecord.getId()));
 	}
-	
+
 	private void initComponents() {
 		JPanel patientHistoryPanel = new JPanel();
 		JPanel contentPanel = new JPanel();
@@ -53,6 +53,7 @@ public class PatientRecordPanel extends JPanel {
 		});
 		recordTextLabel.setFont(new java.awt.Font(recordTextLabel.getFont().getFontName(), 0, 24)); 
         historyLabel.setFont(new java.awt.Font(historyLabel.getFont().getFontName(), 0, 18)); 
+        patientRecordNumberLabel.setFont(new java.awt.Font(patientRecordNumberLabel.getFont().getFontName(), 0, 24));
         
         textPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         textPanel.add(recordTextLabel);
@@ -62,7 +63,7 @@ public class PatientRecordPanel extends JPanel {
 		initTable();
 		patientHistoryPanel.add(new JScrollPane(historyTableHandler.getTableView()));
 		patientHistoryPanel.add(addNewAppointmentButton, BorderLayout.SOUTH);
-		contentPanel.setLayout(new BorderLayout());
+		contentPanel.setLayout(new BorderLayout(5,10));
 		contentPanel.add(textPanel, BorderLayout.NORTH);
 		contentPanel.add(patientHistoryPanel, BorderLayout.CENTER);
 		JPanel margin = new JPanel();

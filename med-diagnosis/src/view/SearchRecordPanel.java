@@ -70,6 +70,9 @@ public class SearchRecordPanel extends JPanel {
 		this.setLayout(new BorderLayout(10, 10));
 		this.add(recordTextPanel, BorderLayout.NORTH);
 		this.add(new JScrollPane(recordsTableHandler.getTableView()), BorderLayout.CENTER);
+		this.add(Box.createHorizontalStrut(20), BorderLayout.WEST);
+		this.add(Box.createHorizontalStrut(20), BorderLayout.EAST);
+		this.add(Box.createVerticalStrut(50), BorderLayout.SOUTH);
 	}
 
 	private void initRecordTable() {

@@ -138,7 +138,7 @@ public class MedicalExaminationPanel extends JPanel {
 	}
 	
 	public int getAge() {
-		return Calendar.getInstance().get(Calendar.YEAR) - medicalRecord.getYearOfBirth();
+		return medicalRecord.getAge();
 	}
 	
 	public boolean getGender() {
