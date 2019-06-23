@@ -31,7 +31,8 @@ public class GenerateTherapyAction extends AbstractAction {
 			String diagnosis = medicalExaminationPanel.getDiagnosis();
 			
 			if(diagnosis != null && !diagnosis.isEmpty()) {
-				suggestedTherapiesList = Singleton.getInstance().getPrologModule().getTherapies(diagnosis.trim());
+				//TODO: dodati alergije
+				suggestedTherapiesList = Singleton.getInstance().getPrologModule().getTherapies(diagnosis.trim(), new ArrayList<String>());
 			}
 			else {
 				JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),

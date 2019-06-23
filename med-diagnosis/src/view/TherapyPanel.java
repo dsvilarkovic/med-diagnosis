@@ -23,8 +23,8 @@ public class TherapyPanel extends JPanel {
 	private TableHandler chosenTherapies;
 
 	public TherapyPanel() {
-		this.suggestedTherapies = new TableHandler(300, 300);
-		this.chosenTherapies = new TableHandler(300, 300);
+		this.suggestedTherapies = new TableHandler(600, 300);
+		this.chosenTherapies = new TableHandler(600, 300);
 		
 		init();
 	}

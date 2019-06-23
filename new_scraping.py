@@ -103,18 +103,22 @@ def main(lista, DISEASE_TOKEN, isRequestEnabled = False):
         medication = tr.find("td", "chart-label").find("a").text
         #print(medication)
         medication = lowerCaseAndUnderline(medication)
+        medication = medication.replace(")", "").replace("(","")
+
+        dis = disease_name.replace("-", "_")
 
         success_percentage = tr.find("div", "bar-fill")["style"]
         success_percentage = success_percentage.split(":")[1]
         success_percentage = float(success_percentage[:-2])
         #print(success_percentage)
         
-        medications_block += f"recommended_medication({disease_name}, '{medication}').\n"
+        medications_block += f"recommended_medication({dis}, {medication}).\n"
     
-        lista.append(medication)
+        #lista.append(medication)
 
     #print("LISTA")
     #print(lista)
+    print(medications_block)
 
     text_file = open("medications_base.pl", "a")
     text_file.write(medications_block+"\n")

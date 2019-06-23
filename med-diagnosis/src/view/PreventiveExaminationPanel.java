@@ -24,8 +24,8 @@ public class PreventiveExaminationPanel extends JPanel{
 	private TableHandler chosenPreventiveExaminations;
 
 	public PreventiveExaminationPanel() {
-		this.suggestedPreventiveExaminations = new TableHandler(300, 300);
-		this.chosenPreventiveExaminations = new TableHandler(300, 300);
+		this.suggestedPreventiveExaminations = new TableHandler(600, 300);
+		this.chosenPreventiveExaminations = new TableHandler(600, 300);
 		
 		init();
 	}
