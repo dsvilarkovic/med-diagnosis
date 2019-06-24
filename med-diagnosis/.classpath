@@ -45,5 +45,15 @@
 	<classpathentry kind="lib" path="lib/commons-lang3-3.4.jar"/>
 	<classpathentry kind="lib" path="lib/httpclient-4.5.5.jar"/>
 	<classpathentry kind="lib" path="lib/httpclient-cache-4.5.5.jar"/>
+	<classpathentry kind="lib" path="lib/gs-algo-1.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/gs-algo-1.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/gs-algo-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/gs-core-1.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/gs-core-1.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/gs-core-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/gs-ui-1.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/gs-ui-1.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/gs-ui-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jipconsole.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

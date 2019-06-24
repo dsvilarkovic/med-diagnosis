@@ -6,17 +6,20 @@ import java.util.Map;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 
+import controller.SaveMedicalExamination;
 import model.Disease;
 import model.MedicalExamination;
 import model.MedicalRecord;
 import model.PhysicalExaminationResult;
 import model.Symptom;
+import model.Therapy;
 
 public class MedicalExaminationPanel extends JPanel {
 
@@ -76,7 +79,7 @@ public class MedicalExaminationPanel extends JPanel {
 		contentPanel.add(new JSeparator());
 		contentPanel.add(preventiveExaminationPanel);
 		contentPanel.add(new JSeparator());
-		
+		contentPanel.add(new JButton(new SaveMedicalExamination()));
 		JPanel margin = new JPanel();
 		margin.setLayout(new BorderLayout(5,5));
 		margin.add(Box.createHorizontalStrut(10), BorderLayout.WEST);
@@ -143,7 +146,12 @@ public class MedicalExaminationPanel extends JPanel {
 		}
 		this.medicalExamination.setDisease(new Disease(diagnosisPanel.getDiagnose()));
 		
-		//TODO: kada se ubace terapije
+		List<String> therapiesList = getChosenTherapies();
+		for(String t: therapiesList) {
+			Therapy th = new Therapy();
+			th.setName(t);
+			this.medicalExamination.getTherapies().add(th);
+		}
 		
 		//TODO: kada se ubace preventivni pregledi
 		
@@ -162,4 +170,6 @@ public class MedicalExaminationPanel extends JPanel {
 	public List<String> getChosenTherapies(){
 		return therapyPanel.getChosenTherapies();
 	}
+	
+	
 }
