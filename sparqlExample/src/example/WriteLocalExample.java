@@ -14,6 +14,10 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.update.UpdateAction;
+
+import model.Allergy;
+import model.MedicalRecord;
 
 public class WriteLocalExample {
     static final String inputFileName  = "data/rdf_database_diagnosis.ttl";
@@ -48,7 +52,7 @@ public class WriteLocalExample {
 
 		//OVAJ DEO SAMO AKO PACIJENT PRETHODNO NE POSTOJI U BAZI
 		//Napravi resurs allergije
-		Integer i = 3;
+		Integer i = 4;
 		Resource allergyResource = model.createResource(resourceURI + "#Allergies" + i);
 
 		Property a_type = model.createProperty(rdfURI + "type");
@@ -158,6 +162,8 @@ public class WriteLocalExample {
 	    patientResource.addProperty(therapiesProperty, therapyListResource);
 	    patientResource.addProperty(preventionTreatmentsProperty, preventionListResource);
 	    
+		
+//		deleteMedicalRecord(3, model);
 	    
 		try {
 			OutputStream os = new FileOutputStream("data/output.ttl");
@@ -167,5 +173,225 @@ public class WriteLocalExample {
 			e.printStackTrace();
 		}
 		
+		System.out.println("Proslo");
+	}
+	
+	
+	/**
+	 * Brise karton i sve egzaminacije vezane za njega
+	 * @param medicalRecordId
+	 */
+	public static void deleteMedicalRecord(Integer medicalRecordId) {
+		
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("", resourceURI);
+		model.setNsPrefix("med_diag", resourceURI + "#");
+		model.setNsPrefix("rdf", rdfURI);
+
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//obrisi alergije
+		String deleteAllergies = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"PREFIX : <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"delete " + 
+				"where{ " + 
+				"  med_diag:MedicalRecord%d med_diag:allergies ?object3. " + 
+				"  ?object3 ?predicate3 ?object4. " + 
+				" " + 
+				"}", medicalRecordId);
+		
+		UpdateAction.parseExecute(deleteAllergies , model);
+		//obrisi karton
+
+		String deleteMedicalRecord = String.format("" + 
+				"PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"PREFIX : <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"delete " + 
+				"where{  " + 
+				"  med_diag:MedicalRecord%d ?predicate ?object " + 
+				"}", medicalRecordId);
+		
+		UpdateAction.parseExecute(deleteMedicalRecord , model);
+		
+		//Obrisi sve list od egzaminacije
+		String deleteExamLists = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"PREFIX : <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"delete { ?object ?predicate1 ?object1} " + 
+				"where{ " + 
+				"  ?subject med_diag:medicalRecord med_diag:MedicalRecord%d. " + 
+				"  ?subject ?predicate ?object. " + 
+				"  ?object ?predicate1 ?object1. " + 
+				"}", medicalRecordId);
+		UpdateAction.parseExecute(deleteExamLists, model);
+		
+		//Obrisi zaglavlje egzaminacija
+		String deleteExamHeader = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"PREFIX : <http://www.github.com/dsvilarkovic/med_diag#> " + 
+				"delete  {?subject ?predicate ?object} " + 
+				"where{ " + 
+				"  ?subject med_diag:medicalRecord med_diag:MedicalRecord%d." + 
+				"  ?subject ?predicate ?object. " + 
+				"}", medicalRecordId);
+		UpdateAction.parseExecute(deleteExamHeader, model);
+		
+	    
+		try {
+			OutputStream os = new FileOutputStream(inputFileName);
+			RDFDataMgr.write(os, model, Lang.TTL);
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void createMedicalRecord(Integer i, MedicalRecord medicalRecord) {
+		
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("", resourceURI);
+		model.setNsPrefix("med_diag", resourceURI + "#");
+		model.setNsPrefix("rdf", rdfURI);
+
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		List<String> allergyList = new ArrayList<String>();
+		for (Allergy allergy : medicalRecord.getAllergies()){
+			allergyList.add(allergy.getName());
+		}
+		
+		//Napravi resurs medicinski karton
+		Resource medicalRecordResource = model.createResource(resourceURI + "#MedicalRecord" + i);
+
+		
+		Resource allergyResource = model.createResource(resourceURI + "#Allergies" + i);
+		
+		Property a_type = model.createProperty(rdfURI + "type");
+		Resource allergyList_type = model.createResource(resourceURI + "#Allergy_list");
+
+		allergyResource.addProperty(a_type, allergyList_type);	
+		for (String allergy : allergyList) {
+			Property singleAllergyProperty = model.createProperty(resourceURI + "#allergy");
+			allergyResource.addProperty(singleAllergyProperty, allergy);
+		}
+		
+		Property medicalRecordIdProperty = model.createProperty(resourceURI + "#id");
+		Property yearOfBirth = model.createProperty(resourceURI + "#yearOfBirth");
+		Property gender = model.createProperty(resourceURI + "#gender");
+		Property medicalRecordNumber = model.createProperty(resourceURI + "#medicalRecordNumber");
+		Property firstName = model.createProperty(resourceURI + "#firstName");
+		Property lastName = model.createProperty(resourceURI + "#lastName");
+		Property jmbg = model.createProperty(resourceURI + "#jmbg");
+		Property address = model.createProperty(resourceURI + "#address");
+		Property phoneNumber = model.createProperty(resourceURI + "#phoneNumber");
+		Property allergies = model.createProperty(resourceURI + "#allergies");
+		
+		
+		medicalRecordResource.addProperty(medicalRecordIdProperty, Integer.toString(medicalRecord.getId()));
+		medicalRecordResource.addProperty(yearOfBirth, Integer.toString(medicalRecord.getYearOfBirth()));
+		medicalRecordResource.addProperty(gender, medicalRecord.isFemale() ? "female" : "male");
+		medicalRecordResource.addProperty(medicalRecordNumber, medicalRecord.getMedicalRecordNumber());
+		medicalRecordResource.addProperty(firstName, medicalRecord.getFirstName());
+		medicalRecordResource.addProperty(lastName, medicalRecord.getLastName());
+		medicalRecordResource.addProperty(jmbg, medicalRecord.getJmbg());
+		medicalRecordResource.addProperty(address, medicalRecord.getAddress());
+		medicalRecordResource.addProperty(phoneNumber, medicalRecord.getPhoneNumber());
+		medicalRecordResource.addProperty(allergies, allergyResource);
+		
+		
+	    
+		try {
+			OutputStream os = new FileOutputStream(inputFileName);
+			RDFDataMgr.write(os, model, Lang.TTL);
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public static void updateMedicalRecord(Integer medicalRecordId, MedicalRecord medicalRecord) {
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("", resourceURI);
+		model.setNsPrefix("med_diag", resourceURI + "#");
+		model.setNsPrefix("rdf", rdfURI);
+
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Integer i = medicalRecordId;
+		
+		List<String> allergyList = new ArrayList<String>();
+		for (Allergy allergy : medicalRecord.getAllergies()){
+			allergyList.add(allergy.getName());
+		}
+		
+		//Napravi resurs medicinski karton
+		Resource medicalRecordResource = model.createResource(resourceURI + "#MedicalRecord" + i);
+
+		
+		Resource allergyResource = model.createResource(resourceURI + "#Allergies" + i);
+		
+		Property a_type = model.createProperty(rdfURI + "type");
+		Resource allergyList_type = model.createResource(resourceURI + "#Allergy_list");
+
+		allergyResource.addProperty(a_type, allergyList_type);	
+		for (String allergy : allergyList) {
+			Property singleAllergyProperty = model.createProperty(resourceURI + "#allergy");
+			allergyResource.addProperty(singleAllergyProperty, allergy);
+		}
+		
+		Property medicalRecordIdProperty = model.createProperty(resourceURI + "#id");
+		Property yearOfBirth = model.createProperty(resourceURI + "#yearOfBirth");
+		Property gender = model.createProperty(resourceURI + "#gender");
+		Property medicalRecordNumber = model.createProperty(resourceURI + "#medicalRecordNumber");
+		Property firstName = model.createProperty(resourceURI + "#firstName");
+		Property lastName = model.createProperty(resourceURI + "#lastName");
+		Property jmbg = model.createProperty(resourceURI + "#jmbg");
+		Property address = model.createProperty(resourceURI + "#address");
+		Property phoneNumber = model.createProperty(resourceURI + "#phoneNumber");
+		Property allergies = model.createProperty(resourceURI + "#allergies");
+		
+		
+		medicalRecordResource.addProperty(medicalRecordIdProperty, Integer.toString(medicalRecord.getId()));
+		medicalRecordResource.addProperty(yearOfBirth, Integer.toString(medicalRecord.getYearOfBirth()));
+		medicalRecordResource.addProperty(gender, medicalRecord.isFemale() ? "female" : "male");
+		medicalRecordResource.addProperty(medicalRecordNumber, medicalRecord.getMedicalRecordNumber());
+		medicalRecordResource.addProperty(firstName, medicalRecord.getFirstName());
+		medicalRecordResource.addProperty(lastName, medicalRecord.getLastName());
+		medicalRecordResource.addProperty(jmbg, medicalRecord.getJmbg());
+		medicalRecordResource.addProperty(address, medicalRecord.getAddress());
+		medicalRecordResource.addProperty(phoneNumber, medicalRecord.getPhoneNumber());
+		medicalRecordResource.addProperty(allergies, allergyResource);
+		
+		
+	    
+		try {
+			OutputStream os = new FileOutputStream(inputFileName);
+			RDFDataMgr.write(os, model, Lang.TTL);
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
