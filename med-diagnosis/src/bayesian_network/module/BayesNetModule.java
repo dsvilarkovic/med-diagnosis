@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,14 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import org.graphstream.graph.implementations.DefaultGraph;
+import org.graphstream.stream.file.FileSinkImages;
+import org.graphstream.stream.file.FileSinkImages.LayoutPolicy;
+import org.graphstream.stream.file.FileSinkImages.OutputType;
+import org.graphstream.stream.file.FileSinkImages.Resolutions;
+
 import unbbayes.io.NetIO;
+import unbbayes.prs.Edge;
 import unbbayes.prs.Node;
 import unbbayes.prs.bn.JunctionTreeAlgorithm;
 import unbbayes.prs.bn.ProbabilisticNetwork;
@@ -27,7 +35,8 @@ import unbbayes.util.extension.bn.inference.IInferenceAlgorithm;
  */
 public class BayesNetModule {
 	
-	private ProbabilisticNetwork net = null;
+	private static ProbabilisticNetwork net = null;
+	private static DefaultGraph graph = null;
 	
 	/**
 	 * Ako se navede "" ili null, onda ce naci difoltnu fajl adresu
@@ -76,6 +85,8 @@ public class BayesNetModule {
 			int stateIndex = 0; 
 			factNode.addFinding(stateIndex);
 		}
+		
+		
 		
 		//stavi godiste
 		Integer ageRange = findAgeRange(age);
@@ -188,4 +199,44 @@ public class BayesNetModule {
 		return sortedMap;
 	}
 	
+	
+	public void visualizeBayesianNetwork(List<String> symptoms) {
+		Map<String, List<String>> mapSymptomToDisease = getMapSymptomToDiseaseMap(symptoms);
+		BayesGraphVisualizer.drawBayes(mapSymptomToDisease);
+	}
+	
+	public boolean saveGraph(String imageFilePath) {
+		return BayesGraphVisualizer.saveGraph(graph, imageFilePath);
+	}
+	
+	private Map<String, List<String>> getMapSymptomToDiseaseMap(List<String> symptoms){
+		Map<String, List<String>> map = new HashMap<String, List<String>>();
+		//uzmi sve bolesti sa procentima
+		Map<String, Float> diseasePercentage = getSortedDiseaseList(this.net);
+		
+		//za svaki simptom napravi listu i nadji njegovu vezu u net-u sa bolescu
+		List<Edge> symptomToDiseaseEdges =  net.getEdges();
+		
+		for (String symptom : symptoms) {
+			
+			List<String> diseaseList = new ArrayList<String>();
+			//kad nadjes bolest dodaj u njegovu kolekciju, zajedno sa procentom
+			Node symptomNode = net.getNode(symptom);
+			for (Edge edge : symptomToDiseaseEdges) {
+				if(edge.getDestinationNode() == symptomNode) {
+					Node foundDisease = edge.getOriginNode();
+					String disease = foundDisease.getName();
+					diseaseList.add(disease + " : " + diseasePercentage.get(disease));
+				}
+			}
+			map.put(symptom, diseaseList);			
+		}
+		
+		return map;
+	}
+	
+	
+
+	
+
 }
