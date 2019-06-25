@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import controller.GenerateTherapyAction;
 import controller.PrologPreventiveExamOpenGraphVisualizer;
 import controller.PrologTherapyOpenGraphVisualizer;
+import utils.Regime;
+import utils.Singleton;
 
 public class TherapyPanel extends JPanel {
 	private TableHandler suggestedTherapies;
@@ -55,7 +57,10 @@ public class TherapyPanel extends JPanel {
 		therapyTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		therapyTextPanel.add(therapyLabel);
 		therapyTextPanel.add(getTherapyButton);
-		therapyTextPanel.add(showVisualExplButton);
+
+		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
+			therapyTextPanel.add(showVisualExplButton);
+		}
 		
 		//tabele sa predlozenim i sa izabranim terapijama
 		JPanel therapyPanel = new JPanel();

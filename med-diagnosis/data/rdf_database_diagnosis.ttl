@@ -3,8 +3,8 @@
 @prefix xsd:   <http://w3.org/2001/XMLSchema#> .
 @prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#> .
 
-med_diag:T1  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "felodipine" , "mirtazapine" , "thiamine" .
+med_diag:T1  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "thiamine" , "mirtazapine" , "felodipine" .
 
 med_diag:Patient5  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -16,18 +16,29 @@ med_diag:Patient5  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym5 ;
         med_diag:therapies              med_diag:T5 .
 
+med_diag:MedicalRecord6
+        med_diag:address              "Adresa3" ;
+        med_diag:allergies            med_diag:Allergies6 ;
+        med_diag:firstName            "Ime3" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "6" ;
+        med_diag:jmbg                 "123456789" ;
+        med_diag:lastName             "Prezime3" ;
+        med_diag:medicalRecordNumber  "234567890" ;
+        med_diag:phoneNumber          "1251152512" ;
+        med_diag:yearOfBirth          "1965" .
+
 med_diag:PhysT6  a  med_diag:Physical_treatments .
 
-med_diag:Allergies5  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" , "nsaid" .
+med_diag:Allergies5  a  med_diag:Allergy_list .
 
 med_diag:Apr3  a  med_diag:Additional_procedures_results .
 
-med_diag:T6  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "amantadine" , "donepezil_aricept" , "pramipexole_mirapex" .
+med_diag:T6  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "pramipexole_mirapex" , "donepezil_aricept" , "amantadine" .
 
 med_diag:Sym4  a          med_diag:Symptom_list ;
-        med_diag:symptom  "focal_weakness" , "weakness" , "problems_with_movement" .
+        med_diag:symptom  "problems_with_movement" , "weakness" , "focal_weakness" .
 
 med_diag:Patient4  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -39,22 +50,33 @@ med_diag:Patient4  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym4 ;
         med_diag:therapies              med_diag:T4 .
 
+med_diag:MedicalRecord5
+        med_diag:address              "Adresa2" ;
+        med_diag:allergies            med_diag:Allergies5 ;
+        med_diag:firstName            "Ime2" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "5" ;
+        med_diag:jmbg                 "241522616" ;
+        med_diag:lastName             "Prezime2" ;
+        med_diag:medicalRecordNumber  "45326232363" ;
+        med_diag:phoneNumber          "555325261616" ;
+        med_diag:yearOfBirth          "2007" .
+
 med_diag:PhysT5  a  med_diag:Physical_treatments .
 
-med_diag:Allergies4  a    med_diag:Allergy_list ;
-        med_diag:allergy  "nsaid" , "antiepileptic_drug" .
+med_diag:Allergies4  a  med_diag:Allergy_list .
 
 med_diag:Apr2  a  med_diag:Additional_procedures_results .
 
-med_diag:T5  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "mirtazapine" , "dantrolene" , "creatine" , "quinine" , "galantamine" , "ubiquinone_q10" , "donepezil_aricept" .
+med_diag:T5  a            med_diag:Therapies , med_diag:Prevention_treatments ;
+        med_diag:therapy  "donepezil_aricept" , "ubiquinone_q10" , "galantamine" , "quinine" , "creatine" , "dantrolene" , "mirtazapine" .
 
 med_diag:Sym3  a          med_diag:Symptom_list ;
-        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" , "weakness" , "problems_with_movement" , "disturbance_of_memory" .
+        med_diag:symptom  "disturbance_of_memory" , "problems_with_movement" , "weakness" , "dizziness" , "abnormal_involuntary_movements" .
 
 med_diag:Apr7  a  med_diag:Additional_procedures_results ;
         med_diag:additional_procedures_result
-                "hematologic_tests_good" , "ct_scan_good" .
+                "ct_scan_good" , "hematologic_tests_good" .
 
 med_diag:Patient3  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -66,22 +88,34 @@ med_diag:Patient3  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym3 ;
         med_diag:therapies              med_diag:T3 .
 
+med_diag:MedicalRecord4
+        med_diag:address              "Adresa1" ;
+        med_diag:allergies            med_diag:Allergies4 ;
+        med_diag:firstName            "Ime1" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "4" ;
+        med_diag:jmbg                 "12412516126" ;
+        med_diag:lastName             "Prezime1" ;
+        med_diag:medicalRecordNumber  "66462236" ;
+        med_diag:phoneNumber          "1252616" ;
+        med_diag:yearOfBirth          "1963" .
+
 med_diag:PhysT4  a  med_diag:Physical_treatments .
 
 med_diag:Allergies3  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" , "nsaid" .
+        med_diag:allergy  "nsaid" , "antiepileptic_drug" .
 
 med_diag:Apr1  a  med_diag:Additional_procedures_results .
 
-med_diag:T4  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "dantrolene" , "beta_carotene" , "fibrin_sealant_topical" , "creatine" , "ubiquinone_q10" , "coal_tar_topical" , "quinine" .
+med_diag:T4  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "quinine" , "coal_tar_topical" , "ubiquinone_q10" , "creatine" , "fibrin_sealant_topical" , "beta_carotene" , "dantrolene" .
 
 med_diag:Sym2  a          med_diag:Symptom_list ;
-        med_diag:symptom  "disturbance_of_memory" , "problems_with_movement" , "weakness" , "dizziness" , "abnormal_involuntary_movements" .
+        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" , "weakness" , "problems_with_movement" , "disturbance_of_memory" .
 
 med_diag:Apr6  a  med_diag:Additional_procedures_results ;
         med_diag:additional_procedures_result
-                "ct_scan_good" , "magnetic_resonance_imaging_good" , "hematologic_tests_good" .
+                "hematologic_tests_good" , "magnetic_resonance_imaging_good" , "ct_scan_good" .
 
 med_diag:Patient2  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -95,7 +129,7 @@ med_diag:Patient2  a                    med_diag:Patient ;
         med_diag:therapies              med_diag:T2 .
 
 med_diag:Sym7  a          med_diag:Symptom_list ;
-        med_diag:symptom  "dizziness" , "abnormal_involuntary_movements" .
+        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" .
 
 med_diag:MedicalRecord3
         med_diag:address              "iojjoi" ;
@@ -112,13 +146,13 @@ med_diag:MedicalRecord3
 med_diag:PhysT3  a  med_diag:Physical_treatments .
 
 med_diag:Allergies2  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" , "antibiotic" , "penicillin" .
+        med_diag:allergy  "penicillin" , "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
 
-med_diag:T3  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "mirtazapine" , "galantamine" , "rivastigmine_exelon" , "donepezil_aricept" , "memantine_namenda" .
+med_diag:T3  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "memantine_namenda" , "donepezil_aricept" , "rivastigmine_exelon" , "galantamine" , "mirtazapine" .
 
 med_diag:Sym1  a          med_diag:Symptom_list ;
-        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" , "weakness" , "problems_with_movement" , "disturbance_of_memory" .
+        med_diag:symptom  "disturbance_of_memory" , "problems_with_movement" , "weakness" , "dizziness" , "abnormal_involuntary_movements" .
 
 med_diag:Patient7  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -131,7 +165,7 @@ med_diag:Patient7  a                    med_diag:Patient ;
         med_diag:therapies              med_diag:T7 .
 
 med_diag:Allergies7  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" , "antibiotic" .
+        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
 
 med_diag:Apr5  a  med_diag:Additional_procedures_results .
 
@@ -147,12 +181,12 @@ med_diag:Patient1  a                    med_diag:Patient ;
         med_diag:therapies              med_diag:T1 .
 
 med_diag:Sym6  a          med_diag:Symptom_list ;
-        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" .
+        med_diag:symptom  "dizziness" , "abnormal_involuntary_movements" .
 
 med_diag:PhysT2  a  med_diag:Physical_treatments .
 
 med_diag:Allergies1  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" , "antibiotic" .
+        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
 
 med_diag:MedicalRecord2
         med_diag:address              "9310109" ;
@@ -166,8 +200,8 @@ med_diag:MedicalRecord2
         med_diag:phoneNumber          "cdoiaoij" ;
         med_diag:yearOfBirth          "1797" .
 
-med_diag:T2  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "modafinil_provigil" , "tizanidine" , "oxybutynin" .
+med_diag:T2  a            med_diag:Therapies , med_diag:Prevention_treatments ;
+        med_diag:therapy  "oxybutynin" , "tizanidine" , "modafinil_provigil" .
 
 med_diag:Patient6  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -182,15 +216,15 @@ med_diag:Patient6  a                    med_diag:Patient ;
 med_diag:PhysT7  a  med_diag:Physical_treatments .
 
 med_diag:Allergies6  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
+        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" , "antibiotic" .
 
 med_diag:Apr4  a  med_diag:Additional_procedures_results .
 
-med_diag:T7  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "rizatriptan_maxalt" , "piroxicam" , "midrin" .
+med_diag:T7  a            med_diag:Therapies , med_diag:Prevention_treatments ;
+        med_diag:therapy  "midrin" , "piroxicam" , "rizatriptan_maxalt" .
 
 med_diag:Sym5  a          med_diag:Symptom_list ;
-        med_diag:symptom  "disturbance_of_memory" , "stiffness_all_over" , "abnormal_involuntary_movements" .
+        med_diag:symptom  "abnormal_involuntary_movements" , "stiffness_all_over" , "disturbance_of_memory" .
 
 med_diag:PhysT1  a  med_diag:Physical_treatments .
 

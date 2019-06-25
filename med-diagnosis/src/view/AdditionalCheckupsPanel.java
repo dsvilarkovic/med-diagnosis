@@ -24,6 +24,8 @@ import javax.swing.table.TableColumn;
 
 import controller.FuzzyOpenGraphVisualizer;
 import controller.GenerateAdditionalCheckupsAction;
+import utils.Regime;
+import utils.Singleton;
 
 public class AdditionalCheckupsPanel extends JPanel {
 	private TableHandler suggestedAdditionalCheckups;
@@ -55,7 +57,11 @@ public class AdditionalCheckupsPanel extends JPanel {
 		titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		titlePanel.add(additionalCheckupsLabel);
 		titlePanel.add(generateAdditionalCheckupsButton);
-		titlePanel.add(showVisualExplButton);
+		
+		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
+			titlePanel.add(showVisualExplButton);
+		}
+		
 		this.setLayout(new BorderLayout(15, 15));
 		this.add(titlePanel, BorderLayout.NORTH);
 		this.add(additionalPanel, BorderLayout.WEST);

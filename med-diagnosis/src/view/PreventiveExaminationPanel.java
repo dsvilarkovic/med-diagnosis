@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import controller.FuzzyOpenGraphVisualizer;
 import controller.GeneratePreventiveExaminationAction;
 import controller.PrologPreventiveExamOpenGraphVisualizer;
+import utils.Regime;
+import utils.Singleton;
 
 public class PreventiveExaminationPanel extends JPanel{
 	
@@ -54,7 +56,11 @@ public class PreventiveExaminationPanel extends JPanel{
 		preventiveTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		preventiveTextPanel.add(preventiveLabel);
 		preventiveTextPanel.add(getPreventiveExaminationsButton);
-		preventiveTextPanel.add(showVisualExplButton);
+		
+		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
+			preventiveTextPanel.add(showVisualExplButton);
+		}
+		
 		
 		//tabele sa predlozenim i sa izabranim terapijama
 		JPanel preventiveExaminationPanel = new JPanel();

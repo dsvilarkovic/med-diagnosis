@@ -26,6 +26,8 @@ import bayesian_network.module.BayesGraphVisualizer;
 import controller.BayesOpenGraphVisualizer;
 import controller.GenerateDiagnosisAction;
 import controller.PrologPreventiveExamOpenGraphVisualizer;
+import utils.Regime;
+import utils.Singleton;
 
 public class DiagnosisPanel extends JPanel {
 	private TableHandler diagnosisTableHandler;
@@ -51,7 +53,10 @@ public class DiagnosisPanel extends JPanel {
 		diagnosisTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		diagnosisTextPanel.add(diagnosisLabel);
 		diagnosisTextPanel.add(getDiagnosisButton);
-		diagnosisTextPanel.add(showVisualExplButton);
+		
+		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
+			diagnosisTextPanel.add(showVisualExplButton);
+		}
 
 		diagnosisTextField.setPreferredSize(new Dimension(200, 30));
 		diagnosisTextField.setMaximumSize(new Dimension(200, 30));
