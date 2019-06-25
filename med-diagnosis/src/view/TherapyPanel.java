@@ -127,4 +127,8 @@ public class TherapyPanel extends JPanel {
 	public List<String> getChosenTherapies() {		
 		return chosenTherapies.getContentList();		
 	}
+	
+	public List<String> getSuggestedTherapies() {		
+		return suggestedTherapies.getContentList();		
+	}
 }

@@ -30,11 +30,10 @@ public class PrologModule {
 		JIPTerm term = null;
 		
 		try {
-			//engine.consultFile("data/medications_base.pl");
+			engine.consultFile("data/medications_base.pl");
 			engine.consultFile("data/allergies.pl");
 			
 			String allergiesString = getListString(allergies);
-			//TODO: popraviti primer sa alergijama
 			String termString = "suggested_treatment(" + diagnosis + ", " + allergiesString + ", Medication).";
 			
 			System.out.println("Getting therapies: \n" + termString);
@@ -46,35 +45,35 @@ public class PrologModule {
 			JIPTerm solution;
 			
 			//primer sa vezbi
-			while((solution = query.nextSolution()) != null){
-				System.out.println(solution);
+			/*while((solution = query.nextSolution()) != null){
+				//System.out.println(solution);
 
 	            for (JIPVariable var : solution.getVariables()){
 	                if (var.getName().equalsIgnoreCase("Medication")){
-	                	System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
+	                	//System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
 			         	
 			         	therapiesList.add(var.getValue().toString());
 	                }
 	            }
-			}
-			/*
+			}*/
+			
 			//primer sa github repozitorijuma jiprologa
 			while (query.hasMoreChoicePoints()){
 				solution = query.nextSolution();
 				
 				if(solution != null) {
-					System.out.println(solution);
+					//System.out.println(solution);
 
 			    	JIPVariable[] vars = solution.getVariables();
 			   	    for (JIPVariable var : vars) {
 			   	    	if (!var.isAnonymous()) {
-				         	System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
+				         	//System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
 				         	
 				         	therapiesList.add(var.getValue().toString());
 			   	    	}
 			   	    }				
 				}
-			}*/
+			}
 			
 		} catch (JIPSyntaxErrorException e) {
 			JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
@@ -89,7 +88,7 @@ public class PrologModule {
 		} finally {
 			engine.closeAllQueries();
 			
-			//engine.unconsultFile("data/medications_base.pl");
+			engine.unconsultFile("data/medications_base.pl");
 			engine.unconsultFile("data/allergies.pl");
 		}
 		
@@ -104,7 +103,6 @@ public class PrologModule {
 			
 			String therapiesString = getListString(therapies); 
 			
-			//TODO: popraviti primer sa lekovima
 			String termString = "recommended_preventive_examinations("+ diagnosis + ", " + therapiesString + ", Result).";			
 			
 			JIPTerm term = engine.getTermParser().parseTerm(termString);
@@ -115,12 +113,12 @@ public class PrologModule {
 			
 			while (query.hasMoreChoicePoints()){
 				solution = query.nextSolution();
-		    	System.out.println(solution);
+		    	//System.out.println(solution);
 
 		    	JIPVariable[] vars = solution.getVariables();
 		   	    for (JIPVariable var : vars) {
 		   	    	if (!var.isAnonymous()) {
-			         	System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
+			         	//System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
 			         	
 			         	preventiveList.add(var.getValue().toString());
 		   	    	}

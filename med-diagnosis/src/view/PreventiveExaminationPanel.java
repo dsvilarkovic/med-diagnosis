@@ -122,6 +122,14 @@ public class PreventiveExaminationPanel extends JPanel{
 					suggestedPreventiveExaminations.insertRow(v);
 				}
 	}
+	
+	public List<String> getChosenPreventiveExaminations() {		
+		return chosenPreventiveExaminations.getContentList();		
+	}
+	
+	public List<String> getSuggestedPreventiveExaminations() {		
+		return suggestedPreventiveExaminations.getContentList();		
+	}
 }
 
 

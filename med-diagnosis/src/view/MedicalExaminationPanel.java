@@ -22,6 +22,7 @@ import model.Disease;
 import model.MedicalExamination;
 import model.MedicalRecord;
 import model.PhysicalExaminationResult;
+import model.PreventiveExamination;
 import model.Symptom;
 import model.Therapy;
 import utils.Singleton;
@@ -180,7 +181,12 @@ public class MedicalExaminationPanel extends JPanel {
 			this.medicalExamination.getTherapies().add(th);
 		}
 		
-		//TODO: kada se ubace preventivni pregledi
+		List<String> preventiveList = getChosenPreventive();
+		for(String p : preventiveList) {
+			PreventiveExamination pe = new PreventiveExamination();
+			pe.setName(p);
+			this.medicalExamination.getPreventiveExaminations().add(pe);
+		}
 		
 		
 		return this.medicalExamination;
@@ -196,6 +202,18 @@ public class MedicalExaminationPanel extends JPanel {
 	
 	public List<String> getChosenTherapies(){
 		return therapyPanel.getChosenTherapies();
+	}
+	
+	public List<String> getChosenPreventive(){
+		return preventiveExaminationPanel.getChosenPreventiveExaminations();
+	}
+	
+	public List<String> getSuggestedTherapies(){
+		return therapyPanel.getSuggestedTherapies();
+	}
+	
+	public List<String> getSuggestedPreventive(){
+		return preventiveExaminationPanel.getSuggestedPreventiveExaminations();
 	}
 	
 	
