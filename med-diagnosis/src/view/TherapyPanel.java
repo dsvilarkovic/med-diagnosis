@@ -18,6 +18,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controller.GenerateTherapyAction;
+import controller.PrologPreventiveExamOpenGraphVisualizer;
+import controller.PrologTherapyOpenGraphVisualizer;
 
 public class TherapyPanel extends JPanel {
 	private TableHandler suggestedTherapies;
@@ -46,10 +48,14 @@ public class TherapyPanel extends JPanel {
 		
 		JButton getTherapyButton = new JButton(new GenerateTherapyAction());
 		getTherapyButton.setBackground(new Color(64,128,243));
+		
+		JButton showVisualExplButton = new JButton(new PrologTherapyOpenGraphVisualizer());
+		showVisualExplButton.setBackground(new Color(64,128,243));
 				
 		therapyTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		therapyTextPanel.add(therapyLabel);
 		therapyTextPanel.add(getTherapyButton);
+		therapyTextPanel.add(showVisualExplButton);
 		
 		//tabele sa predlozenim i sa izabranim terapijama
 		JPanel therapyPanel = new JPanel();

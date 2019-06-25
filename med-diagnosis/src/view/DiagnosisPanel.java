@@ -22,7 +22,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import bayesian_network.module.BayesGraphVisualizer;
+import controller.BayesOpenGraphVisualizer;
 import controller.GenerateDiagnosisAction;
+import controller.PrologPreventiveExamOpenGraphVisualizer;
 
 public class DiagnosisPanel extends JPanel {
 	private TableHandler diagnosisTableHandler;
@@ -40,12 +43,15 @@ public class DiagnosisPanel extends JPanel {
 		JLabel diagnosisLabel = new JLabel("Diagnosis");
 		JButton getDiagnosisButton = new JButton(new GenerateDiagnosisAction());
 		getDiagnosisButton.setBackground(new Color(64,128,243));
+		JButton showVisualExplButton = new JButton(new BayesOpenGraphVisualizer());
+		showVisualExplButton.setBackground(new Color(64,128,243));
 		JLabel diagnosisSelected = new JLabel("Diagnosis is: ");
 
 		diagnosisLabel.setFont(new Font(diagnosisLabel.getFont().getFontName(), Font.BOLD, 18));
 		diagnosisTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		diagnosisTextPanel.add(diagnosisLabel);
 		diagnosisTextPanel.add(getDiagnosisButton);
+		diagnosisTextPanel.add(showVisualExplButton);
 
 		diagnosisTextField.setPreferredSize(new Dimension(200, 30));
 		diagnosisTextField.setMaximumSize(new Dimension(200, 30));

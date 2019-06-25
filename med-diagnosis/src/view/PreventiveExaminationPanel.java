@@ -17,7 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controller.FuzzyOpenGraphVisualizer;
 import controller.GeneratePreventiveExaminationAction;
+import controller.PrologPreventiveExamOpenGraphVisualizer;
 
 public class PreventiveExaminationPanel extends JPanel{
 	
@@ -45,10 +47,14 @@ public class PreventiveExaminationPanel extends JPanel{
 		preventiveLabel.setFont(new Font(preventiveLabel.getFont().getFontName(), Font.BOLD,18));
 		
 		JButton getPreventiveExaminationsButton = new JButton(new GeneratePreventiveExaminationAction());
+		JButton showVisualExplButton = new JButton(new PrologPreventiveExamOpenGraphVisualizer());
+		showVisualExplButton.setBackground(new Color(64,128,243));
 		getPreventiveExaminationsButton.setBackground(new Color(64,128,243));
+		
 		preventiveTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		preventiveTextPanel.add(preventiveLabel);
 		preventiveTextPanel.add(getPreventiveExaminationsButton);
+		preventiveTextPanel.add(showVisualExplButton);
 		
 		//tabele sa predlozenim i sa izabranim terapijama
 		JPanel preventiveExaminationPanel = new JPanel();

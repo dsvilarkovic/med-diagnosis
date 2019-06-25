@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import controller.FuzzyOpenGraphVisualizer;
 import controller.GenerateAdditionalCheckupsAction;
 
 public class AdditionalCheckupsPanel extends JPanel {
@@ -42,7 +43,9 @@ public class AdditionalCheckupsPanel extends JPanel {
 		JPanel additionalPanel = new JPanel();
 		JLabel additionalCheckupsLabel = new JLabel("Additional Checkups");
 		JButton generateAdditionalCheckupsButton = new JButton(new GenerateAdditionalCheckupsAction());
+		JButton showVisualExplButton = new JButton(new FuzzyOpenGraphVisualizer());
 		generateAdditionalCheckupsButton.setBackground(new Color(64,128,243));
+		showVisualExplButton.setBackground(new Color(64,128,243));
 		additionalPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		initSuggestedAdditionalCheckupsTable();
 		initChosenAdditionalCheckupsTable();
@@ -52,6 +55,7 @@ public class AdditionalCheckupsPanel extends JPanel {
 		titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		titlePanel.add(additionalCheckupsLabel);
 		titlePanel.add(generateAdditionalCheckupsButton);
+		titlePanel.add(showVisualExplButton);
 		this.setLayout(new BorderLayout(15, 15));
 		this.add(titlePanel, BorderLayout.NORTH);
 		this.add(additionalPanel, BorderLayout.WEST);

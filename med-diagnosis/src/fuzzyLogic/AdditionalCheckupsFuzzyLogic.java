@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.sourceforge.jFuzzyLogic.FIS;
+import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 public class AdditionalCheckupsFuzzyLogic {
@@ -58,7 +59,10 @@ public class AdditionalCheckupsFuzzyLogic {
 		for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
 			fis.setVariable(entry.getKey(), entry.getValue());
 		}
+		System.out.println("NESTO");
 		fis.evaluate();
+		getData();
+
 	}
 
 	public Map<String, String> getAdditionalCheckupsMap() {
@@ -87,5 +91,29 @@ public class AdditionalCheckupsFuzzyLogic {
 		}
 
 		return null;
+	}
+	
+	public Map<String, Map<String,String>> getData() {
+		Map<String, Map<String, String>> resultMap = new HashMap<String, Map<String,String>>();
+		for( Rule r : fis.getFunctionBlock("additional_procedures").getFuzzyRuleBlock("blok1").getRules() ) {
+		      if(r.getDegreeOfSupport() > 0) {
+		    	  String cause = r.getAntecedents().toString();
+		    	  String consequence = r.getConsequents().get(0).toString();
+		    	  String[] parts2 = String.valueOf(r).split(" ");
+		    	  String rule = parts2[1] + " " + parts2[2] + " " + parts2[3] + " " +  parts2[4] + " " +  parts2[5] + " " + parts2[6] + " " + parts2[7] ;
+		    	  if(!resultMap.containsKey(cause)) {
+		    		  Map<String,String> map = new HashMap<String,String>();
+		    		  map.put(rule, consequence);
+		    		  resultMap.put(cause,map);
+		    	  }else {
+		    		  Map<String,String> map  = resultMap.get(cause);
+		    		  map.put(rule, consequence);
+		    	  }
+		    	  
+		    	  
+		      }
+		}
+		System.out.println(resultMap);
+		return resultMap;
 	}
 }
