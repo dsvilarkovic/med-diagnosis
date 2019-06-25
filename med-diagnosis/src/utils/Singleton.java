@@ -1,6 +1,6 @@
 package utils;
 import bayesian_network.module.BayesNetModule;
-import prologproba.PrologModule;
+import prolog.PrologModule;
 import view.MainFrame;
 
 public class Singleton {
@@ -14,7 +14,6 @@ public class Singleton {
 		mainFrame = new MainFrame();
 		bayesNetModule = new BayesNetModule();
 		bayesNetModule.initBayes("");
-		
 		prologModule = new PrologModule();
 	}
 	

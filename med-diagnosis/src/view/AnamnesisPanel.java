@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import controller.SystemComboListener;
-import prologproba.AssertPatientData;
+import prolog.AssertPatientData;
 
 /**
  * Panel za unos anamneze pacijenta
