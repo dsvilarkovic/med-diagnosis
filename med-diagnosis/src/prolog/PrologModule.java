@@ -1,4 +1,4 @@
-package prologproba;
+package prolog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ import com.ugos.jiprolog.engine.JIPVariable;
 import utils.Singleton;
 
 public class PrologModule {
-	
-	private  JIPEngine engine;
+		
+	private JIPEngine engine;
 	
 	public PrologModule() {
 		engine = new JIPEngine();
 	}
-	
+		
 	public List<String> getTherapies(String diagnosis, List<String> allergies) {
 		List<String> therapiesList = new ArrayList<String>();
 		
@@ -35,7 +35,10 @@ public class PrologModule {
 			
 			String allergiesString = getListString(allergies);
 			
-			String termString = "suggested_treatment(" + diagnosis + ", " + allergiesString + ", Medication).";
+			//TODO: popraviti primer sa alergijama
+			//String termString = "suggested_treatment('" + diagnosis + "', " + allergiesString + ", Medication).";
+			
+			String termString = "reccommended_medication_therapies('" + diagnosis + "', Medication).";
 			System.out.println("Getting therapies: \n" + termString);
 						
 			term = engine.getTermParser().parseTerm(termString);
@@ -44,6 +47,20 @@ public class PrologModule {
 			
 			JIPTerm solution;
 			
+			//primer sa vezbi
+			/*while((solution = query.nextSolution()) != null){
+				System.out.println(solution);
+
+	            for (JIPVariable var : solution.getVariables()){
+	                if (var.getName().equalsIgnoreCase("Medication")){
+	                	System.out.println(var.getName() + " = " + var.getValue().toString() + " ");
+			         	
+			         	therapiesList.add(var.getValue().toString());
+	                }
+	            }
+			}*/
+			
+			//primer sa github repozitorijuma jiprologa
 			while (query.hasMoreChoicePoints()){
 				solution = query.nextSolution();
 				
@@ -71,6 +88,11 @@ public class PrologModule {
 				    "An error occurred while generating therapies. Please try again.",
 				    "Error",
 				    JOptionPane.ERROR_MESSAGE);
+		} finally {
+			engine.closeAllQueries();
+			
+			engine.unconsultFile("data/medications_base.pl");
+			engine.unconsultFile("data/allergies.pl");
 		}
 		
 		return therapiesList;
@@ -106,7 +128,6 @@ public class PrologModule {
 		   	    	}
 		   	    }
 		    }
-
 			
 		} catch (JIPSyntaxErrorException e) {
 			JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
@@ -118,6 +139,10 @@ public class PrologModule {
 				    "An error occurred while generating preventive examinations. Please try again.",
 				    "Error",
 				    JOptionPane.ERROR_MESSAGE);
+		}
+		finally {
+			engine.closeAllQueries();
+			engine.unconsultFile("data/preventive_checkups.pl");
 		}
 		
 		return preventiveList;
