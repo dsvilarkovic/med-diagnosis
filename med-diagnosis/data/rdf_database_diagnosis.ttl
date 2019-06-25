@@ -32,7 +32,7 @@ med_diag:MedicalRecord2
         med_diag:yearOfBirth          "1797" .
 
 med_diag:Allergies3  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" .
+        med_diag:allergy  "nsaid" .
 
 med_diag:T2  a            med_diag:Therapies , med_diag:Prevention_treatments ;
         med_diag:therapy  "oxybutynin" , "tizanidine" , "modafinil_provigil" .

@@ -42,7 +42,7 @@ public class GenerateTherapyAction extends AbstractAction {
 				for(Allergy a : allergiesSet) {
 					allergiesList.add(a.getName());
 				}
-								
+	
 				suggestedTherapiesList = Singleton.getInstance().getPrologModule().getTherapies(diagnosis.trim(), allergiesList);
 			}
 			else {

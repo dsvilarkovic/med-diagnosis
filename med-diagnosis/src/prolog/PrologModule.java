@@ -30,15 +30,13 @@ public class PrologModule {
 		JIPTerm term = null;
 		
 		try {
-			engine.consultFile("data/medications_base.pl");
+			//engine.consultFile("data/medications_base.pl");
 			engine.consultFile("data/allergies.pl");
 			
 			String allergiesString = getListString(allergies);
-			
 			//TODO: popraviti primer sa alergijama
-			//String termString = "suggested_treatment('" + diagnosis + "', " + allergiesString + ", Medication).";
+			String termString = "suggested_treatment(" + diagnosis + ", " + allergiesString + ", Medication).";
 			
-			String termString = "reccommended_medication_therapies('" + diagnosis + "', Medication).";
 			System.out.println("Getting therapies: \n" + termString);
 						
 			term = engine.getTermParser().parseTerm(termString);
@@ -48,7 +46,7 @@ public class PrologModule {
 			JIPTerm solution;
 			
 			//primer sa vezbi
-			/*while((solution = query.nextSolution()) != null){
+			while((solution = query.nextSolution()) != null){
 				System.out.println(solution);
 
 	            for (JIPVariable var : solution.getVariables()){
@@ -58,8 +56,8 @@ public class PrologModule {
 			         	therapiesList.add(var.getValue().toString());
 	                }
 	            }
-			}*/
-			
+			}
+			/*
 			//primer sa github repozitorijuma jiprologa
 			while (query.hasMoreChoicePoints()){
 				solution = query.nextSolution();
@@ -76,7 +74,7 @@ public class PrologModule {
 			   	    	}
 			   	    }				
 				}
-			}
+			}*/
 			
 		} catch (JIPSyntaxErrorException e) {
 			JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
@@ -91,7 +89,7 @@ public class PrologModule {
 		} finally {
 			engine.closeAllQueries();
 			
-			engine.unconsultFile("data/medications_base.pl");
+			//engine.unconsultFile("data/medications_base.pl");
 			engine.unconsultFile("data/allergies.pl");
 		}
 		
@@ -107,11 +105,8 @@ public class PrologModule {
 			String therapiesString = getListString(therapies); 
 			
 			//TODO: popraviti primer sa lekovima
-			//String termString = "recommended_preventive_examinations("+ diagnosis + ", " + therapiesString + ", Result).";			
+			String termString = "recommended_preventive_examinations("+ diagnosis + ", " + therapiesString + ", Result).";			
 			
-			String termString = "preventive_examinations('"+ diagnosis + "', [], Result).";
-			System.out.println(termString);
-
 			JIPTerm term = engine.getTermParser().parseTerm(termString);
 						
 			JIPQuery query = engine.openSynchronousQuery(term);
