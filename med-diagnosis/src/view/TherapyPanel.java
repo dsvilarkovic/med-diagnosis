@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -44,6 +45,7 @@ public class TherapyPanel extends JPanel {
 		therapyLabel.setFont(new Font(therapyLabel.getFont().getFontName(), Font.BOLD,18));
 		
 		JButton getTherapyButton = new JButton(new GenerateTherapyAction());
+		getTherapyButton.setBackground(new Color(64,128,243));
 				
 		therapyTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		therapyTextPanel.add(therapyLabel);

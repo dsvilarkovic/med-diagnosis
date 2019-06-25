@@ -1,11 +1,15 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +24,7 @@ import model.MedicalRecord;
 import model.PhysicalExaminationResult;
 import model.Symptom;
 import model.Therapy;
+import utils.Singleton;
 
 public class MedicalExaminationPanel extends JPanel {
 
@@ -58,14 +63,28 @@ public class MedicalExaminationPanel extends JPanel {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void init() {
 		JPanel contentPanel = new JPanel();
+		JButton saveButton = new JButton(new SaveMedicalExamination());
+		JButton backButton = new JButton("Back");
+		backButton.setIcon(new ImageIcon("data/back-arrow.png"));
+		backButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Singleton.getInstance().getMainFrame().setCentralPanel(new PatientRecordPanel(medicalExamination.getMedicalRecord()));
+				
+			}
+		});
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout(500,0));
+		panel.add(backButton, BorderLayout.LINE_START);
 		JLabel medicalExaminationLabel = new JLabel("Medical examination information");
 		
 		medicalExaminationLabel.setFont(new java.awt.Font(medicalExaminationLabel.getFont().getFontName(), 0, 24));
-
+		panel.add(medicalExaminationLabel, BorderLayout.CENTER);
 		this.setLayout(new BorderLayout());
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 		contentPanel.add(Box.createVerticalStrut(35));
-		contentPanel.add(medicalExaminationLabel);
+		contentPanel.add(panel);
 		contentPanel.add(Box.createVerticalStrut(15));
 		contentPanel.add(anamnesisPanel);
 		contentPanel.add(new JSeparator());
@@ -79,12 +98,15 @@ public class MedicalExaminationPanel extends JPanel {
 		contentPanel.add(new JSeparator());
 		contentPanel.add(preventiveExaminationPanel);
 		contentPanel.add(new JSeparator());
-		contentPanel.add(new JButton(new SaveMedicalExamination()));
 		JPanel margin = new JPanel();
 		margin.setLayout(new BorderLayout(5,5));
 		margin.add(Box.createHorizontalStrut(10), BorderLayout.WEST);
 		margin.add(contentPanel,BorderLayout.CENTER);
 		margin.add(Box.createHorizontalStrut(10), BorderLayout.EAST);
+		margin.add(saveButton, BorderLayout.SOUTH);
+		saveButton.setBorderPainted(true);
+		saveButton.setBackground(new Color(64,128,243));
+		backButton.setBackground(new Color(64,128,243));
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientInformationPanel,
 				new JScrollPane(margin));
@@ -144,7 +166,12 @@ public class MedicalExaminationPanel extends JPanel {
 			PhysicalExaminationResult s = new PhysicalExaminationResult(symptom);
 			this.medicalExamination.getPhysicalExaminationResults().add(s);
 		}
-		this.medicalExamination.setDisease(new Disease(diagnosisPanel.getDiagnose()));
+		if(diagnosisPanel.getDiagnose().equals("")) {
+			this.medicalExamination.setDisease(null);
+		}else {
+			this.medicalExamination.setDisease(new Disease(diagnosisPanel.getDiagnose()));
+		}
+		
 		
 		List<String> therapiesList = getChosenTherapies();
 		for(String t: therapiesList) {

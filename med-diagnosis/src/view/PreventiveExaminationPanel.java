@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -44,7 +45,7 @@ public class PreventiveExaminationPanel extends JPanel{
 		preventiveLabel.setFont(new Font(preventiveLabel.getFont().getFontName(), Font.BOLD,18));
 		
 		JButton getPreventiveExaminationsButton = new JButton(new GeneratePreventiveExaminationAction());
-				
+		getPreventiveExaminationsButton.setBackground(new Color(64,128,243));
 		preventiveTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		preventiveTextPanel.add(preventiveLabel);
 		preventiveTextPanel.add(getPreventiveExaminationsButton);

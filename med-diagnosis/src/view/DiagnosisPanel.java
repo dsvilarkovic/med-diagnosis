@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -38,6 +39,7 @@ public class DiagnosisPanel extends JPanel {
 		JPanel diagnosisTextPanel = new JPanel();
 		JLabel diagnosisLabel = new JLabel("Diagnosis");
 		JButton getDiagnosisButton = new JButton(new GenerateDiagnosisAction());
+		getDiagnosisButton.setBackground(new Color(64,128,243));
 		JLabel diagnosisSelected = new JLabel("Diagnosis is: ");
 
 		diagnosisLabel.setFont(new Font(diagnosisLabel.getFont().getFontName(), Font.BOLD, 18));
@@ -88,7 +90,7 @@ public class DiagnosisPanel extends JPanel {
 	}
 	
 	public String getDiagnose() {
-		return diagnosisTextField.getText();
+		return diagnosisTextField.getText().trim();
 	}
 
 }

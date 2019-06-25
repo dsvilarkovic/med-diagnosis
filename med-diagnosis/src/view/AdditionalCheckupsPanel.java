@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,7 @@ public class AdditionalCheckupsPanel extends JPanel {
 		JPanel additionalPanel = new JPanel();
 		JLabel additionalCheckupsLabel = new JLabel("Additional Checkups");
 		JButton generateAdditionalCheckupsButton = new JButton(new GenerateAdditionalCheckupsAction());
+		generateAdditionalCheckupsButton.setBackground(new Color(64,128,243));
 		additionalPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		initSuggestedAdditionalCheckupsTable();
 		initChosenAdditionalCheckupsTable();
