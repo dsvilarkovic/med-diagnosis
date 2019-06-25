@@ -28,10 +28,9 @@ public class GenerateAdditionalCheckupsAction extends AbstractAction {
 		MedicalExaminationPanel medicalExaminationPanel  = (MedicalExaminationPanel) Singleton.getInstance().getMainFrame().getCentralPanel();
 		Map<String,String> map = null;
 		if(Singleton.getInstance().getRegime() == Regime.RULE_BASED) {
-			AdditionalCheckupsFuzzyLogic additionalCheckupsFuzzyLogic = new AdditionalCheckupsFuzzyLogic("data/fuzzy_symp_additional_checkups.fcl");
-			additionalCheckupsFuzzyLogic.setValues(medicalExaminationPanel.getSymptomsMap());
-			additionalCheckupsFuzzyLogic.setValues(medicalExaminationPanel.getPhysicalExaminationSymptomsMap());
-			map = additionalCheckupsFuzzyLogic.getAdditionalCheckupsMap();
+			Singleton.getInstance().getFuzzyModule().setValues(medicalExaminationPanel.getSymptomsMap());
+			Singleton.getInstance().getFuzzyModule().setValues(medicalExaminationPanel.getPhysicalExaminationSymptomsMap());
+			map = Singleton.getInstance().getFuzzyModule().getAdditionalCheckupsMap();
 			 
 		}else {
 			//TODO: dodati poziv funkcije kada se doda case-based

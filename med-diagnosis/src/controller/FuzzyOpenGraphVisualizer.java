@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import fuzzyLogic.AdditionalCheckupsFuzzyLogic;
+import utils.Singleton;
 
 public class FuzzyOpenGraphVisualizer extends AbstractAction {
 
@@ -17,8 +18,7 @@ public class FuzzyOpenGraphVisualizer extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AdditionalCheckupsFuzzyLogic fuzzy = new AdditionalCheckupsFuzzyLogic("data/fuzzy_symp_additional_checkups.fcl");
-		Map<String,Map<String,String>> map = fuzzy.getData();
+		Map<String,Map<String,String>> map = Singleton.getInstance().getFuzzyModule().getData();
 		
 		//TODO: Dusan vizualizacija
 

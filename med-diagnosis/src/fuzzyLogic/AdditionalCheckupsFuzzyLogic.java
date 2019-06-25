@@ -59,9 +59,7 @@ public class AdditionalCheckupsFuzzyLogic {
 		for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
 			fis.setVariable(entry.getKey(), entry.getValue());
 		}
-		System.out.println("NESTO");
 		fis.evaluate();
-		getData();
 
 	}
 
