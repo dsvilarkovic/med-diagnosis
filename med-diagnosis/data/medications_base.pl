@@ -17,6 +17,7 @@ reccommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'occupati
 reccommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'dietitian').
 reccommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'respiratory_therapy').
 reccommended_medication_therapies('amyotrophic_lateral_sclerosis_als', 'therapy').
+
 reccommended_medication_therapies('tension_headache', 'topiramate_topamax').
 reccommended_medication_therapies('tension_headache', 'midrin').
 reccommended_medication_therapies('tension_headache', 'rizatriptan_maxalt').
@@ -27,6 +28,7 @@ reccommended_medication_therapies('tension_headache', 'piroxicam').
 reccommended_medication_therapies('tension_headache', 'monobenzone_topical').
 reccommended_medication_therapies('tension_headache', 'cognitive_behavioral_therapy').
 reccommended_medication_therapies('tension_headache', 'therapy').
+
 reccommended_medication_therapies('migraine', 'sumatriptan_imitrex').
 reccommended_medication_therapies('migraine', 'topiramate_topamax').
 reccommended_medication_therapies('migraine', 'prochlorperazine_compro').
@@ -40,6 +42,7 @@ reccommended_medication_therapies('migraine', 'nortriptyline').
 reccommended_medication_therapies('migraine', 'butorphanol_stadol').
 reccommended_medication_therapies('migraine', 'cognitive_behavioral_therapy').
 reccommended_medication_therapies('migraine', 'therapy').
+
 reccommended_medication_therapies('parkinson_disease', 'ropinirole').
 reccommended_medication_therapies('parkinson_disease', 'pramipexole_mirapex').
 reccommended_medication_therapies('parkinson_disease', 'amantadine').
@@ -53,6 +56,7 @@ reccommended_medication_therapies('parkinson_disease', 'trihexyphenidyl_artane')
 reccommended_medication_therapies('parkinson_disease', 'rivastigmine_exelon').
 reccommended_medication_therapies('parkinson_disease', 'therapy').
 reccommended_medication_therapies('parkinson_disease', 'physical_therapy').
+
 reccommended_medication_therapies('dementia', 'donepezil_aricept').
 reccommended_medication_therapies('dementia', 'memantine_namenda').
 reccommended_medication_therapies('dementia', 'rivastigmine_exelon').
@@ -67,6 +71,7 @@ reccommended_medication_therapies('dementia', 'raloxifene_evista').
 reccommended_medication_therapies('dementia', 'deferasirox_exjade').
 reccommended_medication_therapies('dementia', 'occupational_therapist').
 reccommended_medication_therapies('dementia', 'physical_therapist').
+
 reccommended_medication_therapies('multiple_sclerosis', 'interferon_beta_1a_avonex').
 reccommended_medication_therapies('multiple_sclerosis', 'glatiramer_copaxone').
 reccommended_medication_therapies('multiple_sclerosis', 'baclofen').
@@ -82,6 +87,7 @@ reccommended_medication_therapies('multiple_sclerosis', 'cyclophosphamide').
 reccommended_medication_therapies('multiple_sclerosis', 'armodafinil_nuvigil').
 reccommended_medication_therapies('multiple_sclerosis', 'therapist').
 reccommended_medication_therapies('multiple_sclerosis', 'physical_therapist').
+
 reccommended_medication_therapies('alzheimer_disease', 'donepezil_aricept').
 reccommended_medication_therapies('alzheimer_disease', 'memantine_namenda').
 reccommended_medication_therapies('alzheimer_disease', 'rivastigmine_exelon').
@@ -93,6 +99,7 @@ reccommended_medication_therapies('alzheimer_disease', 'fluvastatin_lescol').
 reccommended_medication_therapies('alzheimer_disease', 'citric_acid').
 reccommended_medication_therapies('alzheimer_disease', 'astemizole').
 reccommended_medication_therapies('alzheimer_disease', 'hypromellose_genteal').
+
 reccommended_medication_therapies('epilepsy', 'levetiracetam_keppra').
 reccommended_medication_therapies('epilepsy', 'phenytoin_dilantin').
 reccommended_medication_therapies('epilepsy', 'lamotrigine_lamictal').
@@ -106,6 +113,7 @@ reccommended_medication_therapies('epilepsy', 'valproic_acid').
 reccommended_medication_therapies('epilepsy', 'fosphenytoin').
 reccommended_medication_therapies('epilepsy', 'ethosuximide').
 reccommended_medication_therapies('epilepsy', 'lacosamide_vimpat').
+
 reccommended_medication_therapies('meningitis', 'ceftriaxone').
 reccommended_medication_therapies('meningitis', 'vancomycin').
 reccommended_medication_therapies('meningitis', 'ampicillin').

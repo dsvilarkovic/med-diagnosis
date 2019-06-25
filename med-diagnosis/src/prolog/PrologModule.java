@@ -106,7 +106,10 @@ public class PrologModule {
 			
 			String therapiesString = getListString(therapies); 
 			
-			String termString = "recommended_preventive_examinations("+ diagnosis + ", " + therapiesString + ", Result).";			
+			//TODO: popraviti primer sa lekovima
+			//String termString = "recommended_preventive_examinations("+ diagnosis + ", " + therapiesString + ", Result).";			
+			
+			String termString = "preventive_examinations('"+ diagnosis + "', [], Result).";
 			System.out.println(termString);
 
 			JIPTerm term = engine.getTermParser().parseTerm(termString);

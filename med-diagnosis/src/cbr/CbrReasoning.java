@@ -74,11 +74,7 @@ public class CbrReasoning implements StandardCBRApplication {
 			simConfig.addMapping(new Attribute("name", Disease.class), new Equal());
 
 		} else { // ModuleType.PREVENTIVE_EXAMINATIONS
-			simConfig.addMapping(new Attribute("symptoms", MedicalExamination.class), new ListSimilarity());
-			simConfig.addMapping(new Attribute("physicalExaminationResults", MedicalExamination.class),
-					new ListSimilarity());
-			simConfig.addMapping(new Attribute("additionalExaminationResults", MedicalExamination.class),
-					new ListSimilarity());
+			simConfig.addMapping(new Attribute("therapies", MedicalExamination.class), new ListSimilarity());
 
 			simConfig.addMapping(new Attribute("disease", MedicalExamination.class), new Average());
 			simConfig.addMapping(new Attribute("name", Disease.class), new Equal());
