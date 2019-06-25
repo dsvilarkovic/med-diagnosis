@@ -44,8 +44,19 @@ public class GenerateAdditionalCheckupsAction extends AbstractAction {
 				MedicalExamination resultRecord = (MedicalExamination) res.get_case().getDescription();
 				double eval = res.getEval();
 				for(AdditionalExaminationResult r : resultRecord.getAdditionalExaminationResults()) {
-					if(!map.containsKey(r.getName()))
-						map.put(r.getName(), "");
+					if(!map.containsKey(r.getName())) {
+						String temp = r.getName();
+						System.out.println(temp);
+						if(temp.contains("_not_good")) {
+							temp = temp.substring(0, temp.length()-9);
+						}else {
+							temp = temp.substring(0, temp.length()-5);
+						}
+						
+						map.put(temp, "");
+					
+					}
+						
 				}
 				System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
 			}
