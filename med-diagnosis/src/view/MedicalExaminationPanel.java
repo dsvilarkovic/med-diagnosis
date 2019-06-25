@@ -18,6 +18,7 @@ import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 
 import controller.SaveMedicalExamination;
+import model.AdditionalExaminationResult;
 import model.Disease;
 import model.MedicalExamination;
 import model.MedicalRecord;
@@ -167,6 +168,14 @@ public class MedicalExaminationPanel extends JPanel {
 			PhysicalExaminationResult s = new PhysicalExaminationResult(symptom);
 			this.medicalExamination.getPhysicalExaminationResults().add(s);
 		}
+		
+		List<String> additionalList = additionalCheckupsPanel.getAllAdditionalCheckupsList();
+		for(String additionalExam : additionalList) {
+			AdditionalExaminationResult a = new AdditionalExaminationResult();
+			a.setName(additionalExam);
+			this.medicalExamination.getAdditionalExaminationResults().add(a);
+		}
+		
 		if(diagnosisPanel.getDiagnose().equals("")) {
 			this.medicalExamination.setDisease(null);
 		}else {

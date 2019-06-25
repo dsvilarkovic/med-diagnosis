@@ -135,4 +135,20 @@ public class AdditionalCheckupsPanel extends JPanel {
 		
 		return resultList;
 	}
+	
+	public List<String> getAllAdditionalCheckupsList() {
+		List<String> resultList = new ArrayList<String>();
+		
+		for(int i=0; i< chosenAdditionalCheckups.getTableModel().getRowCount();i++) {
+			Vector v = chosenAdditionalCheckups.getTableModel().getRow(i);
+			if(v.get(3).equals("not normal")) {
+				resultList.add((String)v.get(0) + "_not_good");
+			}else {
+				resultList.add((String)v.get(0) + "_good");
+			}
+		}
+		
+		
+		return resultList;
+	}
 }
