@@ -85,7 +85,7 @@ public class SearchRecordPanel extends JPanel {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
 				Integer recordNumber = (Integer) recordsTableHandler.getTableModel().getValueAt(modelRow, 0);
-				MedicalRecord medicalRecord = rdf.getMedicalRecordById(recordNumber);
+				MedicalRecord medicalRecord = rdf.getMedicalRecord(recordNumber);
 				Singleton.getInstance().getMainFrame().setCentralPanel(new PatientRecordPanel(medicalRecord));
 
 			}

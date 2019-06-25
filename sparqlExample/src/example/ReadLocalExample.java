@@ -3,7 +3,9 @@ package example;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -16,6 +18,9 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+
+import model.Allergy;
+import model.MedicalRecord;
 
 public class ReadLocalExample {
 	
@@ -32,33 +37,11 @@ public class ReadLocalExample {
 			e.printStackTrace();
 		}
         
-		for (int i = 1; i <= 2; i++) {
-			System.out.println("Pacijent==========================================");
-			System.out.println("Osnovne informacije:==========================================");
-			getMedicalRecord(model, i);		
-			System.out.println("Alergije:==========================================");
-			getAllergies(model, i);		
-			System.out.println("Simptomi===========================================");
-			getSymptoms(model, i);	
-			
-			System.out.println("Fizikalni pregledi");
-			getPhysicalTreatments(model, i);
-			
-			System.out.println("Dodatni pregledi");
-			getAdditionalProceduresResult(model, i);
-			
-			System.out.println("Terapije");
-			getTherapies(model, i);
-			
-			System.out.println("Preventivni pregledi");
-			getPreventionTreatments(model, i);
-			
-			System.out.println("Dijagnoza");
-			getDiagnosis(model, i);
-			
-			System.out.println("Kraj pacijentskog pregleda=======================================");
-			
+		List<MedicalRecord> medicalRecords = getAllMedicalRecords();
+		for (MedicalRecord medicalRecord : medicalRecords) {
+			System.err.println(medicalRecord);
 		}
+		
 	}
 	
 	private static void getTherapies(Model model, int i) {
@@ -158,32 +141,6 @@ public class ReadLocalExample {
 				
 	}
 
-	private static void getAllergies(Model model, int i) {
-		String patient = "Patient" + i;
-		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"prefix : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"select ?allergy\r\n" + 
-				"WHERE \r\n" + 
-				"{\r\n" + 
-				"  :%s a med_diag:Patient;\r\n" + 
-				"                    med_diag:medicalRecord ?medicalRecord.\r\n" + 
-				"  ?medicalRecord med_diag:allergies ?allergy_list.\r\n" + 
-				"  ?allergy_list med_diag:allergy ?allergy.\r\n" + 
-				"}", patient);
-		
-		Query query = QueryFactory.create(queryString) ;
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		ResultSet results = qexec.execSelect() ;
-		List<String> allergyList = new ArrayList<String>();
-		while (results.hasNext()) {
-			QuerySolution solution = results.nextSolution();
-			Literal literal = solution.getLiteral("allergy");
-			allergyList.add(literal.toString());		
-		}		
-		System.out.println(allergyList);
-				
-	}
-
 	private static void getPhysicalTreatments(Model model, int i) {
 		String patient = "Patient" + i;
 		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
@@ -234,53 +191,168 @@ public class ReadLocalExample {
 		System.out.println(symptomList);
 	}
 
-	private static void getMedicalRecord(Model model, int i) {
-		String patient = "Patient" + i;
-		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"prefix : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"select ?patientId ?medicalRecordNumber ?firstName ?lastName ?jmbg ?address ?phoneNumber ?yearOfBirth\r\n" + 
-				"WHERE\r\n" + 
-				"{\r\n" + 
-				"  :%s a med_diag:Patient;\r\n" + 
-				"                    med_diag:medicalRecord ?medicalRecord.\r\n" + 
-				"  ?medicalRecord med_diag:id ?patientId;\r\n" + 
-				"                 med_diag:yearOfBirth ?yearOfBirth;  \r\n" + 
-				"                 med_diag:gender ?gender;\r\n" + 
-				"                 med_diag:medicalRecordNumber ?medicalRecordNumber;\r\n" + 
-				"                 med_diag:firstName ?firstName;\r\n" + 
-				"                 med_diag:lastName ?lastName;\r\n" + 
-				"                 med_diag:jmbg ?jmbg;\r\n" + 
-				"                 med_diag:address ?address;\r\n" + 
-				"                 med_diag:phoneNumber ?phoneNumber;\r\n" + 
-				"                        \r\n" + 
-				"}", patient);
+	
+	// TODO: novo
+	  /**
+     * Vraca listu svih medicinskih kartona/pacijenata koji postoje u bazi
+     * @return
+     */
+    public static List<MedicalRecord> getAllMedicalRecords(){
+    	List<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
+		Model model = ModelFactory.createDefaultModel();
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String queryString = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  ?subject med_diag:address ?address.\r\n" + 
+				"  ?subject med_diag:allergies ?allergies.\r\n" + 
+				"  ?subject med_diag:firstName ?firstName.\r\n" + 
+				"  ?subject med_diag:gender ?gender.\r\n" + 
+				"  ?subject med_diag:id ?id.\r\n" + 
+				"  ?subject med_diag:jmbg ?jmbg.\r\n" + 
+				"  ?subject med_diag:lastName ?lastName.\r\n" + 
+				"  ?subject med_diag:medicalRecordNumber ?medicalRecordNumber.\r\n" + 
+				"  ?subject med_diag:phoneNumber ?phoneNumber.\r\n" + 
+				"  ?subject med_diag:yearOfBirth ?yearOfBirth.\r\n" + 
+				"}");
 		
 		Query query = QueryFactory.create(queryString) ;
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 		ResultSet results = qexec.execSelect() ;
 		while (results.hasNext()) {
 			QuerySolution solution = results.nextSolution();
-			Literal literal = solution.getLiteral("patientId");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("medicalRecordNumber");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("firstName");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("lastName");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("jmbg");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("address");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("phoneNumber");
-			System.out.println(literal.getString());
-			literal = solution.getLiteral("yearOfBirth");
-			System.out.println(literal.getString());
 			
-		}		
+			MedicalRecord medicalRecord = new MedicalRecord();
+			
+			Literal literal = solution.getLiteral("id");
+			medicalRecord.setId(Integer.parseInt(literal.toString()));
+			literal = solution.getLiteral("medicalRecordNumber");
+			medicalRecord.setMedicalRecordNumber(literal.getString());
+			
+			literal = solution.getLiteral("firstName");
+			medicalRecord.setFirstName(literal.getString());
+			literal = solution.getLiteral("lastName");
+			medicalRecord.setLastName(literal.getString());
+			literal = solution.getLiteral("jmbg");
+			medicalRecord.setJmbg(literal.getString());
+			literal = solution.getLiteral("address");
+			medicalRecord.setAddress(literal.getString());
+			literal = solution.getLiteral("phoneNumber");
+			medicalRecord.setPhoneNumber(literal.getString());
+			literal = solution.getLiteral("yearOfBirth");
+			medicalRecord.setYearOfBirth(Integer.parseInt(literal.getString()));
+			
+			literal = solution.getLiteral("gender");
+			Boolean isFemale = literal.getString().equals("female") ? true: false;
+			medicalRecord.setFemale(isFemale);
+
+			//TODO alergije
+			medicalRecord.setAllergies(getAllergies(model, medicalRecord.getId()));
+			
+			medicalRecords.add(medicalRecord);
+			
+		}
+    	
+    	return medicalRecords;
+    }
+
+    
+    //TODO : novo
+    
+	private MedicalRecord getMedicalRecord(Model model, int medicalRecordId) {
+
+		String queryString = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  ?subject med_diag:address ?address.\r\n" + 
+				"  ?subject med_diag:allergies ?allergies.\r\n" + 
+				"  ?subject med_diag:firstName ?firstName.\r\n" + 
+				"  ?subject med_diag:gender ?gender.\r\n" + 
+				"  ?subject med_diag:id \"%d\".\r\n" + 
+				"  ?subject med_diag:jmbg ?jmbg.\r\n" + 
+				"  ?subject med_diag:lastName ?lastName.\r\n" + 
+				"  ?subject med_diag:medicalRecordNumber ?medicalRecordNumber.\r\n" + 
+				"  ?subject med_diag:phoneNumber ?phoneNumber.\r\n" + 
+				"  ?subject med_diag:yearOfBirth ?yearOfBirth.\r\n" + 
+				"}", medicalRecordId);
+		
+		
+		Query query = QueryFactory.create(queryString) ;
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		ResultSet results = qexec.execSelect() ;
+		MedicalRecord medicalRecord = new MedicalRecord();
+		while (results.hasNext()) {
+			QuerySolution solution = results.nextSolution();
+			medicalRecord.setId(medicalRecordId);
+			Literal literal = solution.getLiteral("medicalRecordNumber");
+			medicalRecord.setMedicalRecordNumber(literal.getString());
+			
+			literal = solution.getLiteral("firstName");
+			medicalRecord.setFirstName(literal.getString());
+			literal = solution.getLiteral("lastName");
+			medicalRecord.setLastName(literal.getString());
+			literal = solution.getLiteral("jmbg");
+			medicalRecord.setJmbg(literal.getString());
+			literal = solution.getLiteral("address");
+			medicalRecord.setAddress(literal.getString());
+			literal = solution.getLiteral("phoneNumber");
+			medicalRecord.setPhoneNumber(literal.getString());
+			literal = solution.getLiteral("yearOfBirth");
+			medicalRecord.setYearOfBirth(Integer.parseInt(literal.getString()));
+			
+			literal = solution.getLiteral("gender");
+			Boolean isFemale = literal.getString().equals("female") ? true: false;
+			medicalRecord.setFemale(isFemale);
+
+			//TODO alergije
+			medicalRecord.setAllergies(getAllergies(model, medicalRecord.getId()));
+			
+			
+		}	
+		return medicalRecord;
 	}
 
+	
+	/**
+	 * Funkcija za vracanje alergija jednog medicinskog karton-a
+	 * @param model - rdf model baze
+	 * @param medicalRecordId - id medicinskog kartona
+	 * @return 
+	 */
+	public static Set<Allergy> getAllergies(Model model, Integer medicalRecordId){
+		Set<Allergy> allergies = new HashSet<Allergy>();
+		
+		String query = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  med_diag:Allergies%d med_diag:allergy ?allergy.\r\n" + 
+				"}", medicalRecordId);
+		
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		ResultSet results = qexec.execSelect() ;
 
-
+		while (results.hasNext()) {
+			QuerySolution solution = results.nextSolution();
+			Allergy allergy = new Allergy();
+			Literal literal = solution.getLiteral("allergy");
+			allergy.setName(literal.toString());
+			
+			allergies.add(allergy);
+		}
+		
+		
+		return allergies;		
+	}
+	
+	
+	
 	
 }

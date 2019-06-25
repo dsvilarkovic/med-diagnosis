@@ -119,7 +119,10 @@ public class MedicalRecord implements CaseComponent {
 
 	@Override
 	public String toString() {
-		return "MedicalRecord [id=" + id + ", firstName=" + firstName
+		String toString = "MedicalRecord [id=" + id + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", yearOfBirth=" + yearOfBirth + ", female=" + female +"]";
+		toString += "allergies: " + allergies;
+		
+		return toString;
 	}
 }

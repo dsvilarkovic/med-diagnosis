@@ -70,7 +70,6 @@ public class BayesNetModule {
 		algorithm.setNetwork(net);
 		algorithm.run();
 		
-		//TODO: prvo anuliraj sve simptome, tj stavi "Ne"
 		List<String> listaSvihSimptoma = getAllSymptoms();
 		for (String symptom : listaSvihSimptoma) {
 			ProbabilisticNode factNode = (ProbabilisticNode)net.getNode(symptom);

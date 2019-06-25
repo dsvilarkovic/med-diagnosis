@@ -47,103 +47,79 @@ public class RdfConnector implements Connector{
     static String rdfURI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
     
-    public MedicalRecord getMedicalRecordById(Integer medicalRecordId) {
-    	MedicalRecord foundMedicalRecord = null;
-		Model model = ModelFactory.createDefaultModel();
-        
-		try {
-			InputStream is = new FileInputStream(inputFileName);
-			RDFDataMgr.read(model, is, Lang.TURTLE);
-			is.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		int n = getPatientCount(model);
-		for (int i = 1; i <= n; i++) {
-			MedicalExamination caseDescription = new MedicalExamination();
-			
-			MedicalRecord medicalRecord = getMedicalRecord(model, i);
-			Set<Allergy> allergies = getAllergies(model, i);
-			medicalRecord.setAllergies(allergies);
-			
-			Set<Symptom> simptomi= getSymptoms(model, i);
-			Set<PhysicalExaminationResult> fizikalniPregledi= getPhysicalTreatments(model, i);
-			Set<AdditionalExaminationResult> dodatniPregledi= getAdditionalProceduresResult(model, i);
-			Set<Therapy> terapije= getTherapies(model, i);
-			Set<PreventiveExamination> preventivniPregledi = getPreventionTreatments(model, i);
-			Disease disease = getDiagnosis(model, i);
-		
-			caseDescription.setSymptoms(simptomi);
-			caseDescription.setPhysicalExaminationResults(fizikalniPregledi);
-			caseDescription.setAdditionalExaminationResults(dodatniPregledi);
-			caseDescription.setTherapies(terapije);
-			caseDescription.setPreventiveExaminations(preventivniPregledi);
-			
-			//dodati alergije, dijagnozu i sliku
-			caseDescription.setMedicalRecord(medicalRecord);
-			caseDescription.setDisease(disease);
-			
-	
-			if(medicalRecord.getId() == medicalRecordId) {
-				foundMedicalRecord = medicalRecord;
-			}
-		
-		}
-		
-		return foundMedicalRecord;
-    }
-    /**
-     * Vraca listu svih medicinskih kartona/pacijenata koji postoje u bazi
-     * @return
-     */
-    public List<MedicalRecord> getAllMedicalRecords(){
-    	List<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
-		Model model = ModelFactory.createDefaultModel();
-        
-		try {
-			InputStream is = new FileInputStream(inputFileName);
-			RDFDataMgr.read(model, is, Lang.TURTLE);
-			is.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		int n = getPatientCount(model);
 
-		for (int i = 1; i <= n; i++) {
-			MedicalExamination caseDescription = new MedicalExamination();
-			
-			MedicalRecord medicalRecord = getMedicalRecord(model, i);
-			Set<Allergy> allergies = getAllergies(model, i);
-			medicalRecord.setAllergies(allergies);
-			
-			Set<Symptom> simptomi= getSymptoms(model, i);
-			Set<PhysicalExaminationResult> fizikalniPregledi= getPhysicalTreatments(model, i);
-			Set<AdditionalExaminationResult> dodatniPregledi= getAdditionalProceduresResult(model, i);
-			Set<Therapy> terapije= getTherapies(model, i);
-			Set<PreventiveExamination> preventivniPregledi = getPreventionTreatments(model, i);
-			Disease disease = getDiagnosis(model, i);
-			
-			caseDescription.setSymptoms(simptomi);
-			caseDescription.setPhysicalExaminationResults(fizikalniPregledi);
-			caseDescription.setAdditionalExaminationResults(dodatniPregledi);
-			caseDescription.setTherapies(terapije);
-			caseDescription.setPreventiveExaminations(preventivniPregledi);
-			
-			//dodati alergije, dijagnozu i sliku
-			caseDescription.setMedicalRecord(medicalRecord);
-			caseDescription.setDisease(disease);
-			
-	
-			if(medicalRecords.contains(medicalRecord) == false) {
-				medicalRecords.add(medicalRecord);
-			}
+
+	// TODO: novo, ispravljena stara verzija
+	  /**
+   * Vraca listu svih medicinskih kartona/pacijenata koji postoje u bazi
+   * @return
+   */
+  public static List<MedicalRecord> getAllMedicalRecords(){
+  	List<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
+		Model model = ModelFactory.createDefaultModel();
+      
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		}	
-    	
-    	return medicalRecords;
-    }
+		String queryString = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  ?subject med_diag:address ?address.\r\n" + 
+				"  ?subject med_diag:allergies ?allergies.\r\n" + 
+				"  ?subject med_diag:firstName ?firstName.\r\n" + 
+				"  ?subject med_diag:gender ?gender.\r\n" + 
+				"  ?subject med_diag:id ?id.\r\n" + 
+				"  ?subject med_diag:jmbg ?jmbg.\r\n" + 
+				"  ?subject med_diag:lastName ?lastName.\r\n" + 
+				"  ?subject med_diag:medicalRecordNumber ?medicalRecordNumber.\r\n" + 
+				"  ?subject med_diag:phoneNumber ?phoneNumber.\r\n" + 
+				"  ?subject med_diag:yearOfBirth ?yearOfBirth.\r\n" + 
+				"}");
+		
+		Query query = QueryFactory.create(queryString) ;
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		ResultSet results = qexec.execSelect() ;
+		while (results.hasNext()) {
+			QuerySolution solution = results.nextSolution();
+			
+			MedicalRecord medicalRecord = new MedicalRecord();
+			
+			Literal literal = solution.getLiteral("id");
+			medicalRecord.setId(Integer.parseInt(literal.toString()));
+			literal = solution.getLiteral("medicalRecordNumber");
+			medicalRecord.setMedicalRecordNumber(literal.getString());
+			
+			literal = solution.getLiteral("firstName");
+			medicalRecord.setFirstName(literal.getString());
+			literal = solution.getLiteral("lastName");
+			medicalRecord.setLastName(literal.getString());
+			literal = solution.getLiteral("jmbg");
+			medicalRecord.setJmbg(literal.getString());
+			literal = solution.getLiteral("address");
+			medicalRecord.setAddress(literal.getString());
+			literal = solution.getLiteral("phoneNumber");
+			medicalRecord.setPhoneNumber(literal.getString());
+			literal = solution.getLiteral("yearOfBirth");
+			medicalRecord.setYearOfBirth(Integer.parseInt(literal.getString()));
+			
+			literal = solution.getLiteral("gender");
+			Boolean isFemale = literal.getString().equals("female") ? true: false;
+			medicalRecord.setFemale(isFemale);
+
+			//TODO alergije
+			medicalRecord.setAllergies(getAllergies(model, medicalRecord.getId()));
+			
+			medicalRecords.add(medicalRecord);
+			
+		}
+  	
+  	return medicalRecords;
+  }
 
     /**
      * Vraca listu svih pregleda koji postoje za nekog pacijenta po {@code medicalRecordId}
@@ -166,7 +142,8 @@ public class RdfConnector implements Connector{
 		for (int i = 1; i <= n; i++) {
 			MedicalExamination caseDescription = new MedicalExamination();
 			
-			MedicalRecord medicalRecord = getMedicalRecord(model, i);
+			caseDescription.setId(i);
+			MedicalRecord medicalRecord = getMedicalRecordByPatientId(i);
 			Set<Allergy> allergies = getAllergies(model, i);
 			medicalRecord.setAllergies(allergies);
 			
@@ -215,7 +192,7 @@ public class RdfConnector implements Connector{
 			CBRCase cbrCase = new CBRCase();
 			MedicalExamination caseDescription = new MedicalExamination();
 			
-			MedicalRecord medicalRecord = getMedicalRecord(model, i);
+			MedicalRecord medicalRecord = getMedicalRecordByPatientId(i);
 			Set<Allergy> allergies = getAllergies(model, i);
 			medicalRecord.setAllergies(allergies);
 			
@@ -276,26 +253,37 @@ public class RdfConnector implements Connector{
 		
 	}
 	
-	private MedicalRecord getMedicalRecord(Model model, int i) {
-		String patient = "Patient" + i;
-		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"prefix : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"select ?patientId ?medicalRecordNumber ?firstName ?gender ?lastName ?jmbg ?address ?phoneNumber ?yearOfBirth\r\n" + 
-				"WHERE\r\n" + 
-				"{\r\n" + 
-				"  :%s a med_diag:Patient;\r\n" + 
-				"                    med_diag:medicalRecord ?medicalRecord.\r\n" + 
-				"  ?medicalRecord med_diag:id ?patientId;\r\n" + 
-				"                 med_diag:yearOfBirth ?yearOfBirth;  \r\n" + 
-				"                 med_diag:gender ?gender;\r\n" + 
-				"                 med_diag:medicalRecordNumber ?medicalRecordNumber;\r\n" + 
-				"                 med_diag:firstName ?firstName;\r\n" + 
-				"                 med_diag:lastName ?lastName;\r\n" + 
-				"                 med_diag:jmbg ?jmbg;\r\n" + 
-				"                 med_diag:address ?address;\r\n" + 
-				"                 med_diag:phoneNumber ?phoneNumber;\r\n" + 
-				"                        \r\n" + 
-				"}", patient);
+    //TODO : novo i kvalitetno
+    
+	public static MedicalRecord getMedicalRecord(int medicalRecordId) {
+
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("", resourceURI);
+		model.setNsPrefix("med_diag", resourceURI + "#");
+		model.setNsPrefix("rdf", rdfURI);
+
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String queryString = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  ?subject med_diag:address ?address.\r\n" + 
+				"  ?subject med_diag:allergies ?allergies.\r\n" + 
+				"  ?subject med_diag:firstName ?firstName.\r\n" + 
+				"  ?subject med_diag:gender ?gender.\r\n" + 
+				"  ?subject med_diag:id \"%d\".\r\n" + 
+				"  ?subject med_diag:jmbg ?jmbg.\r\n" + 
+				"  ?subject med_diag:lastName ?lastName.\r\n" + 
+				"  ?subject med_diag:medicalRecordNumber ?medicalRecordNumber.\r\n" + 
+				"  ?subject med_diag:phoneNumber ?phoneNumber.\r\n" + 
+				"  ?subject med_diag:yearOfBirth ?yearOfBirth.\r\n" + 
+				"}", medicalRecordId);
 		
 		
 		Query query = QueryFactory.create(queryString) ;
@@ -304,9 +292,8 @@ public class RdfConnector implements Connector{
 		MedicalRecord medicalRecord = new MedicalRecord();
 		while (results.hasNext()) {
 			QuerySolution solution = results.nextSolution();
-			Literal literal = solution.getLiteral("patientId");
-			medicalRecord.setId(Integer.parseInt(literal.getString()));
-			literal = solution.getLiteral("medicalRecordNumber");
+			medicalRecord.setId(medicalRecordId);
+			Literal literal = solution.getLiteral("medicalRecordNumber");
 			medicalRecord.setMedicalRecordNumber(literal.getString());
 			
 			literal = solution.getLiteral("firstName");
@@ -326,11 +313,15 @@ public class RdfConnector implements Connector{
 			Boolean isFemale = literal.getString().equals("female") ? true: false;
 			medicalRecord.setFemale(isFemale);
 
+			//TODO alergije
+			medicalRecord.setAllergies(getAllergies(model, medicalRecord.getId()));
+			
 			
 		}	
 		return medicalRecord;
 	}
 
+	// TODO: ovo je ok 
 	private Set<PhysicalExaminationResult> getPhysicalTreatments(Model model, int i) {
 		Set<PhysicalExaminationResult> physicalExaminationResults = new HashSet<PhysicalExaminationResult>();
 		String patient = "Patient" + i;
@@ -359,6 +350,7 @@ public class RdfConnector implements Connector{
 				
 	}
 	
+	// TODO: ovo je ok
 	private Set<Symptom> getSymptoms(Model model, int i) {
 		Set<model.Symptom> symptoms = new HashSet<model.Symptom>();
 		
@@ -386,6 +378,7 @@ public class RdfConnector implements Connector{
 		return symptoms;
 	}
 	
+	// TODO: ovo je ok
 	private Set<AdditionalExaminationResult> getAdditionalProceduresResult(Model model, int i) {
 		Set<AdditionalExaminationResult> additionalExaminationResults =  new HashSet<AdditionalExaminationResult>();
 		String patient = "Patient" + i;
@@ -417,6 +410,7 @@ public class RdfConnector implements Connector{
 	}
 	
 	
+	// TODO: ovo je ok
 	private Set<Therapy> getTherapies(Model model, int i) {
 		Set<Therapy> therapies= new HashSet<Therapy>();
 		String patient = "Patient" + i;
@@ -445,6 +439,7 @@ public class RdfConnector implements Connector{
 		return therapies;
 	}
 	
+	// TODO: ovo je ok
 	private Disease getDiagnosis(Model model, int i) {
 		String patient = "Patient" + i;
 		String queryString = String.format("\r\n" + 
@@ -469,34 +464,41 @@ public class RdfConnector implements Connector{
 		return disease;
 	}
 	
-	private Set<Allergy> getAllergies(Model model, int i) {
-		String patient = "Patient" + i;
-		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"prefix : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
-				"select ?allergy\r\n" + 
-				"WHERE \r\n" + 
-				"{\r\n" + 
-				"  :%s a med_diag:Patient;\r\n" + 
-				"                    med_diag:medicalRecord ?medicalRecord.\r\n" + 
-				"  ?medicalRecord med_diag:allergies ?allergy_list.\r\n" + 
-				"  ?allergy_list med_diag:allergy ?allergy.\r\n" + 
-				"}", patient);
+	
+	// TODO: novo i kvalitetno
+	/**
+	 * Funkcija za vracanje alergija jednog medicinskog karton-a
+	 * @param model - rdf model baze
+	 * @param medicalRecordId - id medicinskog kartona
+	 * @return 
+	 */
+	public static Set<Allergy> getAllergies(Model model, Integer medicalRecordId){
+		Set<Allergy> allergies = new HashSet<Allergy>();
 		
-		Query query = QueryFactory.create(queryString) ;
+		String query = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  med_diag:Allergies%d med_diag:allergy ?allergy.\r\n" + 
+				"}", medicalRecordId);
+		
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 		ResultSet results = qexec.execSelect() ;
-		Set<Allergy> allergies= new HashSet<Allergy>();
+
 		while (results.hasNext()) {
 			QuerySolution solution = results.nextSolution();
-			Literal literal = solution.getLiteral("allergy");
 			Allergy allergy = new Allergy();
-			allergy.setName(literal.getString());
+			Literal literal = solution.getLiteral("allergy");
+			allergy.setName(literal.toString());
+			
 			allergies.add(allergy);
-		}		
+		}
 		
-		return allergies;
+		
+		return allergies;		
 	}
 	
+	
+	// TODO: ovo je ok
 	private Set<PreventiveExamination> getPreventionTreatments(Model model, int i) {
 		String patient = "Patient" + i;
 		String queryString = String.format("prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
@@ -524,6 +526,11 @@ public class RdfConnector implements Connector{
 		return preventiveExaminations;		
 	}
 
+	/**
+	 * Daje broj pregleda obavljenih
+	 * @param model
+	 * @return
+	 */
 	public Integer getPatientCount(Model model) {
 		String queryString = "\r\n" + 
 				"PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
@@ -608,35 +615,35 @@ public class RdfConnector implements Connector{
 
 		//Napravi resurs medicinski karton
 		//Provera da li postoji medicinski karton nije potrebno vrsiti, RDF to sam resi
-		Resource medicalRecordResource = model.createResource(resourceURI + "#MedicalRecord" + i);
 		
-		Property medicalRecordIdProperty = model.createProperty(resourceURI + "#id");
-		Property yearOfBirth = model.createProperty(resourceURI + "#yearOfBirth");
-		Property gender = model.createProperty(resourceURI + "#gender");
-		Property medicalRecordNumber = model.createProperty(resourceURI + "#medicalRecordNumber");
-		Property firstName = model.createProperty(resourceURI + "#firstName");
-		Property lastName = model.createProperty(resourceURI + "#lastName");
-		Property jmbg = model.createProperty(resourceURI + "#jmbg");
-		Property address = model.createProperty(resourceURI + "#address");
-		Property phoneNumber = model.createProperty(resourceURI + "#phoneNumber");
-		Property allergies = model.createProperty(resourceURI + "#allergies");
-		
-		
-		//TODO: ovde je nekada bila po meni problematicna linija
-		//MedicalRecord medicalRecord = new MedicalRecord();
 		MedicalRecord medicalRecord = medicalExamination.getMedicalRecord();
+		Resource medicalRecordResource = model.createResource(resourceURI + "#MedicalRecord" + medicalRecord.getId());
+		
+//		Property medicalRecordIdProperty = model.createProperty(resourceURI + "#id");
+//		Property yearOfBirth = model.createProperty(resourceURI + "#yearOfBirth");
+//		Property gender = model.createProperty(resourceURI + "#gender");
+//		Property medicalRecordNumber = model.createProperty(resourceURI + "#medicalRecordNumber");
+//		Property firstName = model.createProperty(resourceURI + "#firstName");
+//		Property lastName = model.createProperty(resourceURI + "#lastName");
+//		Property jmbg = model.createProperty(resourceURI + "#jmbg");
+//		Property address = model.createProperty(resourceURI + "#address");
+//		Property phoneNumber = model.createProperty(resourceURI + "#phoneNumber");
+//		Property allergies = model.createProperty(resourceURI + "#allergies");
 		
 		
-		medicalRecordResource.addProperty(medicalRecordIdProperty, Integer.toString(medicalExamination.getMedicalRecord().getId()));
-		medicalRecordResource.addProperty(yearOfBirth, Integer.toString(medicalExamination.getMedicalRecord().getYearOfBirth()));
-		medicalRecordResource.addProperty(gender, medicalRecord.isFemale() ? "female" : "male");
-		medicalRecordResource.addProperty(medicalRecordNumber, medicalRecord.getMedicalRecordNumber());
-		medicalRecordResource.addProperty(firstName, medicalRecord.getFirstName());
-		medicalRecordResource.addProperty(lastName, medicalRecord.getLastName());
-		medicalRecordResource.addProperty(jmbg, medicalRecord.getJmbg());
-		medicalRecordResource.addProperty(address, medicalRecord.getAddress());
-		medicalRecordResource.addProperty(phoneNumber, medicalRecord.getPhoneNumber());
-		medicalRecordResource.addProperty(allergies, allergyResource);
+//		MedicalRecord medicalRecord = medicalExamination.getMedicalRecord();
+//		
+//		
+//		medicalRecordResource.addProperty(medicalRecordIdProperty, Integer.toString(medicalExamination.getMedicalRecord().getId()));
+//		medicalRecordResource.addProperty(yearOfBirth, Integer.toString(medicalExamination.getMedicalRecord().getYearOfBirth()));
+//		medicalRecordResource.addProperty(gender, medicalRecord.isFemale() ? "female" : "male");
+//		medicalRecordResource.addProperty(medicalRecordNumber, medicalRecord.getMedicalRecordNumber());
+//		medicalRecordResource.addProperty(firstName, medicalRecord.getFirstName());
+//		medicalRecordResource.addProperty(lastName, medicalRecord.getLastName());
+//		medicalRecordResource.addProperty(jmbg, medicalRecord.getJmbg());
+//		medicalRecordResource.addProperty(address, medicalRecord.getAddress());
+//		medicalRecordResource.addProperty(phoneNumber, medicalRecord.getPhoneNumber());
+//		medicalRecordResource.addProperty(allergies, allergyResource);
 		
 		//Napravi resurs simptomi
 	    Resource symptomListResource = model.createResource(resourceURI + "#Sym" + i);
@@ -698,6 +705,7 @@ public class RdfConnector implements Connector{
 	    Property diagnosisProperty = model.createProperty(resourceURI + "#diagnosis");
 	    Property therapiesProperty = model.createProperty(resourceURI + "#therapies");
 	    Property preventionTreatmentsProperty = model.createProperty(resourceURI + "#prevention_treatments");
+	  
 
 	    //napravi dijagnozu
 	    //Resource diagnosisResource = model.createResource(resourceURI + "#parkinsons_disease");
@@ -709,7 +717,6 @@ public class RdfConnector implements Connector{
 	    patientResource.addProperty(diagnosisProperty, medicalExamination.getDisease().getName());
 	    patientResource.addProperty(therapiesProperty, therapyListResource);
 	    patientResource.addProperty(preventionTreatmentsProperty, preventionListResource);
-	    
 	    
 		try {
 			OutputStream os = new FileOutputStream(inputFileName);
@@ -795,7 +802,12 @@ public class RdfConnector implements Connector{
 		}
 	}
 	
-	
+	//TODO: ovo je ok
+	/**
+	 * 
+	 * @param i - broj pacijenta, mora se dodeliti
+	 * @param medicalRecord
+	 */
 	public void createMedicalRecord(Integer i, MedicalRecord medicalRecord) {
 		
 		Model model = ModelFactory.createDefaultModel();
@@ -868,7 +880,14 @@ public class RdfConnector implements Connector{
 
 	}
 	
-	public void updateMedicalRecord(MedicalRecord medicalRecord) {
+	/**
+	 * Za updateovanje medicinskog kartona
+	 * @param medicalRecordId
+	 * @param medicalRecord
+	 */
+	
+	//TODO novo i kvalitetno
+	public static void updateMedicalRecord(MedicalRecord medicalRecord) {
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefix("", resourceURI);
 		model.setNsPrefix("med_diag", resourceURI + "#");
@@ -883,7 +902,40 @@ public class RdfConnector implements Connector{
 			e.printStackTrace();
 		}
 		
+		
 		Integer i = medicalRecord.getId();
+		
+		
+		//prvo obrisi sve vezano za karton
+		String deleteString = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"delete\r\n" + 
+				"where{  \r\n" + 
+				"  ?subject med_diag:address ?address.\r\n" + 
+				"  ?subject med_diag:allergies ?allergies.\r\n" + 
+				"  ?subject med_diag:firstName ?firstName.\r\n" + 
+				"  ?subject med_diag:gender ?gender.\r\n" + 
+				"  ?subject med_diag:id \"%d\".\r\n" + 
+				"  ?subject med_diag:jmbg ?jmbg.\r\n" + 
+				"  ?subject med_diag:lastName ?lastName.\r\n" + 
+				"  ?subject med_diag:medicalRecordNumber ?medicalRecordNumber.\r\n" + 
+				"  ?subject med_diag:phoneNumber ?phoneNumber.\r\n" + 
+				"  ?subject med_diag:yearOfBirth ?yearOfBirth.\r\n" + 
+				"  ?allergies ?predicate ?a.\r\n" + 
+				"}\r\n" + 
+				"", i);
+		
+		UpdateAction.parseExecute(deleteString, model);
+		
+		
+		UpdateAction.parseExecute(deleteString, model);
+		
+		try {
+			OutputStream os = new FileOutputStream(inputFileName);
+			RDFDataMgr.write(os, model, Lang.TTL);
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		List<String> allergyList = new ArrayList<String>();
 		for (Allergy allergy : medicalRecord.getAllergies()){
@@ -937,5 +989,44 @@ public class RdfConnector implements Connector{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public MedicalRecord getMedicalRecordByPatientId(Integer patientId) {
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("", resourceURI);
+		model.setNsPrefix("med_diag", resourceURI + "#");
+		model.setNsPrefix("rdf", rdfURI);
+
+        
+		try {
+			InputStream is = new FileInputStream(inputFileName);
+			RDFDataMgr.read(model, is, Lang.TURTLE);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		MedicalRecord medicalRecord = null;
+		
+		String queryString = String.format("PREFIX   med_diag: <http://www.github.com/dsvilarkovic/med_diag#> PREFIX : <http://www.github.com/dsvilarkovic/med_diag#>\r\n" + 
+				"select *\r\n" + 
+				"where{  \r\n" + 
+				"  med_diag:Patient%d med_diag:medicalRecord ?object.\r\n" + 
+				"  ?object med_diag:id ?id.\r\n" + 
+				"}\r\n" + 
+				"", patientId);
+		
+		Query query = QueryFactory.create(queryString) ;
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		ResultSet results = qexec.execSelect() ;
+		while (results.hasNext()) {
+			QuerySolution solution = results.nextSolution();
+			
+			Literal literal = solution.getLiteral("id");
+			medicalRecord = getMedicalRecord(Integer.parseInt(literal.toString()));
+		}
+		return medicalRecord;		
+		
 	}
 }

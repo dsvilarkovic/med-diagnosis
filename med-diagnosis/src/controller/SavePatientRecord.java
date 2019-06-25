@@ -26,12 +26,15 @@ public class SavePatientRecord extends AbstractAction {
 		NewMedicalRecord newMedicalRecord  = (NewMedicalRecord) Singleton.getInstance().getMainFrame().getCentralPanel();
 		RdfConnector connector = new RdfConnector();
 		System.out.println(newMedicalRecord.getMedicalRecord());
+		// TODO: Vesna koristila, Dusan ispravio
 		int num = connector.getAllMedicalRecords().size() + 1;
-		newMedicalRecord.getMedicalRecord().setId(num);
-		if(newMedicalRecord.isEdit())
+		if(newMedicalRecord.isEdit()) {
 			connector.updateMedicalRecord(newMedicalRecord.getMedicalRecord());
-		else
+		}
+		else {
+			newMedicalRecord.getMedicalRecord().setId(num);
 			connector.createMedicalRecord(num, newMedicalRecord.getMedicalRecord());
+		}
 		JOptionPane.showMessageDialog(newMedicalRecord, "Medical record is saved", "Information", JOptionPane.PLAIN_MESSAGE);
 		Singleton.getInstance().getMainFrame().setCentralPanel(new SearchRecordPanel());
 	}
