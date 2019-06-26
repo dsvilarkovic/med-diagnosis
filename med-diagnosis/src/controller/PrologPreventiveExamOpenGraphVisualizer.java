@@ -28,7 +28,7 @@ public class PrologPreventiveExamOpenGraphVisualizer extends AbstractAction {
 		List<String> chosenTherapies = medicalExaminationPanel.getChosenTherapies();
 		
 		//izgenerisani preventivni pregledi
-		List<String> preventiveList = medicalExaminationPanel.getChosenPreventive();
+		List<String> preventiveList = medicalExaminationPanel.getSuggestedPreventive();
 		
 		if(!preventiveList.isEmpty()) {
 			//TODO: vizualizacija
