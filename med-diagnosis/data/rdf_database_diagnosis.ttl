@@ -4,259 +4,217 @@
 @prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#> .
 
 med_diag:T1  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "thiamine" , "mirtazapine" , "felodipine" .
+        med_diag:therapy  "riluzole" , "baclofen" .
 
 med_diag:Patient5  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
                 med_diag:Apr5 ;
         med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
-        med_diag:medicalRecord          med_diag:MedicalRecord3 ;
+        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
         med_diag:physical_treatments    med_diag:PhysT5 ;
         med_diag:prevention_treatments  med_diag:PrevT5 ;
         med_diag:symptoms               med_diag:Sym5 ;
         med_diag:therapies              med_diag:T5 .
 
+med_diag:PhysT6  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_aneurysm" , "examination_for_liver_function_changes" .
+
 med_diag:Allergies5  a  med_diag:Allergy_list .
 
-med_diag:PhysT6  a  med_diag:Physical_treatments .
-
-med_diag:MedicalRecord6
-        med_diag:address              "Adresa3" ;
-        med_diag:allergies            med_diag:Allergies6 ;
-        med_diag:firstName            "Ime3" ;
-        med_diag:gender               "female" ;
-        med_diag:id                   "6" ;
-        med_diag:jmbg                 "123456789" ;
-        med_diag:lastName             "Prezime3" ;
-        med_diag:medicalRecordNumber  "234567890" ;
-        med_diag:phoneNumber          "1251152512" ;
-        med_diag:yearOfBirth          "1965" .
-
-med_diag:Apr3  a  med_diag:Additional_procedures_results .
+med_diag:Apr3  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "hematologic_tests_good" , "ct_scan_good" .
 
 med_diag:T6  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "pramipexole_mirapex" , "donepezil_aricept" , "amantadine" .
+        med_diag:therapy  "midrin" , "riluzole" .
 
 med_diag:Sym4  a          med_diag:Symptom_list ;
-        med_diag:symptom  "problems_with_movement" , "weakness" , "focal_weakness" .
-
-med_diag:Apr8  a  med_diag:Additional_procedures_results .
+        med_diag:symptom  "nausea" , "neck_pain" , "neck_stiffness_or_tightness" , "headache" .
 
 med_diag:Patient4  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
                 med_diag:Apr4 ;
-        med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
+        med_diag:diagnosis              "tension_headache" ;
         med_diag:medicalRecord          med_diag:MedicalRecord3 ;
         med_diag:physical_treatments    med_diag:PhysT4 ;
         med_diag:prevention_treatments  med_diag:PrevT4 ;
         med_diag:symptoms               med_diag:Sym4 ;
         med_diag:therapies              med_diag:T4 .
 
-med_diag:MedicalRecord5
-        med_diag:address              "Adresa2" ;
-        med_diag:allergies            med_diag:Allergies5 ;
-        med_diag:firstName            "Ime2" ;
-        med_diag:gender               "female" ;
-        med_diag:id                   "5" ;
-        med_diag:jmbg                 "241522616" ;
-        med_diag:lastName             "Prezime2" ;
-        med_diag:medicalRecordNumber  "45326232363" ;
-        med_diag:phoneNumber          "555325261616" ;
-        med_diag:yearOfBirth          "2007" .
-
 med_diag:PhysT5  a  med_diag:Physical_treatments .
 
-med_diag:Allergies4  a  med_diag:Allergy_list .
+med_diag:Allergies4  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" , "antiepileptic_drug" , "sulfonamides" .
 
-med_diag:Apr2  a  med_diag:Additional_procedures_results .
+med_diag:Apr2  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" , "hematologic_tests_good" .
 
 med_diag:T5  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "donepezil_aricept" , "ubiquinone_q10" , "galantamine" , "quinine" , "creatine" , "dantrolene" , "mirtazapine" .
+        med_diag:therapy  "riluzole" , "ropinirole" .
 
 med_diag:Sym3  a          med_diag:Symptom_list ;
-        med_diag:symptom  "disturbance_of_memory" , "problems_with_movement" , "weakness" , "dizziness" , "abnormal_involuntary_movements" .
+        med_diag:symptom  "nausea" , "neck_pain" , "headache" .
 
-med_diag:Apr7  a  med_diag:Additional_procedures_results ;
-        med_diag:additional_procedures_result
-                "ct_scan_good" , "hematologic_tests_good" .
+med_diag:PrevT4  med_diag:prevention_treatment
+                "examination_for_brain_tumor" .
 
 med_diag:Patient3  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
                 med_diag:Apr3 ;
-        med_diag:diagnosis              "dementia" ;
+        med_diag:diagnosis              "tension_headache" ;
         med_diag:medicalRecord          med_diag:MedicalRecord3 ;
         med_diag:physical_treatments    med_diag:PhysT3 ;
         med_diag:prevention_treatments  med_diag:PrevT3 ;
         med_diag:symptoms               med_diag:Sym3 ;
         med_diag:therapies              med_diag:T3 .
 
-med_diag:Sym8  a  med_diag:Symptom_list .
-
 med_diag:MedicalRecord4
-        med_diag:address              "Adresa1" ;
+        med_diag:address              "adresa" ;
         med_diag:allergies            med_diag:Allergies4 ;
-        med_diag:firstName            "Ime1" ;
+        med_diag:firstName            "Neko ime" ;
         med_diag:gender               "female" ;
         med_diag:id                   "4" ;
-        med_diag:jmbg                 "12412516126" ;
-        med_diag:lastName             "Prezime1" ;
-        med_diag:medicalRecordNumber  "66462236" ;
-        med_diag:phoneNumber          "1252616" ;
+        med_diag:jmbg                 "122221455" ;
+        med_diag:lastName             "Neko prezime" ;
+        med_diag:medicalRecordNumber  "5" ;
+        med_diag:phoneNumber          "2323" ;
         med_diag:yearOfBirth          "1963" .
 
-med_diag:PhysT4  a  med_diag:Physical_treatments .
+med_diag:PhysT4  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_brain_tumor" .
 
 med_diag:Allergies3  a    med_diag:Allergy_list ;
-        med_diag:allergy  "nsaid" , "antiepileptic_drug" .
+        med_diag:allergy  "sulfonamides" , "antiepileptic_drug" .
 
-med_diag:Apr1  a  med_diag:Additional_procedures_results .
+med_diag:Apr1  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" .
 
 med_diag:T4  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "quinine" , "coal_tar_topical" , "ubiquinone_q10" , "creatine" , "fibrin_sealant_topical" , "beta_carotene" , "dantrolene" .
+        med_diag:therapy  "midrin" , "rizatriptan_maxalt" .
 
 med_diag:Sym2  a          med_diag:Symptom_list ;
-        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" , "weakness" , "problems_with_movement" , "disturbance_of_memory" .
+        med_diag:symptom  "abnormal_involuntary_movements" , "weakness" , "problems_with_movement" .
 
-med_diag:Patient8  a                    med_diag:Patient ;
-        med_diag:additional_procedures_results
-                med_diag:Apr8 ;
-        med_diag:diagnosis              "meningitis" ;
-        med_diag:medicalRecord          med_diag:MedicalRecord5 ;
-        med_diag:physical_treatments    med_diag:PhysT8 ;
-        med_diag:prevention_treatments  med_diag:PrevT8 ;
-        med_diag:symptoms               med_diag:Sym8 ;
-        med_diag:therapies              med_diag:T8 .
-
-med_diag:Allergies8  a  med_diag:Allergy_list .
+med_diag:PrevT3  med_diag:prevention_treatment
+                "examination_for_aneurysm" , "examination_for_brain_tumor" .
 
 med_diag:Apr6  a  med_diag:Additional_procedures_results ;
         med_diag:additional_procedures_result
-                "hematologic_tests_good" , "magnetic_resonance_imaging_good" , "ct_scan_good" .
+                "magnetic_resonance_imaging_good" .
 
 med_diag:Patient2  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
                 med_diag:Apr2 ;
-        med_diag:diagnosis              "multiple_sclerosis" ;
-        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
-        med_diag:patientId              "2" ;
+        med_diag:diagnosis              "parkinson_disease" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord2 ;
         med_diag:physical_treatments    med_diag:PhysT2 ;
         med_diag:prevention_treatments  med_diag:PrevT2 ;
         med_diag:symptoms               med_diag:Sym2 ;
         med_diag:therapies              med_diag:T2 .
 
-med_diag:Sym7  a          med_diag:Symptom_list ;
-        med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" .
-
 med_diag:MedicalRecord3
-        med_diag:address              "iojjoi" ;
+        med_diag:address              "Neka Adresa 3" ;
         med_diag:allergies            med_diag:Allergies3 ;
-        med_diag:firstName            "iiojioj" ;
+        med_diag:firstName            "Jovan" ;
         med_diag:gender               "female" ;
         med_diag:id                   "3" ;
-        med_diag:jmbg                 "USODdaou" ;
-        med_diag:lastName             "" ;
-        med_diag:medicalRecordNumber  "oijdaooi" ;
-        med_diag:phoneNumber          "ioioj" ;
-        med_diag:yearOfBirth          "1797" .
+        med_diag:jmbg                 "6543219873652" ;
+        med_diag:lastName             "Jovanovic" ;
+        med_diag:medicalRecordNumber  "3" ;
+        med_diag:phoneNumber          "321654" ;
+        med_diag:yearOfBirth          "1955" .
 
-med_diag:PhysT3  a  med_diag:Physical_treatments .
+med_diag:PhysT3  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_aneurysm" , "examination_for_brain_tumor" .
 
 med_diag:Allergies2  a    med_diag:Allergy_list ;
-        med_diag:allergy  "penicillin" , "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
+        med_diag:allergy  "antibiotic" .
 
 med_diag:T3  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "memantine_namenda" , "donepezil_aricept" , "rivastigmine_exelon" , "galantamine" , "mirtazapine" .
+        med_diag:therapy  "midrin" , "rizatriptan_maxalt" .
 
 med_diag:Sym1  a          med_diag:Symptom_list ;
-        med_diag:symptom  "disturbance_of_memory" , "problems_with_movement" , "weakness" , "dizziness" , "abnormal_involuntary_movements" .
+        med_diag:symptom  "problems_with_movement" , "weakness" , "abnormal_involuntary_movements" .
 
-med_diag:Patient7  a                    med_diag:Patient ;
-        med_diag:additional_procedures_results
-                med_diag:Apr7 ;
-        med_diag:diagnosis              "tension_headache" ;
-        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
-        med_diag:physical_treatments    med_diag:PhysT7 ;
-        med_diag:prevention_treatments  med_diag:PrevT7 ;
-        med_diag:symptoms               med_diag:Sym7 ;
-        med_diag:therapies              med_diag:T7 .
+med_diag:PrevT2  med_diag:prevention_treatment
+                "urologist_examination_for_bladder_problems" .
 
-med_diag:PhysT8  a  med_diag:Physical_treatments .
-
-med_diag:Allergies7  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
-
-med_diag:Apr5  a  med_diag:Additional_procedures_results .
+med_diag:Apr5  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" .
 
 med_diag:Patient1  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
                 med_diag:Apr1 ;
-        med_diag:diagnosis              "dementia" ;
+        med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
         med_diag:medicalRecord          med_diag:MedicalRecord1 ;
-        med_diag:patientId              "1" ;
         med_diag:physical_treatments    med_diag:PhysT1 ;
         med_diag:prevention_treatments  med_diag:PrevT1 ;
         med_diag:symptoms               med_diag:Sym1 ;
         med_diag:therapies              med_diag:T1 .
 
-med_diag:T8  a            med_diag:Prevention_treatments , med_diag:Therapies ;
-        med_diag:therapy  "cefuroxime" , "ceftriaxone" .
-
 med_diag:Sym6  a          med_diag:Symptom_list ;
         med_diag:symptom  "dizziness" , "abnormal_involuntary_movements" .
 
-med_diag:PhysT2  a  med_diag:Physical_treatments .
+med_diag:PhysT2  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "urologist_examination_for_bladder_problems" .
 
-med_diag:Allergies1  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
+med_diag:Allergies1  a  med_diag:Allergy_list .
 
 med_diag:MedicalRecord2
-        med_diag:address              "9310109" ;
+        med_diag:address              "Neka Adresa 2" ;
         med_diag:allergies            med_diag:Allergies2 ;
-        med_diag:firstName            "9090" ;
+        med_diag:firstName            "Milica" ;
         med_diag:gender               "female" ;
         med_diag:id                   "2" ;
-        med_diag:jmbg                 "90ed90d90" ;
-        med_diag:lastName             "j09" ;
-        med_diag:medicalRecordNumber  "90" ;
-        med_diag:phoneNumber          "cdoiaoij" ;
-        med_diag:yearOfBirth          "1797" .
+        med_diag:jmbg                 "987654321987" ;
+        med_diag:lastName             "Milinkovic" ;
+        med_diag:medicalRecordNumber  "2" ;
+        med_diag:phoneNumber          "3216" ;
+        med_diag:yearOfBirth          "1963" .
 
 med_diag:T2  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "oxybutynin" , "tizanidine" , "modafinil_provigil" .
+        med_diag:therapy  "pramipexole_mirapex" , "ropinirole" .
+
+med_diag:PrevT1  med_diag:prevention_treatment
+                "examination_for_gastrointestinal_conditions" , "examination_for_liver_function_changes" .
 
 med_diag:Patient6  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
                 med_diag:Apr6 ;
-        med_diag:diagnosis              "parkinson_disease" ;
-        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
+        med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord3 ;
         med_diag:physical_treatments    med_diag:PhysT6 ;
         med_diag:prevention_treatments  med_diag:PrevT6 ;
         med_diag:symptoms               med_diag:Sym6 ;
         med_diag:therapies              med_diag:T6 .
 
-med_diag:PhysT7  a  med_diag:Physical_treatments .
-
 med_diag:Allergies6  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
+        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" .
 
-med_diag:Apr4  a  med_diag:Additional_procedures_results .
-
-med_diag:T7  a            med_diag:Therapies , med_diag:Prevention_treatments ;
-        med_diag:therapy  "midrin" , "piroxicam" , "rizatriptan_maxalt" .
+med_diag:Apr4  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "hematologic_tests_good" , "magnetic_resonance_imaging_good" .
 
 med_diag:Sym5  a          med_diag:Symptom_list ;
-        med_diag:symptom  "abnormal_involuntary_movements" , "stiffness_all_over" , "disturbance_of_memory" .
+        med_diag:symptom  "abnormal_involuntary_movements" , "weakness" , "disturbance_of_memory" .
 
-med_diag:PhysT1  a  med_diag:Physical_treatments .
+med_diag:PhysT1  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_gastrointestinal_conditions" , "examination_for_liver_function_changes" .
 
 med_diag:MedicalRecord1
-        med_diag:address              "10kdocdapko" ;
+        med_diag:address              "Adresa 1" ;
         med_diag:allergies            med_diag:Allergies1 ;
-        med_diag:firstName            "DusanDusanDusan" ;
+        med_diag:firstName            "Petar" ;
         med_diag:gender               "female" ;
         med_diag:id                   "1" ;
-        med_diag:jmbg                 "909390" ;
-        med_diag:lastName             "DusanPDapo" ;
-        med_diag:medicalRecordNumber  "310913901390" ;
-        med_diag:phoneNumber          "Vuka VUka" ;
-        med_diag:yearOfBirth          "-9309074" .
+        med_diag:jmbg                 "123456789321" ;
+        med_diag:lastName             "Petrovic" ;
+        med_diag:medicalRecordNumber  "1" ;
+        med_diag:phoneNumber          "965874321" ;
+        med_diag:yearOfBirth          "1996" .
+
+med_diag:PrevT6  med_diag:prevention_treatment
+                "examination_for_aneurysm" , "examination_for_liver_function_changes" .

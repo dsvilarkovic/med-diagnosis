@@ -19,7 +19,7 @@ Upper extremity;disturbance_of_upper_extremity_sensation
 Lower extremity;disturbance_of_lower_extremity_sensation				
 Romberg's test;balance_problems							
 Reflexes					
-Reflexes testing;normal_reflexes,brisk_reflexes, decreased_reflexes 						
+Reflexes testing;normal_reflexes,brisk_reflexes,decreased_reflexes				
 Coordination and Gait					
 Movement testing;problems_with_movement				
 Coordination of movement testing;dysmetria 				

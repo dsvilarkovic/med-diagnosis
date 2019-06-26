@@ -39,6 +39,9 @@ public class PhysicalExaminationPanel extends JPanel {
 					SinglePhysicalExaminationPanel singlePhysicalExaminationPanel = null;
 					String[] parts2 = parts[1].split(",");
 					if (parts2.length > 1) {
+						for (int j = 0; j < parts2.length; j++) {
+							parts2[j] = parts2[j].trim();
+						}
 						singlePhysicalExaminationPanel = new TextPhysicalExaminationPanel(parts[0],parts2);
 					} else {
 						singlePhysicalExaminationPanel = new SliderPhysicalExaminationPanel(parts[0], parts[1]);
