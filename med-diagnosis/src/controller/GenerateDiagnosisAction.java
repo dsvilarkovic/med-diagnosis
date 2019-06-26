@@ -61,7 +61,7 @@ public class GenerateDiagnosisAction extends AbstractAction {
 				if(!map.containsKey(resultRecord.getDisease().getName()))
 					map.put(resultRecord.getDisease().getName(), (float)eval);
 				
-				System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
+				//System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
 			}
 		}
 		medicalExaminationPanel.generateDiagnosis(map);

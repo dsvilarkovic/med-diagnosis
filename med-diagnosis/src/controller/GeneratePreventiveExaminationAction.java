@@ -57,7 +57,7 @@ public class GeneratePreventiveExaminationAction extends AbstractAction {
 						suggestedExaminations.add(e.getName());
 				}
 				
-				System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
+				//System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
 			}
 		}
 

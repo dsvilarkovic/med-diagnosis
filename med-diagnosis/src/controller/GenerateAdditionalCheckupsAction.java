@@ -57,7 +57,7 @@ public class GenerateAdditionalCheckupsAction extends AbstractAction {
 					}
 						
 				}
-				System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
+				//System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
 			}
 		}
 		

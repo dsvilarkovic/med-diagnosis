@@ -65,7 +65,7 @@ public class GenerateTherapyAction extends AbstractAction {
 						suggestedTherapiesList.add(t.getName());
 				}
 				
-				System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
+				//System.out.println(res.get_case().getDescription() + " -> " + res.getEval() + "\n");
 			}
 		}
 		

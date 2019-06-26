@@ -89,7 +89,7 @@ public class CbrReasoning implements StandardCBRApplication {
 	public void cycle(CBRQuery query) throws ExecutionException {
 		result = NNScoringMethod.evaluateSimilarity(caseBase.getCases(), query, simConfig);
 		// broj rezultata
-		result = SelectCases.selectTopKRR(result, 5);
+		result = SelectCases.selectTopKRR(result, 3);
 
 	}
 	
