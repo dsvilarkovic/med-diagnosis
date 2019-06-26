@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import model.Allergy;
+import prolog.PrologTherapyGraphVizualizer;
 import utils.Singleton;
 import view.MedicalExaminationPanel;
 
@@ -36,7 +37,7 @@ public class PrologTherapyOpenGraphVisualizer extends AbstractAction {
 		List<String> therapiesList = medicalExaminationPanel.getSuggestedTherapies();
 		
 		if(!therapiesList.isEmpty()) {
-			//TODO: vizualizacija
+			PrologTherapyGraphVizualizer.drawPrologTherapies(disease, allergiesList, therapiesList);
 		}
 		else {
 			JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),

@@ -21,7 +21,8 @@ public class FuzzyOpenGraphVisualizer extends AbstractAction {
 		Map<String,Map<String,String>> map = Singleton.getInstance().getFuzzyModule().getData();
 		
 		//TODO: Dusan vizualizacija
-
+		AdditionalCheckupsFuzzyLogic additionalCheckupsFuzzyLogic = Singleton.getInstance().getFuzzyModule();
+		additionalCheckupsFuzzyLogic.visualizeFuzzyLogic(map);
 	}
 
 }

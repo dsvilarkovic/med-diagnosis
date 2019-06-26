@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controller.FuzzyOpenGraphVisualizer;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
@@ -113,5 +114,9 @@ public class AdditionalCheckupsFuzzyLogic {
 		}
 		System.out.println(resultMap);
 		return resultMap;
+	}
+
+	public void visualizeFuzzyLogic(Map<String, Map<String, String>> map) {
+		FuzzyGraphVisualizer.drawFuzzy(map);
 	}
 }

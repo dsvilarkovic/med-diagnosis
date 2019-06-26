@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import prolog.PrologPreventiveExamsGraphVisualizer;
 import utils.Singleton;
 import view.MedicalExaminationPanel;
 
@@ -31,6 +32,7 @@ public class PrologPreventiveExamOpenGraphVisualizer extends AbstractAction {
 		
 		if(!preventiveList.isEmpty()) {
 			//TODO: vizualizacija
+			PrologPreventiveExamsGraphVisualizer.drawPrologExams(disease, chosenTherapies, preventiveList);
 		}
 		else {
 			JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
