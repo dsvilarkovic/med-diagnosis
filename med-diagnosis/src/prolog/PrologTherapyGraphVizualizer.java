@@ -34,8 +34,6 @@ public class PrologTherapyGraphVizualizer {
         + "");
         
         
-        if(chosenTherapies.size() > 2) {
-        
         for (int i = 0; i < chosenTherapies.size(); i++) {
 	        	
 	    		String chosenTherapy = chosenTherapies.get(i);
@@ -45,13 +43,14 @@ public class PrologTherapyGraphVizualizer {
 				
 				
 				Node therapyNode = g.getNode(chosenTherapy);
-				Node therapyNode2 = g.getNode(chosenTherapy2);
 				
 				if(therapyNode == null) {
 					g.addNode(chosenTherapy);
 					therapyNode = g.getNode(chosenTherapy);
 					therapyNode.addAttribute("ui.label", chosenTherapy);
 				}
+				Node therapyNode2 = g.getNode(chosenTherapy2);
+
 				if(therapyNode2 == null) {
 					g.addNode(chosenTherapy2);
 					therapyNode2 = g.getNode(chosenTherapy2);
@@ -62,70 +61,59 @@ public class PrologTherapyGraphVizualizer {
 				therapyNode.addAttribute("ui.style", "text-style:bold; shape:circle;fill-color: #FFFFE0; size: 50px; text-alignment: center;");
 				therapyNode2.addAttribute("ui.style", "text-style:bold; shape:circle;fill-color: #FFFFE0; size: 50px; text-alignment: center;");
 	
-				g.addEdge(chosenTherapy +":" +chosenTherapy2, chosenTherapy, chosenTherapy2, false);
-				Edge edge = g.getEdge(chosenTherapy +":" +chosenTherapy2);
-				edge.addAttribute("ui.style", "shape:blob; size: 12px; fill-color: #E7E7EA;");
+				if(chosenTherapies.size() > 2) {
+					g.addEdge(chosenTherapy +":" +chosenTherapy2, chosenTherapy, chosenTherapy2, false);
+					Edge edge = g.getEdge(chosenTherapy +":" +chosenTherapy2);
+					edge.addAttribute("ui.style", "shape:blob; size: 12px; fill-color: #E7E7EA;");
+				}
 				
 				g.addEdge(chosenTherapy +":" + disease, chosenTherapy, disease, true);
 				Edge diseaseEdge = g.getEdge(chosenTherapy +":" +disease);
 				diseaseEdge.addAttribute("ui.style", "shape: freeplane;");
-			}
-        }
-        else {
-        	JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
-				    "There is no point in generating for small data",
-				    "Warning",
-				    JOptionPane.WARNING_MESSAGE);
-        	return;
-        }
+		}
         
-        if(allergies.size() > 2) {
-	        for (int i = 0; i < allergies.size(); i++) {
-	        	
-	    		String allergy = allergies.get(i);
-	    		String allergy2 = allergies.get((i + 1) % allergies.size());
-	    		
-	
+        for (int i = 0; i < allergies.size(); i++) {
+        	
+    		String allergy = allergies.get(i);
+    		String allergy2 = allergies.get((i + 1) % allergies.size());
+    		
+
+			
+			
+			Node allergyNode = g.getNode(allergy);
+
+			
+			if(allergyNode == null) {
+				g.addNode(allergy);
+				allergyNode = g.getNode(allergy);
+				allergyNode.addAttribute("ui.label", allergy);
+			}
+			
+			Node allergyNode2 = g.getNode(allergy2);
+			if(allergyNode2 == null) {
 				
+				g.addNode(allergy2);
 				
-				Node allergyNode = g.getNode(allergy);
-				Node allergyNode2 = g.getNode(allergy2);
-				
-				if(allergyNode == null) {
-					g.addNode(allergy);
-					allergyNode = g.getNode(allergy);
-					allergyNode.addAttribute("ui.label", allergy);
-				}
-				if(allergyNode2 == null) {
-					
-					g.addNode(allergy2);
-					
-					allergyNode2 = g.getNode(allergy2);
-					allergyNode2.addAttribute("ui.label", allergy2);
-				}
-		
+				allergyNode2 = g.getNode(allergy2);
+				allergyNode2.addAttribute("ui.label", allergy2);
+			}
 	
-				allergyNode.addAttribute("ui.style","text-style:bold; shape:circle;fill-color: #33FFCC;size: 70px; text-alignment: center;");
-				allergyNode2.addAttribute("ui.style", "text-style:bold; shape:circle;fill-color: #33FFCC; size: 70px; text-alignment: center;");
-	
+
+			allergyNode.addAttribute("ui.style","text-style:bold; shape:circle;fill-color: #33FFCC;size: 70px; text-alignment: center;");
+			allergyNode2.addAttribute("ui.style", "text-style:bold; shape:circle;fill-color: #33FFCC; size: 70px; text-alignment: center;");
+
+			if(allergies.size() > 2) {
 				g.addEdge(allergy +":" +allergy2, allergy, allergy2, false);
 				Edge edge = g.getEdge(allergy +":" +allergy2);
 				edge.addAttribute("ui.style", "shape:blob; size: 12px; fill-color: #E7E7EA;");
-				
-				g.addEdge(allergy +":" + disease,   allergy, disease, true);
-				Edge diseaseEdge = g.getEdge(allergy +":" +disease);
-				diseaseEdge.addAttribute("ui.style", "shape: freeplane;");
-	
 			}
+			
+			g.addEdge(allergy +":" + disease,   allergy, disease, true);
+			Edge diseaseEdge = g.getEdge(allergy +":" +disease);
+			diseaseEdge.addAttribute("ui.style", "shape: freeplane;");
+
+		}
 	        
-        }
-        else {
-        	JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
-				    "There is no point in generating for small data",
-				    "Warning",
-				    JOptionPane.WARNING_MESSAGE);
-        	return;
-        }
         
         
 				

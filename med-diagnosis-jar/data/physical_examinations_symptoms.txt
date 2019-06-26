@@ -1,0 +1,25 @@
+Mental Status					
+Test MMSE;mmse_normal,mmse_cognitive_deficit,mmse_mild_damage,mmse_moderate_damage,mmse_severe_damage			
+Cranial Nerves		
+Sense of smell;disturbance_of_smell				
+Visual fields and acuity;diminished_vision				
+Pupillary response;pupillary_abnormalities				
+Facial sensation;disturbance_of_facial_sensation				
+Facial muscles;disturbance_of_motor_facial_functions				
+Hearing;hearing_problems				
+Taste, pharyngeal movement;disturbance_of_taste				
+Shoulder girdle muscles; problems_with_head_side_to_side_movement				
+Tongue movements; tongue_movement_problems									
+Motor					
+Pronator drift;spasticity				
+Upper extremity strength;upper_extremity_weakness				
+Lower extremity strength;lower_extremity_weakness								
+Sensory					
+Upper extremity;disturbance_of_upper_extremity_sensation				
+Lower extremity;disturbance_of_lower_extremity_sensation				
+Romberg's test;balance_problems							
+Reflexes					
+Reflexes testing;normal_reflexes,brisk_reflexes,decreased_reflexes				
+Coordination and Gait					
+Movement testing;problems_with_movement				
+Coordination of movement testing;dysmetria 				

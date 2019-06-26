@@ -1,0 +1,220 @@
+@prefix :      <http://www.github.com/dsvilarkovic/med_diag> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://w3.org/2001/XMLSchema#> .
+@prefix med_diag: <http://www.github.com/dsvilarkovic/med_diag#> .
+
+med_diag:T1  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "riluzole" , "baclofen" .
+
+med_diag:Patient5  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr5 ;
+        med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
+        med_diag:physical_treatments    med_diag:PhysT5 ;
+        med_diag:prevention_treatments  med_diag:PrevT5 ;
+        med_diag:symptoms               med_diag:Sym5 ;
+        med_diag:therapies              med_diag:T5 .
+
+med_diag:PhysT6  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_aneurysm" , "examination_for_liver_function_changes" .
+
+med_diag:Allergies5  a  med_diag:Allergy_list .
+
+med_diag:Apr3  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "hematologic_tests_good" , "ct_scan_good" .
+
+med_diag:T6  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "midrin" , "riluzole" .
+
+med_diag:Sym4  a          med_diag:Symptom_list ;
+        med_diag:symptom  "nausea" , "neck_pain" , "neck_stiffness_or_tightness" , "headache" .
+
+med_diag:Patient4  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr4 ;
+        med_diag:diagnosis              "tension_headache" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord3 ;
+        med_diag:physical_treatments    med_diag:PhysT4 ;
+        med_diag:prevention_treatments  med_diag:PrevT4 ;
+        med_diag:symptoms               med_diag:Sym4 ;
+        med_diag:therapies              med_diag:T4 .
+
+med_diag:PhysT5  a  med_diag:Physical_treatments .
+
+med_diag:Allergies4  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" , "antiepileptic_drug" , "sulfonamides" .
+
+med_diag:Apr2  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" , "hematologic_tests_good" .
+
+med_diag:T5  a            med_diag:Therapies , med_diag:Prevention_treatments ;
+        med_diag:therapy  "riluzole" , "ropinirole" .
+
+med_diag:Sym3  a          med_diag:Symptom_list ;
+        med_diag:symptom  "nausea" , "neck_pain" , "headache" .
+
+med_diag:PrevT4  med_diag:prevention_treatment
+                "examination_for_brain_tumor" .
+
+med_diag:Patient3  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr3 ;
+        med_diag:diagnosis              "tension_headache" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord3 ;
+        med_diag:physical_treatments    med_diag:PhysT3 ;
+        med_diag:prevention_treatments  med_diag:PrevT3 ;
+        med_diag:symptoms               med_diag:Sym3 ;
+        med_diag:therapies              med_diag:T3 .
+
+med_diag:MedicalRecord4
+        med_diag:address              "adresa" ;
+        med_diag:allergies            med_diag:Allergies4 ;
+        med_diag:firstName            "Neko ime" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "4" ;
+        med_diag:jmbg                 "122221455" ;
+        med_diag:lastName             "Neko prezime" ;
+        med_diag:medicalRecordNumber  "5" ;
+        med_diag:phoneNumber          "2323" ;
+        med_diag:yearOfBirth          "1963" .
+
+med_diag:PhysT4  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_brain_tumor" .
+
+med_diag:Allergies3  a    med_diag:Allergy_list ;
+        med_diag:allergy  "sulfonamides" , "antiepileptic_drug" .
+
+med_diag:Apr1  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" .
+
+med_diag:T4  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "midrin" , "rizatriptan_maxalt" .
+
+med_diag:Sym2  a          med_diag:Symptom_list ;
+        med_diag:symptom  "abnormal_involuntary_movements" , "weakness" , "problems_with_movement" .
+
+med_diag:PrevT3  med_diag:prevention_treatment
+                "examination_for_aneurysm" , "examination_for_brain_tumor" .
+
+med_diag:Apr6  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" .
+
+med_diag:Patient2  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr2 ;
+        med_diag:diagnosis              "parkinson_disease" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord2 ;
+        med_diag:physical_treatments    med_diag:PhysT2 ;
+        med_diag:prevention_treatments  med_diag:PrevT2 ;
+        med_diag:symptoms               med_diag:Sym2 ;
+        med_diag:therapies              med_diag:T2 .
+
+med_diag:MedicalRecord3
+        med_diag:address              "Neka Adresa 3" ;
+        med_diag:allergies            med_diag:Allergies3 ;
+        med_diag:firstName            "Jovan" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "3" ;
+        med_diag:jmbg                 "6543219873652" ;
+        med_diag:lastName             "Jovanovic" ;
+        med_diag:medicalRecordNumber  "3" ;
+        med_diag:phoneNumber          "321654" ;
+        med_diag:yearOfBirth          "1955" .
+
+med_diag:PhysT3  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_aneurysm" , "examination_for_brain_tumor" .
+
+med_diag:Allergies2  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antibiotic" .
+
+med_diag:T3  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "midrin" , "rizatriptan_maxalt" .
+
+med_diag:Sym1  a          med_diag:Symptom_list ;
+        med_diag:symptom  "problems_with_movement" , "weakness" , "abnormal_involuntary_movements" .
+
+med_diag:PrevT2  med_diag:prevention_treatment
+                "urologist_examination_for_bladder_problems" .
+
+med_diag:Apr5  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "magnetic_resonance_imaging_good" .
+
+med_diag:Patient1  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr1 ;
+        med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord1 ;
+        med_diag:physical_treatments    med_diag:PhysT1 ;
+        med_diag:prevention_treatments  med_diag:PrevT1 ;
+        med_diag:symptoms               med_diag:Sym1 ;
+        med_diag:therapies              med_diag:T1 .
+
+med_diag:Sym6  a          med_diag:Symptom_list ;
+        med_diag:symptom  "dizziness" , "abnormal_involuntary_movements" .
+
+med_diag:PhysT2  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "urologist_examination_for_bladder_problems" .
+
+med_diag:Allergies1  a  med_diag:Allergy_list .
+
+med_diag:MedicalRecord2
+        med_diag:address              "Neka Adresa 2" ;
+        med_diag:allergies            med_diag:Allergies2 ;
+        med_diag:firstName            "Milica" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "2" ;
+        med_diag:jmbg                 "987654321987" ;
+        med_diag:lastName             "Milinkovic" ;
+        med_diag:medicalRecordNumber  "2" ;
+        med_diag:phoneNumber          "3216" ;
+        med_diag:yearOfBirth          "1963" .
+
+med_diag:T2  a            med_diag:Therapies , med_diag:Prevention_treatments ;
+        med_diag:therapy  "pramipexole_mirapex" , "ropinirole" .
+
+med_diag:PrevT1  med_diag:prevention_treatment
+                "examination_for_gastrointestinal_conditions" , "examination_for_liver_function_changes" .
+
+med_diag:Patient6  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr6 ;
+        med_diag:diagnosis              "amyotrophic_lateral_sclerosis_als" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord3 ;
+        med_diag:physical_treatments    med_diag:PhysT6 ;
+        med_diag:prevention_treatments  med_diag:PrevT6 ;
+        med_diag:symptoms               med_diag:Sym6 ;
+        med_diag:therapies              med_diag:T6 .
+
+med_diag:Allergies6  a    med_diag:Allergy_list ;
+        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" .
+
+med_diag:Apr4  a  med_diag:Additional_procedures_results ;
+        med_diag:additional_procedures_result
+                "hematologic_tests_good" , "magnetic_resonance_imaging_good" .
+
+med_diag:Sym5  a          med_diag:Symptom_list ;
+        med_diag:symptom  "abnormal_involuntary_movements" , "weakness" , "disturbance_of_memory" .
+
+med_diag:PhysT1  a                   med_diag:Physical_treatments ;
+        med_diag:physical_treatment  "examination_for_gastrointestinal_conditions" , "examination_for_liver_function_changes" .
+
+med_diag:MedicalRecord1
+        med_diag:address              "Adresa 1" ;
+        med_diag:allergies            med_diag:Allergies1 ;
+        med_diag:firstName            "Petar" ;
+        med_diag:gender               "female" ;
+        med_diag:id                   "1" ;
+        med_diag:jmbg                 "123456789321" ;
+        med_diag:lastName             "Petrovic" ;
+        med_diag:medicalRecordNumber  "1" ;
+        med_diag:phoneNumber          "965874321" ;
+        med_diag:yearOfBirth          "1996" .
+
+med_diag:PrevT6  med_diag:prevention_treatment
+                "examination_for_aneurysm" , "examination_for_liver_function_changes" .

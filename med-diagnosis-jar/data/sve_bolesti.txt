@@ -1,0 +1,9 @@
+parkinson_disease
+meningitis
+multiple_sclerosis
+migraine
+dementia
+alzheimer_disease
+epilepsy
+tension_headache
+amyotrophic_lateral_sclerosis_als

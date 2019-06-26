@@ -1,0 +1,1077 @@
+
+FUNCTION_BLOCK additional_procedures
+
+VAR_INPUT               // ulazne varijable
+	abnormal_involuntary_movements : REAL; 
+	problems_with_movement : REAL; 
+	disturbance_of_memory : REAL; 
+	dizziness : REAL; 
+	weakness : REAL; 
+	stiffness_all_over : REAL; 
+	leg_weakness : REAL; 
+	focal_weakness : REAL; 
+	muscle_stiffness_or_tightness : REAL; 
+	difficulty_speaking : REAL; 
+	leg_stiffness_or_tightness : REAL; 
+	fears_and_phobias : REAL; 
+	headache : REAL; 
+	fever : REAL; 
+	vomiting : REAL; 
+	neck_pain : REAL; 
+	ache_all_over : REAL; 
+	back_pain : REAL; 
+	seizures : REAL; 
+	nausea : REAL; 
+	low_back_pain : REAL; 
+	cough : REAL; 
+	leg_pain : REAL; 
+	neck_stiffness_or_tightness : REAL; 
+	fatigue : REAL; 
+	loss_of_sensation : REAL; 
+	paresthesia : REAL; 
+	diminished_vision : REAL; 
+	spots_or_clouds_in_vision : REAL; 
+	symptoms_of_the_face : REAL; 
+	blindness : REAL; 
+	long_menstrual_periods : REAL; 
+	depressive_or_psychotic_symptoms : REAL; 
+	hostile_behavior : REAL; 
+	delusions_or_hallucinations : REAL; 
+	insomnia : REAL; 
+	disturbance_of_smell_or_taste : REAL; 
+	depression : REAL; 
+	restlessness : REAL; 
+	irregular_appearing_scalp : REAL; 
+	muscle_cramps_contractures_or_spasms : REAL; 
+	eye_burns_or_stings : REAL; 
+	lack_of_growth : REAL; 
+	eye_moves_abnormally : REAL; 
+	muscle_weakness : REAL; 
+	anxiety_and_nervousness : REAL; 
+	chills : REAL; 
+	painful_menstruation : REAL; 
+	painful_sinuses : REAL; 
+	bleeding_from_ear : REAL; 
+	back_cramps_or_spasms : REAL; 
+	difficulty_in_swallowing : REAL; 
+	hand_or_finger_weakness : REAL; 
+	leg_cramps_or_spasms : REAL;
+	disturbance_of_facial_sensation: REAL;
+	balance_problems: REAL;
+	disturbance_of_smell: REAL;
+	disturbance_of_lower_extremity_sensation: REAL;
+	disturbance_of_motor_facial_functions: REAL;
+	disturbance_of_taste: REAL;
+	disturbance_of_upper_extremity_sensation: REAL;
+	upper_extremity_weakness: REAL;
+	tongue_movement_problems: REAL;
+	spasticity: REAL;
+	pupillary_abnormalities: REAL;
+	problems_with_head_side_to_side_movement: REAL;
+	lower_extremity_weakness: REAL;
+	hearing_problems: REAL;
+	dysmetria: REAL;
+END_VAR
+
+VAR_OUTPUT              // izlazne varijable
+	magnetic_resonance_imaging : REAL;
+    ct_scan : REAL;
+    hematologic_tests : REAL;
+    emng : REAL;
+    eeg : REAL;
+    lumbar_puncture_fluid_analysis : REAL;
+    psychologic_analysis : REAL;
+END_VAR
+
+FUZZIFY abnormal_involuntary_movements 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY ache_all_over 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY anxiety_and_nervousness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY back_cramps_or_spasms 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY back_pain 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY bleeding_from_ear 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY blindness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY chills 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY cough 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY delusions_or_hallucinations 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY depression 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY depressive_or_psychotic_symptoms 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY difficulty_in_swallowing 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY difficulty_speaking 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY diminished_vision 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_memory 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_smell_or_taste 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY dizziness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY eye_burns_or_stings 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY eye_moves_abnormally 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY fatigue 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY fears_and_phobias 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY fever 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY focal_weakness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY hand_or_finger_weakness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY headache 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY hostile_behavior 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY insomnia 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY irregular_appearing_scalp 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY lack_of_growth 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY leg_cramps_or_spasms 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY leg_pain 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY leg_stiffness_or_tightness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY leg_weakness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY long_menstrual_periods 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY loss_of_sensation 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY low_back_pain 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY muscle_cramps_contractures_or_spasms 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY muscle_stiffness_or_tightness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY muscle_weakness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY nausea 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY neck_pain 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY neck_stiffness_or_tightness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY painful_menstruation 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY painful_sinuses 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY paresthesia 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY problems_with_movement 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY restlessness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY seizures 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY spots_or_clouds_in_vision 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY stiffness_all_over 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY symptoms_of_the_face 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY vomiting 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY weakness 
+	TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0);
+	TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	TERM high := (8, 0) (8.5, 1) (10, 1); 
+END_FUZZIFY 
+
+FUZZIFY balance_problems 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY diminished_vision 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_facial_sensation 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_lower_extremity_sensation 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_motor_facial_functions 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_smell
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_taste 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY disturbance_of_upper_extremity_sensation 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY dysmetria 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY hearing_problems 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY lower_extremity_weakness 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY problems_with_head_side_to_side_movement 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+
+FUZZIFY pupillary_abnormalities 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY spasticity 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY tongue_movement_problems 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+FUZZIFY upper_extremity_weakness 
+    TERM none := (0,1) (0.5,1) (1, 1) (1.5, 0); 
+    TERM low := (1,0) (1.5,1) (2, 1) (3.5, 0);  
+	TERM medium := (3, 0) (3.5, 1) (6, 1) (8.5,0); 
+	TERM high := (8, 0) (8.5, 1) (10, 1);  
+END_FUZZIFY 
+
+
+DEFUZZIFY magnetic_resonance_imaging 
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+    METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 0;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+DEFUZZIFY ct_scan
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+    METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 1;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+DEFUZZIFY hematologic_tests
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 1;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+DEFUZZIFY emng
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 1;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+DEFUZZIFY eeg
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 1;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+DEFUZZIFY lumbar_puncture_fluid_analysis
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 1;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+DEFUZZIFY psychologic_analysis
+	TERM low := (1, 1) (2, 1) (3, 1) (4, 0); 
+	TERM medium := (1,0) (1.5,1) (2, 1) (3.5, 0); 
+	TERM high := (3, 0) (3.5, 1) (6, 1) (8.5,0);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 1;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY 
+
+
+RULEBLOCK blok1
+	AND : MIN;			// za konjunkciju se koristi minimum (samim tim sa za disjunkciju koristi maksimum)
+	ACT : MIN;			// za zakljuÄ�ivanje (implikaciju) je izabran minimum (Mamdani implikacija) (osim MIN koristi se i PROD)
+	ACCU : MAX;			// za kompoziciju je izabran maksimum (osim MAX koristi se i SUM)
+RULE 1 : IF abnormal_involuntary_movements IS medium THEN ct_scan IS low;
+RULE 2 : IF abnormal_involuntary_movements IS medium THEN emng IS low;
+RULE 3 : IF abnormal_involuntary_movements IS medium THEN eeg IS low;
+RULE 4 : IF abnormal_involuntary_movements IS high THEN ct_scan IS medium;
+RULE 5 : IF abnormal_involuntary_movements IS high THEN emng IS medium;
+RULE 6 : IF abnormal_involuntary_movements IS high THEN eeg IS medium;
+RULE 7 : IF abnormal_involuntary_movements IS low THEN hematologic_tests IS high;
+RULE 8 : IF abnormal_involuntary_movements IS medium THEN hematologic_tests IS high;
+RULE 9 : IF abnormal_involuntary_movements IS high THEN hematologic_tests IS high;
+RULE 10 : IF ache_all_over IS medium THEN hematologic_tests IS low;
+RULE 11 : IF ache_all_over IS high THEN hematologic_tests IS medium;
+RULE 12 : IF anxiety_and_nervousness IS medium THEN hematologic_tests IS low;
+RULE 13 : IF anxiety_and_nervousness IS high THEN hematologic_tests IS low;
+RULE 14 : IF anxiety_and_nervousness IS low THEN psychologic_analysis IS medium;
+RULE 15 : IF anxiety_and_nervousness IS medium THEN psychologic_analysis IS high;
+RULE 16 : IF anxiety_and_nervousness IS high THEN psychologic_analysis IS high;
+RULE 17 : IF back_cramps_or_spasms IS high THEN emng IS low;
+RULE 18 : IF back_cramps_or_spasms IS high THEN eeg IS low;
+RULE 19 : IF back_pain IS medium THEN ct_scan IS low;
+RULE 20 : IF back_pain IS low THEN magnetic_resonance_imaging IS medium;
+RULE 21 : IF back_pain IS high THEN ct_scan IS medium;
+RULE 22 : IF back_pain IS medium THEN magnetic_resonance_imaging IS high;
+RULE 23 : IF back_pain IS high THEN magnetic_resonance_imaging IS high;
+RULE 24 : IF bleeding_from_ear IS low THEN ct_scan IS medium;
+RULE 25 : IF bleeding_from_ear IS medium THEN ct_scan IS high;
+RULE 26 : IF bleeding_from_ear IS high THEN ct_scan IS high;
+RULE 27 : IF blindness IS medium THEN magnetic_resonance_imaging IS low;
+RULE 28 : IF blindness IS high THEN magnetic_resonance_imaging IS low;
+RULE 29 : IF blindness IS low THEN hematologic_tests IS low;
+RULE 30 : IF blindness IS medium THEN hematologic_tests IS low;
+RULE 31 : IF blindness IS low THEN ct_scan IS medium;
+RULE 32 : IF blindness IS high THEN hematologic_tests IS medium;
+RULE 33 : IF blindness IS medium THEN ct_scan IS high;
+RULE 34 : IF blindness IS high THEN ct_scan IS high;
+RULE 35 : IF chills IS low THEN hematologic_tests IS medium;
+RULE 36 : IF chills IS medium THEN hematologic_tests IS high;
+RULE 37 : IF chills IS high THEN hematologic_tests IS high;
+RULE 38 : IF cough IS low THEN ct_scan IS low;
+RULE 39 : IF cough IS medium THEN ct_scan IS medium;
+RULE 40 : IF cough IS high THEN ct_scan IS medium;
+RULE 41 : IF delusions_or_hallucinations IS low THEN hematologic_tests IS medium;
+RULE 42 : IF delusions_or_hallucinations IS medium THEN hematologic_tests IS high;
+RULE 43 : IF delusions_or_hallucinations IS high THEN hematologic_tests IS high;
+RULE 44 : IF delusions_or_hallucinations IS low THEN psychologic_analysis IS high;
+RULE 45 : IF delusions_or_hallucinations IS medium THEN psychologic_analysis IS high;
+RULE 46 : IF delusions_or_hallucinations IS high THEN psychologic_analysis IS high;
+RULE 47 : IF depression IS low THEN hematologic_tests IS low;
+RULE 48 : IF depression IS medium THEN hematologic_tests IS medium;
+RULE 49 : IF depression IS high THEN hematologic_tests IS medium;
+RULE 50 : IF depression IS low THEN psychologic_analysis IS medium;
+RULE 51 : IF depression IS medium THEN psychologic_analysis IS high;
+RULE 52 : IF depression IS high THEN psychologic_analysis IS high;
+RULE 53 : IF depressive_or_psychotic_symptoms IS low THEN hematologic_tests IS medium;
+RULE 54 : IF depressive_or_psychotic_symptoms IS medium THEN hematologic_tests IS high;
+RULE 55 : IF depressive_or_psychotic_symptoms IS high THEN hematologic_tests IS high;
+RULE 56 : IF depressive_or_psychotic_symptoms IS low THEN psychologic_analysis IS high;
+RULE 57 : IF depressive_or_psychotic_symptoms IS medium THEN psychologic_analysis IS high;
+RULE 58 : IF depressive_or_psychotic_symptoms IS high THEN psychologic_analysis IS high;
+RULE 59 : IF difficulty_in_swallowing IS low THEN hematologic_tests IS low;
+RULE 60 : IF difficulty_in_swallowing IS low THEN ct_scan IS medium;
+RULE 61 : IF difficulty_in_swallowing IS medium THEN hematologic_tests IS medium;
+RULE 62 : IF difficulty_in_swallowing IS high THEN hematologic_tests IS medium;
+RULE 63 : IF difficulty_in_swallowing IS medium THEN ct_scan IS high;
+RULE 64 : IF difficulty_in_swallowing IS high THEN ct_scan IS high;
+RULE 65 : IF difficulty_speaking IS low THEN ct_scan IS low;
+RULE 66 : IF difficulty_speaking IS medium THEN ct_scan IS low;
+RULE 67 : IF difficulty_speaking IS high THEN ct_scan IS medium;
+RULE 68 : IF difficulty_speaking IS low THEN hematologic_tests IS medium;
+RULE 69 : IF difficulty_speaking IS medium THEN hematologic_tests IS high;
+RULE 70 : IF difficulty_speaking IS high THEN hematologic_tests IS high;
+RULE 71 : IF diminished_vision IS medium THEN magnetic_resonance_imaging IS low;
+RULE 72 : IF diminished_vision IS high THEN magnetic_resonance_imaging IS low;
+RULE 73 : IF diminished_vision IS high THEN hematologic_tests IS low;
+RULE 74 : IF diminished_vision IS low THEN ct_scan IS medium;
+RULE 75 : IF diminished_vision IS medium THEN ct_scan IS high;
+RULE 76 : IF diminished_vision IS high THEN ct_scan IS high;
+RULE 77 : IF disturbance_of_memory IS medium THEN hematologic_tests IS low;
+RULE 78 : IF disturbance_of_memory IS high THEN hematologic_tests IS low;
+RULE 79 : IF disturbance_of_memory IS low THEN magnetic_resonance_imaging IS medium;
+RULE 80 : IF disturbance_of_memory IS low THEN ct_scan IS medium;
+RULE 81 : IF disturbance_of_memory IS medium THEN magnetic_resonance_imaging IS high;
+RULE 82 : IF disturbance_of_memory IS high THEN magnetic_resonance_imaging IS high;
+RULE 83 : IF disturbance_of_memory IS medium THEN ct_scan IS high;
+RULE 84 : IF disturbance_of_memory IS high THEN ct_scan IS high;
+RULE 85 : IF disturbance_of_memory IS low THEN psychologic_analysis IS high;
+RULE 86 : IF disturbance_of_memory IS medium THEN psychologic_analysis IS high;
+RULE 87 : IF disturbance_of_memory IS high THEN psychologic_analysis IS high;
+RULE 88 : IF disturbance_of_smell_or_taste IS high THEN magnetic_resonance_imaging IS low;
+RULE 89 : IF disturbance_of_smell_or_taste IS high THEN psychologic_analysis IS low;
+RULE 90 : IF dizziness IS low THEN hematologic_tests IS medium;
+RULE 91 : IF dizziness IS medium THEN hematologic_tests IS high;
+RULE 92 : IF dizziness IS high THEN hematologic_tests IS high;
+RULE 93 : IF eye_burns_or_stings IS high THEN hematologic_tests IS low;
+RULE 94 : IF eye_moves_abnormally IS low THEN magnetic_resonance_imaging IS low;
+RULE 95 : IF eye_moves_abnormally IS low THEN emng IS low;
+RULE 96 : IF eye_moves_abnormally IS medium THEN emng IS low;
+RULE 97 : IF eye_moves_abnormally IS low THEN eeg IS low;
+RULE 98 : IF eye_moves_abnormally IS medium THEN eeg IS low;
+RULE 99 : IF eye_moves_abnormally IS medium THEN magnetic_resonance_imaging IS medium;
+RULE 100 : IF eye_moves_abnormally IS high THEN magnetic_resonance_imaging IS medium;
+RULE 101 : IF eye_moves_abnormally IS low THEN ct_scan IS medium;
+RULE 102 : IF eye_moves_abnormally IS high THEN emng IS medium;
+RULE 103 : IF eye_moves_abnormally IS high THEN eeg IS medium;
+RULE 104 : IF eye_moves_abnormally IS medium THEN ct_scan IS high;
+RULE 105 : IF eye_moves_abnormally IS high THEN ct_scan IS high;
+RULE 106 : IF fatigue IS low THEN hematologic_tests IS medium;
+RULE 107 : IF fatigue IS medium THEN hematologic_tests IS high;
+RULE 108 : IF fatigue IS high THEN hematologic_tests IS high;
+RULE 109 : IF fears_and_phobias IS low THEN hematologic_tests IS low;
+RULE 110 : IF fears_and_phobias IS medium THEN hematologic_tests IS medium;
+RULE 111 : IF fears_and_phobias IS high THEN hematologic_tests IS medium;
+RULE 112 : IF fears_and_phobias IS low THEN psychologic_analysis IS high;
+RULE 113 : IF fears_and_phobias IS medium THEN psychologic_analysis IS high;
+RULE 114 : IF fears_and_phobias IS high THEN psychologic_analysis IS high;
+RULE 115 : IF fever IS low THEN hematologic_tests IS medium;
+RULE 116 : IF fever IS medium THEN hematologic_tests IS high;
+RULE 117 : IF fever IS high THEN hematologic_tests IS high;
+RULE 118 : IF focal_weakness IS low THEN ct_scan IS low;
+RULE 119 : IF focal_weakness IS medium THEN ct_scan IS medium;
+RULE 120 : IF focal_weakness IS high THEN ct_scan IS medium;
+RULE 121 : IF focal_weakness IS low THEN hematologic_tests IS medium;
+RULE 122 : IF focal_weakness IS medium THEN hematologic_tests IS high;
+RULE 123 : IF focal_weakness IS high THEN hematologic_tests IS high;
+RULE 124 : IF hand_or_finger_weakness IS low THEN ct_scan IS low;
+RULE 125 : IF hand_or_finger_weakness IS medium THEN ct_scan IS low;
+RULE 126 : IF hand_or_finger_weakness IS low THEN magnetic_resonance_imaging IS medium;
+RULE 127 : IF hand_or_finger_weakness IS high THEN ct_scan IS medium;
+RULE 128 : IF hand_or_finger_weakness IS medium THEN magnetic_resonance_imaging IS high;
+RULE 129 : IF hand_or_finger_weakness IS high THEN magnetic_resonance_imaging IS high;
+RULE 130 : IF headache IS medium THEN hematologic_tests IS low;
+RULE 131 : IF headache IS low THEN hematologic_tests IS low;
+RULE 132 : IF headache IS low THEN ct_scan IS medium;
+RULE 133 : IF headache IS high THEN hematologic_tests IS medium;
+RULE 134 : IF headache IS medium THEN ct_scan IS high;
+RULE 135 : IF headache IS high THEN ct_scan IS high;
+RULE 136 : IF hostile_behavior IS high THEN magnetic_resonance_imaging IS low;
+RULE 137 : IF hostile_behavior IS low THEN hematologic_tests IS medium;
+RULE 138 : IF hostile_behavior IS medium THEN hematologic_tests IS high;
+RULE 139 : IF hostile_behavior IS high THEN hematologic_tests IS high;
+RULE 140 : IF hostile_behavior IS medium THEN psychologic_analysis IS high;
+RULE 141 : IF hostile_behavior IS low THEN psychologic_analysis IS high;
+RULE 142 : IF hostile_behavior IS high THEN psychologic_analysis IS high;
+RULE 143 : IF insomnia IS low THEN hematologic_tests IS low;
+RULE 144 : IF insomnia IS low THEN emng IS low;
+RULE 145 : IF insomnia IS medium THEN emng IS low;
+RULE 146 : IF insomnia IS low THEN eeg IS low;
+RULE 147 : IF insomnia IS medium THEN eeg IS low;
+RULE 148 : IF insomnia IS medium THEN hematologic_tests IS medium;
+RULE 149 : IF insomnia IS high THEN hematologic_tests IS medium;
+RULE 150 : IF insomnia IS high THEN emng IS medium;
+RULE 151 : IF insomnia IS high THEN eeg IS medium;
+RULE 152 : IF insomnia IS low THEN psychologic_analysis IS medium;
+RULE 153 : IF insomnia IS medium THEN psychologic_analysis IS high;
+RULE 154 : IF insomnia IS high THEN psychologic_analysis IS high;
+RULE 155 : IF irregular_appearing_scalp IS medium THEN magnetic_resonance_imaging IS low;
+RULE 156 : IF irregular_appearing_scalp IS medium THEN ct_scan IS low;
+RULE 157 : IF irregular_appearing_scalp IS high THEN magnetic_resonance_imaging IS medium;
+RULE 158 : IF irregular_appearing_scalp IS high THEN ct_scan IS medium;
+RULE 159 : IF lack_of_growth IS low THEN magnetic_resonance_imaging IS low;
+RULE 160 : IF lack_of_growth IS medium THEN magnetic_resonance_imaging IS low;
+RULE 161 : IF lack_of_growth IS high THEN magnetic_resonance_imaging IS medium;
+RULE 162 : IF leg_cramps_or_spasms IS low THEN emng IS low;
+RULE 163 : IF leg_cramps_or_spasms IS low THEN eeg IS low;
+RULE 164 : IF leg_cramps_or_spasms IS low THEN hematologic_tests IS medium;
+RULE 165 : IF leg_cramps_or_spasms IS medium THEN hematologic_tests IS medium;
+RULE 166 : IF leg_cramps_or_spasms IS medium THEN emng IS medium;
+RULE 167 : IF leg_cramps_or_spasms IS high THEN emng IS medium;
+RULE 168 : IF leg_cramps_or_spasms IS medium THEN eeg IS medium;
+RULE 169 : IF leg_cramps_or_spasms IS high THEN eeg IS medium;
+RULE 170 : IF leg_cramps_or_spasms IS high THEN hematologic_tests IS high;
+RULE 171 : IF leg_pain IS low THEN magnetic_resonance_imaging IS low;
+RULE 172 : IF leg_pain IS medium THEN magnetic_resonance_imaging IS low;
+RULE 173 : IF leg_pain IS high THEN magnetic_resonance_imaging IS medium;
+RULE 174 : IF leg_stiffness_or_tightness IS low THEN hematologic_tests IS low;
+RULE 175 : IF leg_stiffness_or_tightness IS low THEN emng IS low;
+RULE 176 : IF leg_stiffness_or_tightness IS low THEN eeg IS low;
+RULE 177 : IF leg_stiffness_or_tightness IS medium THEN hematologic_tests IS medium;
+RULE 178 : IF leg_stiffness_or_tightness IS high THEN hematologic_tests IS medium;
+RULE 179 : IF leg_stiffness_or_tightness IS medium THEN emng IS medium;
+RULE 180 : IF leg_stiffness_or_tightness IS high THEN emng IS medium;
+RULE 181 : IF leg_stiffness_or_tightness IS medium THEN eeg IS medium;
+RULE 182 : IF leg_stiffness_or_tightness IS high THEN eeg IS medium;
+RULE 183 : IF leg_weakness IS low THEN magnetic_resonance_imaging IS low;
+RULE 184 : IF leg_weakness IS medium THEN magnetic_resonance_imaging IS low;
+RULE 185 : IF leg_weakness IS low THEN emng IS low;
+RULE 186 : IF leg_weakness IS low THEN eeg IS low;
+RULE 187 : IF leg_weakness IS high THEN magnetic_resonance_imaging IS medium;
+RULE 188 : IF leg_weakness IS low THEN hematologic_tests IS medium;
+RULE 189 : IF leg_weakness IS medium THEN emng IS medium;
+RULE 190 : IF leg_weakness IS high THEN emng IS medium;
+RULE 191 : IF leg_weakness IS medium THEN eeg IS medium;
+RULE 192 : IF leg_weakness IS high THEN eeg IS medium;
+RULE 193 : IF leg_weakness IS medium THEN hematologic_tests IS high;
+RULE 194 : IF leg_weakness IS high THEN hematologic_tests IS high;
+RULE 195 : IF long_menstrual_periods IS low THEN hematologic_tests IS medium;
+RULE 196 : IF long_menstrual_periods IS medium THEN hematologic_tests IS high;
+RULE 197 : IF long_menstrual_periods IS high THEN hematologic_tests IS high;
+RULE 198 : IF loss_of_sensation IS medium THEN ct_scan IS low;
+RULE 199 : IF loss_of_sensation IS high THEN ct_scan IS low;
+RULE 200 : IF loss_of_sensation IS low THEN hematologic_tests IS medium;
+RULE 201 : IF loss_of_sensation IS medium THEN hematologic_tests IS high;
+RULE 202 : IF loss_of_sensation IS high THEN hematologic_tests IS high;
+RULE 203 : IF low_back_pain IS low THEN magnetic_resonance_imaging IS low;
+RULE 204 : IF low_back_pain IS low THEN ct_scan IS low;
+RULE 205 : IF low_back_pain IS medium THEN magnetic_resonance_imaging IS medium;
+RULE 206 : IF low_back_pain IS high THEN magnetic_resonance_imaging IS medium;
+RULE 207 : IF low_back_pain IS medium THEN ct_scan IS medium;
+RULE 208 : IF low_back_pain IS high THEN ct_scan IS medium;
+RULE 209 : IF muscle_cramps_contractures_or_spasms IS low THEN magnetic_resonance_imaging IS low;
+RULE 210 : IF muscle_cramps_contractures_or_spasms IS high THEN psychologic_analysis IS low;
+RULE 211 : IF muscle_cramps_contractures_or_spasms IS medium THEN magnetic_resonance_imaging IS medium;
+RULE 212 : IF muscle_cramps_contractures_or_spasms IS high THEN magnetic_resonance_imaging IS medium;
+RULE 213 : IF muscle_cramps_contractures_or_spasms IS medium THEN emng IS medium;
+RULE 214 : IF muscle_cramps_contractures_or_spasms IS high THEN emng IS medium;
+RULE 215 : IF muscle_cramps_contractures_or_spasms IS medium THEN eeg IS medium;
+RULE 216 : IF muscle_cramps_contractures_or_spasms IS high THEN eeg IS medium;
+RULE 217 : IF muscle_stiffness_or_tightness IS low THEN emng IS low;
+RULE 218 : IF muscle_stiffness_or_tightness IS low THEN eeg IS low;
+RULE 219 : IF muscle_stiffness_or_tightness IS low THEN magnetic_resonance_imaging IS medium;
+RULE 220 : IF muscle_stiffness_or_tightness IS low THEN ct_scan IS medium;
+RULE 221 : IF muscle_stiffness_or_tightness IS medium THEN emng IS medium;
+RULE 222 : IF muscle_stiffness_or_tightness IS high THEN emng IS medium;
+RULE 223 : IF muscle_stiffness_or_tightness IS medium THEN eeg IS medium;
+RULE 224 : IF muscle_stiffness_or_tightness IS high THEN eeg IS medium;
+RULE 225 : IF muscle_stiffness_or_tightness IS medium THEN magnetic_resonance_imaging IS high;
+RULE 226 : IF muscle_stiffness_or_tightness IS high THEN magnetic_resonance_imaging IS high;
+RULE 227 : IF muscle_stiffness_or_tightness IS medium THEN ct_scan IS high;
+RULE 228 : IF muscle_stiffness_or_tightness IS high THEN ct_scan IS high;
+RULE 229 : IF muscle_weakness IS low THEN emng IS low;
+RULE 230 : IF muscle_weakness IS low THEN eeg IS low;
+RULE 231 : IF muscle_weakness IS low THEN hematologic_tests IS medium;
+RULE 232 : IF muscle_weakness IS medium THEN emng IS medium;
+RULE 233 : IF muscle_weakness IS high THEN emng IS medium;
+RULE 234 : IF muscle_weakness IS medium THEN eeg IS medium;
+RULE 235 : IF muscle_weakness IS high THEN eeg IS medium;
+RULE 236 : IF muscle_weakness IS medium THEN hematologic_tests IS high;
+RULE 237 : IF muscle_weakness IS high THEN hematologic_tests IS high;
+RULE 238 : IF nausea IS low THEN hematologic_tests IS medium;
+RULE 239 : IF nausea IS medium THEN hematologic_tests IS high;
+RULE 240 : IF nausea IS high THEN hematologic_tests IS high;
+RULE 241 : IF neck_pain IS low THEN magnetic_resonance_imaging IS low;
+RULE 242 : IF neck_pain IS medium THEN magnetic_resonance_imaging IS medium;
+RULE 243 : IF neck_pain IS high THEN magnetic_resonance_imaging IS medium;
+RULE 244 : IF neck_pain IS low THEN ct_scan IS medium;
+RULE 245 : IF neck_pain IS medium THEN ct_scan IS high;
+RULE 246 : IF neck_pain IS high THEN ct_scan IS high;
+RULE 247 : IF neck_stiffness_or_tightness IS medium THEN ct_scan IS low;
+RULE 248 : IF neck_stiffness_or_tightness IS high THEN ct_scan IS low;
+RULE 249 : IF painful_menstruation IS low THEN hematologic_tests IS medium;
+RULE 250 : IF painful_menstruation IS medium THEN hematologic_tests IS high;
+RULE 251 : IF painful_menstruation IS high THEN hematologic_tests IS high;
+RULE 252 : IF painful_sinuses IS low THEN ct_scan IS low;
+RULE 253 : IF painful_sinuses IS high THEN hematologic_tests IS low;
+RULE 254 : IF painful_sinuses IS medium THEN ct_scan IS medium;
+RULE 255 : IF painful_sinuses IS high THEN ct_scan IS medium;
+RULE 256 : IF paresthesia IS low THEN ct_scan IS low;
+RULE 257 : IF paresthesia IS low THEN hematologic_tests IS low;
+RULE 258 : IF paresthesia IS medium THEN ct_scan IS medium;
+RULE 259 : IF paresthesia IS high THEN ct_scan IS medium;
+RULE 260 : IF paresthesia IS medium THEN hematologic_tests IS medium;
+RULE 261 : IF paresthesia IS high THEN hematologic_tests IS medium;
+RULE 262 : IF problems_with_movement IS medium THEN ct_scan IS low;
+RULE 263 : IF problems_with_movement IS high THEN ct_scan IS low;
+RULE 264 : IF problems_with_movement IS low THEN emng IS low;
+RULE 265 : IF problems_with_movement IS low THEN eeg IS low;
+RULE 266 : IF problems_with_movement IS low THEN hematologic_tests IS medium;
+RULE 267 : IF problems_with_movement IS medium THEN emng IS medium;
+RULE 268 : IF problems_with_movement IS high THEN emng IS medium;
+RULE 269 : IF problems_with_movement IS medium THEN eeg IS medium;
+RULE 270 : IF problems_with_movement IS high THEN eeg IS medium;
+RULE 271 : IF problems_with_movement IS medium THEN hematologic_tests IS high;
+RULE 272 : IF problems_with_movement IS high THEN hematologic_tests IS high;
+RULE 273 : IF restlessness IS low THEN emng IS low;
+RULE 274 : IF restlessness IS medium THEN emng IS low;
+RULE 275 : IF restlessness IS low THEN eeg IS low;
+RULE 276 : IF restlessness IS medium THEN eeg IS low;
+RULE 277 : IF restlessness IS high THEN emng IS medium;
+RULE 278 : IF restlessness IS high THEN eeg IS medium;
+RULE 279 : IF restlessness IS low THEN psychologic_analysis IS medium;
+RULE 280 : IF restlessness IS medium THEN psychologic_analysis IS high;
+RULE 281 : IF restlessness IS high THEN psychologic_analysis IS high;
+RULE 282 : IF seizures IS low THEN magnetic_resonance_imaging IS low;
+RULE 283 : IF seizures IS medium THEN ct_scan IS low;
+RULE 284 : IF seizures IS high THEN ct_scan IS low;
+RULE 285 : IF seizures IS medium THEN magnetic_resonance_imaging IS medium;
+RULE 286 : IF seizures IS high THEN magnetic_resonance_imaging IS medium;
+RULE 287 : IF seizures IS low THEN hematologic_tests IS medium;
+RULE 288 : IF seizures IS medium THEN hematologic_tests IS high;
+RULE 289 : IF seizures IS high THEN hematologic_tests IS high;
+RULE 290 : IF spots_or_clouds_in_vision IS low THEN ct_scan IS medium;
+RULE 291 : IF spots_or_clouds_in_vision IS medium THEN ct_scan IS high;
+RULE 292 : IF spots_or_clouds_in_vision IS high THEN ct_scan IS high;
+RULE 293 : IF stiffness_all_over IS medium THEN ct_scan IS low;
+RULE 294 : IF stiffness_all_over IS high THEN ct_scan IS low;
+RULE 295 : IF stiffness_all_over IS low THEN emng IS low;
+RULE 296 : IF stiffness_all_over IS low THEN eeg IS low;
+RULE 297 : IF stiffness_all_over IS low THEN hematologic_tests IS medium;
+RULE 298 : IF stiffness_all_over IS medium THEN emng IS medium;
+RULE 299 : IF stiffness_all_over IS high THEN emng IS medium;
+RULE 300 : IF stiffness_all_over IS medium THEN eeg IS medium;
+RULE 301 : IF stiffness_all_over IS high THEN eeg IS medium;
+RULE 302 : IF stiffness_all_over IS medium THEN hematologic_tests IS high;
+RULE 303 : IF stiffness_all_over IS high THEN hematologic_tests IS high;
+RULE 304 : IF symptoms_of_the_face IS low THEN ct_scan IS low;
+RULE 305 : IF symptoms_of_the_face IS medium THEN ct_scan IS medium;
+RULE 306 : IF symptoms_of_the_face IS high THEN ct_scan IS medium;
+RULE 307 : IF symptoms_of_the_face IS low THEN hematologic_tests IS medium;
+RULE 308 : IF symptoms_of_the_face IS medium THEN hematologic_tests IS high;
+RULE 309 : IF symptoms_of_the_face IS high THEN hematologic_tests IS high;
+RULE 310 : IF vomiting IS low THEN hematologic_tests IS high;
+RULE 311 : IF vomiting IS medium THEN hematologic_tests IS high;
+RULE 312 : IF vomiting IS high THEN hematologic_tests IS high;
+RULE 313 : IF weakness IS low THEN hematologic_tests IS medium;
+RULE 314 : IF weakness IS medium THEN hematologic_tests IS high;
+RULE 315 : IF weakness IS high THEN hematologic_tests IS high;
+RULE 316 : IF weakness IS high THEN hematologic_tests IS high;
+RULE 317 : IF weakness IS high THEN hematologic_tests IS high;
+RULE 318 : IF weakness IS high THEN hematologic_tests IS high;
+RULE 319 : IF weakness IS high THEN hematologic_tests IS high;
+RULE 320 : IF weakness IS high THEN hematologic_tests IS high;
+RULE 321 : IF pupillary_abnormalities IS low THEN ct_scan IS medium;
+RULE 322 : IF pupillary_abnormalities IS medium THEN ct_scan IS high;
+RULE 323 : IF pupillary_abnormalities IS high THEN ct_scan IS high;
+RULE 324 : IF disturbance_of_facial_sensation IS low THEN ct_scan IS low;
+RULE 325 : IF disturbance_of_facial_sensation IS medium THEN ct_scan IS medium;
+RULE 326 : IF disturbance_of_facial_sensation IS high THEN ct_scan IS medium;
+RULE 327 : IF disturbance_of_facial_sensation IS low THEN hematologic_tests IS medium;
+RULE 328 : IF disturbance_of_facial_sensation IS medium THEN hematologic_tests IS high;
+RULE 329 : IF disturbance_of_facial_sensation IS high THEN hematologic_tests IS high;
+RULE 330 : IF disturbance_of_motor_facial_functions IS low THEN ct_scan IS low;
+RULE 331 : IF disturbance_of_motor_facial_functions IS medium THEN ct_scan IS medium;
+RULE 332 : IF disturbance_of_motor_facial_functions IS high THEN ct_scan IS medium;
+RULE 333 : IF disturbance_of_motor_facial_functions IS low THEN hematologic_tests IS medium;
+RULE 334 : IF disturbance_of_motor_facial_functions IS medium THEN hematologic_tests IS high;
+RULE 335 : IF disturbance_of_motor_facial_functions IS high THEN hematologic_tests IS high;
+RULE 336 : IF hearing_problems IS low THEN ct_scan IS medium;
+RULE 337 : IF hearing_problems IS medium THEN ct_scan IS high;
+RULE 338 : IF hearing_problems IS high THEN ct_scan IS high;
+RULE 339 : IF disturbance_of_taste IS high THEN magnetic_resonance_imaging IS low;
+RULE 340 : IF disturbance_of_taste IS high THEN psychologic_analysis IS low;
+RULE 341 : IF problems_with_head_side_to_side_movement IS medium THEN ct_scan IS low;
+RULE 342 : IF problems_with_head_side_to_side_movement IS high THEN ct_scan IS low;
+RULE 343 : IF tongue_movement_problems IS low THEN hematologic_tests IS low;
+RULE 344 : IF tongue_movement_problems IS low THEN ct_scan IS medium;
+RULE 345 : IF tongue_movement_problems IS medium THEN hematologic_tests IS medium;
+RULE 346 : IF tongue_movement_problems IS high THEN hematologic_tests IS medium;
+RULE 347 : IF tongue_movement_problems IS medium THEN ct_scan IS high;
+RULE 348 : IF tongue_movement_problems IS high THEN ct_scan IS high;
+RULE 349 : IF spasticity IS low THEN hematologic_tests IS low;
+RULE 350 : IF spasticity IS low THEN emng IS low;
+RULE 351 : IF spasticity IS low THEN eeg IS low;
+RULE 352 : IF spasticity IS medium THEN hematologic_tests IS medium;
+RULE 353 : IF spasticity IS high THEN hematologic_tests IS medium;
+RULE 354 : IF spasticity IS medium THEN emng IS medium;
+RULE 355 : IF spasticity IS high THEN emng IS medium;
+RULE 356 : IF spasticity IS medium THEN eeg IS medium;
+RULE 357 : IF spasticity IS high THEN eeg IS medium;
+RULE 358 : IF upper_extremity_weakness IS low THEN magnetic_resonance_imaging IS low;
+RULE 359 : IF upper_extremity_weakness IS medium THEN magnetic_resonance_imaging IS low;
+RULE 360 : IF upper_extremity_weakness IS low THEN emng IS low;
+RULE 361 : IF upper_extremity_weakness IS low THEN eeg IS low;
+RULE 362 : IF upper_extremity_weakness IS high THEN magnetic_resonance_imaging IS medium;
+RULE 363 : IF upper_extremity_weakness IS low THEN hematologic_tests IS medium;
+RULE 364 : IF upper_extremity_weakness IS medium THEN emng IS medium;
+RULE 365 : IF upper_extremity_weakness IS high THEN emng IS medium;
+RULE 366 : IF upper_extremity_weakness IS medium THEN eeg IS medium;
+RULE 367 : IF upper_extremity_weakness IS high THEN eeg IS medium;
+RULE 368 : IF upper_extremity_weakness IS medium THEN hematologic_tests IS high;
+RULE 369 : IF upper_extremity_weakness IS high THEN hematologic_tests IS high;
+RULE 370 : IF lower_extremity_weakness IS low THEN magnetic_resonance_imaging IS low;
+RULE 371 : IF lower_extremity_weakness IS medium THEN magnetic_resonance_imaging IS low;
+RULE 372 : IF lower_extremity_weakness IS low THEN emng IS low;
+RULE 373 : IF lower_extremity_weakness IS low THEN eeg IS low;
+RULE 374 : IF lower_extremity_weakness IS high THEN magnetic_resonance_imaging IS medium;
+RULE 375 : IF lower_extremity_weakness IS low THEN hematologic_tests IS medium;
+RULE 376 : IF lower_extremity_weakness IS medium THEN emng IS medium;
+RULE 377 : IF lower_extremity_weakness IS high THEN emng IS medium;
+RULE 378 : IF lower_extremity_weakness IS medium THEN eeg IS medium;
+RULE 379 : IF lower_extremity_weakness IS high THEN eeg IS medium;
+RULE 380 : IF lower_extremity_weakness IS medium THEN hematologic_tests IS high;
+RULE 381 : IF lower_extremity_weakness IS high THEN hematologic_tests IS high;
+RULE 382 : IF disturbance_of_upper_extremity_sensation IS low THEN magnetic_resonance_imaging IS low;
+RULE 383 : IF disturbance_of_upper_extremity_sensation IS medium THEN magnetic_resonance_imaging IS low;
+RULE 384 : IF disturbance_of_upper_extremity_sensation IS low THEN emng IS low;
+RULE 385 : IF disturbance_of_upper_extremity_sensation IS low THEN eeg IS low;
+RULE 386 : IF disturbance_of_upper_extremity_sensation IS high THEN magnetic_resonance_imaging IS medium;
+RULE 387 : IF disturbance_of_upper_extremity_sensation IS low THEN hematologic_tests IS medium;
+RULE 388 : IF disturbance_of_upper_extremity_sensation IS medium THEN emng IS medium;
+RULE 389 : IF disturbance_of_upper_extremity_sensation IS high THEN emng IS medium;
+RULE 390 : IF disturbance_of_upper_extremity_sensation IS medium THEN eeg IS medium;
+RULE 391 : IF disturbance_of_upper_extremity_sensation IS high THEN eeg IS medium;
+RULE 392 : IF disturbance_of_upper_extremity_sensation IS medium THEN hematologic_tests IS high;
+RULE 393 : IF disturbance_of_upper_extremity_sensation IS high THEN hematologic_tests IS high;
+RULE 394 : IF balance_problems IS low THEN hematologic_tests IS medium;
+RULE 395 : IF balance_problems IS medium THEN hematologic_tests IS high;
+RULE 396 : IF balance_problems IS high THEN hematologic_tests IS high;
+RULE 397 : IF dysmetria IS medium THEN ct_scan IS low;
+RULE 398 : IF dysmetria IS high THEN ct_scan IS low;
+RULE 399 : IF dysmetria IS low THEN emng IS low;
+RULE 400 : IF dysmetria IS low THEN eeg IS low;
+RULE 401 : IF dysmetria IS low THEN hematologic_tests IS medium;
+RULE 402 : IF dysmetria IS medium THEN emng IS medium;
+RULE 403 : IF dysmetria IS high THEN emng IS medium;
+RULE 404 : IF dysmetria IS medium THEN eeg IS medium;
+RULE 405 : IF dysmetria IS high THEN eeg IS medium;
+RULE 406 : IF dysmetria IS medium THEN hematologic_tests IS high;
+RULE 407 : IF dysmetria IS high THEN hematologic_tests IS high;
+RULE 408 : IF disturbance_of_lower_extremity_sensation IS low THEN magnetic_resonance_imaging IS low;
+RULE 409 : IF disturbance_of_lower_extremity_sensation IS medium THEN magnetic_resonance_imaging IS low;
+RULE 410 : IF disturbance_of_lower_extremity_sensation IS low THEN emng IS low;
+RULE 411 : IF disturbance_of_lower_extremity_sensation IS low THEN eeg IS low;
+RULE 412 : IF disturbance_of_lower_extremity_sensation IS high THEN magnetic_resonance_imaging IS medium;
+RULE 413 : IF disturbance_of_lower_extremity_sensation IS low THEN hematologic_tests IS medium;
+RULE 414 : IF disturbance_of_lower_extremity_sensation IS medium THEN emng IS medium;
+RULE 415 : IF disturbance_of_lower_extremity_sensation IS high THEN emng IS medium;
+RULE 416 : IF disturbance_of_lower_extremity_sensation IS medium THEN eeg IS medium;
+RULE 417 : IF disturbance_of_lower_extremity_sensation IS high THEN eeg IS medium;
+RULE 418 : IF disturbance_of_lower_extremity_sensation IS medium THEN hematologic_tests IS high;
+RULE 419 : IF disturbance_of_lower_extremity_sensation IS high THEN hematologic_tests IS high;
+RULE 420 : IF disturbance_of_smell IS high THEN magnetic_resonance_imaging IS low;
+RULE 421 : IF disturbance_of_smell IS high THEN psychologic_analysis IS low;
+RULE 422 : IF pupillary_abnormalities IS medium THEN magnetic_resonance_imaging IS low;
+RULE 423 : IF pupillary_abnormalities IS high THEN magnetic_resonance_imaging IS low;
+RULE 424 : IF pupillary_abnormalities IS high THEN hematologic_tests IS low;
+RULE 425 : IF headache IS medium AND fever IS medium AND vomiting  IS medium  AND neck_stiffness_or_tightness IS medium THEN lumbar_puncture_fluid_analysis IS medium;
+RULE 426 : IF headache IS low AND fever IS low AND vomiting  IS low  AND neck_stiffness_or_tightness IS low THEN lumbar_puncture_fluid_analysis IS low;
+RULE 427 : IF headache IS high AND fever IS high AND vomiting  IS high  AND neck_stiffness_or_tightness IS high THEN lumbar_puncture_fluid_analysis IS high;
+RULE 428 : IF leg_weakness IS medium AND fatigue IS medium AND leg_stiffness_or_tightness IS medium THEN lumbar_puncture_fluid_analysis IS medium;
+RULE 429 : IF leg_weakness IS low AND fatigue IS low AND leg_stiffness_or_tightness IS low THEN lumbar_puncture_fluid_analysis IS low;
+RULE 430 :  IF leg_weakness IS high AND fatigue IS high AND leg_stiffness_or_tightness IS high THEN lumbar_puncture_fluid_analysis IS high;
+RULE 431 : IF difficulty_speaking IS high AND problems_with_movement IS high AND difficulty_in_swallowing IS high 
+AND hand_or_finger_weakness IS high AND muscle_weakness IS high AND leg_cramps_or_spasms IS high THEN lumbar_puncture_fluid_analysis IS low;
+RULE 432 :  IF disturbance_of_memory IS high AND problems_with_movement IS high AND hostile_behavior IS high
+AND disturbance_of_smell_or_taste IS high THEN lumbar_puncture_fluid_analysis IS low;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
