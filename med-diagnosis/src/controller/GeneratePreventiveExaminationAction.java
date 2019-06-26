@@ -35,7 +35,6 @@ public class GeneratePreventiveExaminationAction extends AbstractAction {
 			if(diagnosis != null && !diagnosis.isEmpty()) {
 				suggestedExaminations = Singleton.getInstance().getPrologModule().getPreventiveExaminations(diagnosis, therapiesList);
 	
-				medicalExaminationPanel.generatePreventiveExaminations(suggestedExaminations);
 			}
 			else {
 				JOptionPane.showMessageDialog(Singleton.getInstance().getMainFrame(),
@@ -61,8 +60,7 @@ public class GeneratePreventiveExaminationAction extends AbstractAction {
 			}
 		}
 
-		
-		
+		medicalExaminationPanel.generatePreventiveExaminations(suggestedExaminations);		
 
 	}
 

@@ -16,6 +16,10 @@ med_diag:Patient5  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym5 ;
         med_diag:therapies              med_diag:T5 .
 
+med_diag:Allergies5  a  med_diag:Allergy_list .
+
+med_diag:PhysT6  a  med_diag:Physical_treatments .
+
 med_diag:MedicalRecord6
         med_diag:address              "Adresa3" ;
         med_diag:allergies            med_diag:Allergies6 ;
@@ -28,10 +32,6 @@ med_diag:MedicalRecord6
         med_diag:phoneNumber          "1251152512" ;
         med_diag:yearOfBirth          "1965" .
 
-med_diag:PhysT6  a  med_diag:Physical_treatments .
-
-med_diag:Allergies5  a  med_diag:Allergy_list .
-
 med_diag:Apr3  a  med_diag:Additional_procedures_results .
 
 med_diag:T6  a            med_diag:Prevention_treatments , med_diag:Therapies ;
@@ -39,6 +39,8 @@ med_diag:T6  a            med_diag:Prevention_treatments , med_diag:Therapies ;
 
 med_diag:Sym4  a          med_diag:Symptom_list ;
         med_diag:symptom  "problems_with_movement" , "weakness" , "focal_weakness" .
+
+med_diag:Apr8  a  med_diag:Additional_procedures_results .
 
 med_diag:Patient4  a                    med_diag:Patient ;
         med_diag:additional_procedures_results
@@ -88,6 +90,8 @@ med_diag:Patient3  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym3 ;
         med_diag:therapies              med_diag:T3 .
 
+med_diag:Sym8  a  med_diag:Symptom_list .
+
 med_diag:MedicalRecord4
         med_diag:address              "Adresa1" ;
         med_diag:allergies            med_diag:Allergies4 ;
@@ -112,6 +116,18 @@ med_diag:T4  a            med_diag:Prevention_treatments , med_diag:Therapies ;
 
 med_diag:Sym2  a          med_diag:Symptom_list ;
         med_diag:symptom  "abnormal_involuntary_movements" , "dizziness" , "weakness" , "problems_with_movement" , "disturbance_of_memory" .
+
+med_diag:Patient8  a                    med_diag:Patient ;
+        med_diag:additional_procedures_results
+                med_diag:Apr8 ;
+        med_diag:diagnosis              "meningitis" ;
+        med_diag:medicalRecord          med_diag:MedicalRecord5 ;
+        med_diag:physical_treatments    med_diag:PhysT8 ;
+        med_diag:prevention_treatments  med_diag:PrevT8 ;
+        med_diag:symptoms               med_diag:Sym8 ;
+        med_diag:therapies              med_diag:T8 .
+
+med_diag:Allergies8  a  med_diag:Allergy_list .
 
 med_diag:Apr6  a  med_diag:Additional_procedures_results ;
         med_diag:additional_procedures_result
@@ -164,6 +180,8 @@ med_diag:Patient7  a                    med_diag:Patient ;
         med_diag:symptoms               med_diag:Sym7 ;
         med_diag:therapies              med_diag:T7 .
 
+med_diag:PhysT8  a  med_diag:Physical_treatments .
+
 med_diag:Allergies7  a    med_diag:Allergy_list ;
         med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
 
@@ -179,6 +197,9 @@ med_diag:Patient1  a                    med_diag:Patient ;
         med_diag:prevention_treatments  med_diag:PrevT1 ;
         med_diag:symptoms               med_diag:Sym1 ;
         med_diag:therapies              med_diag:T1 .
+
+med_diag:T8  a            med_diag:Prevention_treatments , med_diag:Therapies ;
+        med_diag:therapy  "cefuroxime" , "ceftriaxone" .
 
 med_diag:Sym6  a          med_diag:Symptom_list ;
         med_diag:symptom  "dizziness" , "abnormal_involuntary_movements" .
@@ -216,7 +237,7 @@ med_diag:Patient6  a                    med_diag:Patient ;
 med_diag:PhysT7  a  med_diag:Physical_treatments .
 
 med_diag:Allergies6  a    med_diag:Allergy_list ;
-        med_diag:allergy  "antiepileptic_drug" , "sulfonamides" , "antibiotic" .
+        med_diag:allergy  "antibiotic" , "sulfonamides" , "antiepileptic_drug" .
 
 med_diag:Apr4  a  med_diag:Additional_procedures_results .
 

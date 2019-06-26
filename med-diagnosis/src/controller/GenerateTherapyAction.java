@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import cbr.CbrReasoning;
 import cbr.CbrReasoning.ModuleType;
+import de.javasoft.plaf.synthetica.SyntheticaSpinnerLayoutManager;
 import model.Allergy;
 import model.MedicalExamination;
 import model.Therapy;
@@ -69,8 +70,7 @@ public class GenerateTherapyAction extends AbstractAction {
 			}
 		}
 		
-		medicalExaminationPanel.generateTherapies(suggestedTherapiesList);
-	
+		medicalExaminationPanel.generateTherapies(suggestedTherapiesList);	
 
 	}
 
