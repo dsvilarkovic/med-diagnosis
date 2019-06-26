@@ -64,6 +64,7 @@ public class BayesNetModule {
 	 * @return
 	 */
 	public Map<String, Float> getDiseaseListPercentage(List<String> symptomList, Integer age, String gender){
+		//TODO: proveriti da li dodati initBayes() ovde
 		Map<String, Float> diseaseListPercentage = new TreeMap<String, Float>();
 		List<Node> nodeList = net.getNodes();
 		IInferenceAlgorithm algorithm = new JunctionTreeAlgorithm();

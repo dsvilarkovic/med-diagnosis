@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
@@ -11,6 +13,8 @@ import org.graphstream.stream.file.FileSinkImages;
 import org.graphstream.stream.file.FileSinkImages.LayoutPolicy;
 import org.graphstream.stream.file.FileSinkImages.OutputType;
 import org.graphstream.stream.file.FileSinkImages.Resolutions;
+import org.graphstream.ui.swingViewer.ViewPanel;
+import org.graphstream.ui.view.Viewer;
 
 
 public class BayesGraphVisualizer {
@@ -34,7 +38,7 @@ public class BayesGraphVisualizer {
 			Node symptomNode = g.getNode(symptom);
 			
 			
-			symptomNode.addAttribute("ui.style", "text-style:bold; shape:circle;fill-color: cyan;size: 75px; text-alignment: center;");
+			symptomNode.addAttribute("ui.style", "text-style:bold; shape:circle;fill-color: cyan;size: 30px; text-alignment: center;");
 			symptomNode.addAttribute("ui.label", symptom);
 			
 			List<String> relatedDiseases = mapSymptomToDisease.get(symptom);
@@ -56,8 +60,9 @@ public class BayesGraphVisualizer {
 		}
 			
 		
-		g.display();
-		
+//		g.display();
+	    Viewer viewer = g.display();
+	    viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
 		
 	}
 	
