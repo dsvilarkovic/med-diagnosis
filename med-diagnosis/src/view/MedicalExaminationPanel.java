@@ -49,6 +49,7 @@ public class MedicalExaminationPanel extends JPanel {
 	@SuppressWarnings("rawtypes")
 	public MedicalExaminationPanel(MedicalRecord medicalRecord) {
 		this.medicalExamination = new MedicalExamination();
+		Singleton.getInstance().getFuzzyModule().initValues();
 		this.medicalExamination.setMedicalRecord(medicalRecord); 
 		patientInformationPanel = new PatientInformationPanel(medicalRecord);
 		anamnesisPanel = new AnamnesisPanel();

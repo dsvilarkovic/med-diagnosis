@@ -72,7 +72,7 @@ public class DiagnosisPanel extends JPanel {
 
 	private void initDiagnTable() {
 		this.diagnosisTableHandler.addColumn("Diagnosis");
-		this.diagnosisTableHandler.addColumn("Percentage");
+		this.diagnosisTableHandler.addColumn("Probability");
 		this.diagnosisTableHandler.addColumn("Choose");
 		Action choose = new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
